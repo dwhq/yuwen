@@ -1,0 +1,8 @@
+.aft{
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.aft:hover{
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+}

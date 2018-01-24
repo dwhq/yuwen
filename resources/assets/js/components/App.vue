@@ -1,5 +1,5 @@
 <template>
-    <div style="background: rgba(246,246,246,1);"  >
+    <div style="background: rgba(246,246,246,1);" id="app">
         <herder></herder>
         <!--右侧栏目-->
         <div class="col-md-5 col-md-offset-2">

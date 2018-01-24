@@ -44,10 +44,11 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 
 });
 //数据接口
-Route::prefix('home')->namespace('Home')->group(function () {
+Route::prefix('/')->namespace('Home')->group(function () {
+    Route::get('/', 'ArticleController@index');//设置根目录
     Route::prefix('Index')->group(function () {
         Route::get('column', 'IndexController@column');
-        Route::get('info', 'IndexController@info    ');
+        Route::get('info', 'IndexController@info');
     });
 });
 //直接定义路由

@@ -14,7 +14,7 @@
                 <h4 v-if="info['mobile']">电话 : {{info['mobile']}}</h4>
             </div>
             <div class="col-lg-10 col-md-offset-1" style="margin-top: 20px;background:white;">
-                asdasds
+
             </div>
         </div>
     </div>
