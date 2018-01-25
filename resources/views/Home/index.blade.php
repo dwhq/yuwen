@@ -23,11 +23,12 @@
                 </div>
                 <div class="col-md-6" style="margin-top: 3%">
                     <p>
-                        {{$list->desc}}
+                        {{str_limit($list->desc,100)}}
                     </p>
                 </div>
-                    <a href="" class="text-center col-md-3 col-md-offset-5 bg-primary img-rounded" style="color: white;margin-top: 5%">查看原文</a>
+                <a href="" class="text-center col-md-3 col-md-offset-9 bg-primary img-rounded" style="color: white;margin-top: 5%">查看原文</a>
             </div>
+
         </article>
         @endforeach
             <div class="row">

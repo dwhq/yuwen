@@ -18,13 +18,20 @@ class ArticleController extends Controller
         //
         $colum = $this->column();
         $info = $this->info();
+        $tag = $this->tag();
+        $url = $this->url();
+        $new_article = $this->new_article();
         $list = DB::table('article')->where([['state',1]])->orderBy('id','sort')->paginate(10);
         $page = $list->links();
+        $type='';
         return view('Home/index')
             ->with('list',$list)
             ->with('info',$info)
             ->with('colum',$colum)
-            ->with('type','index')
+            ->with('type',$type)
+            ->with('tag',$tag)
+            ->with('url',$url)
+            ->with('new_article',$new_article)
             ->with('page',$page);
     }
     public function home(Request $request,$type)
@@ -83,18 +90,20 @@ class ArticleController extends Controller
         return $url;
     }
     //文章内容
-    public function content(Request $id){
+    public function content(Request $request,$id){
         $colum = $this->column();
         $info = $this->info();
         $tag = $this->tag();
         $url = $this->url();
         $new_article = $this->new_article();
-        $type=1;
+        $content=DB::table('article')->where([['id',$id]])->first();
+        $type = $content->cateid;
         return view('Home/content')
             ->with('info',$info)
             ->with('colum',$colum)
             ->with('type',$type)
             ->with('tag',$tag)
+            ->with('content',$content)
             ->with('url',$url)
             ->with('new_article',$new_article);
     }

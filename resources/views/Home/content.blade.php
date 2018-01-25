@@ -6,8 +6,19 @@
     {{--头部导航栏--}}
     @include('public.header')
     {{--内容--}}
-    <div class="col-md-5 col-md-offset-2" style="padding: 10px 0 5px 0">
-        内容
+    <div class="col-md-5 col-md-offset-2" style="padding: 10px 0 5px 0;background: white">
+        <div>
+            <p class="h4 col-md-6 col-md-offset-3 text-center">{{$content->title}}</p>
+            <div class="col-md-12" style="margin: 2% 0 5% 0">
+                <div class="col-lg-3 text-center"><span class="glyphicon glyphicon-user"></span>&nbsp;余温</div>
+                <div class="col-lg-6 text-center"><span class="glyphicon glyphicon-time"></span>{{date('Y年m月d日 H时i分',$content->time)}}</div>
+                <div class="col-lg-2 text-center"><span class="glyphicon glyphicon-list-alt"></span> &nbsp;{{$content->cateid}}</div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            {!! $content->account !!}
+        </div>
+
     </div>
     {{--右侧栏--}}
     <div class="col-md-3 clearfix " style="">
