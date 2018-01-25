@@ -19,4 +19,7 @@ class IndexController extends Controller
         $data = DB::table('info')->orderBy('id','desc')->limit(1)->get();
         return $data;
     }
+    public function home(){
+        return 1111;
+    }
 }

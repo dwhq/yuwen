@@ -227,5 +227,5 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
-
+    'img' => env('IMG_URL', 'http://5.5sit.com'),
 ];

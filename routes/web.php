@@ -45,11 +45,10 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 });
 //数据接口
 Route::prefix('/')->namespace('Home')->group(function () {
-    Route::get('/', 'ArticleController@index');//设置根目录
-    Route::prefix('Index')->group(function () {
-        Route::get('column', 'IndexController@column');
-        Route::get('info', 'IndexController@info');
-    });
+    Route::get('/','ArticleController@index');//设置根目录
+    Route::get('home/{type}','ArticleController@home');//栏目分类
+    Route::get('content/{id}','ArticleController@content')->where('id', '[0-9]+');//栏目分类
+
 });
 //直接定义路由
 // Route::get('/article/index','ArticleController@index');
