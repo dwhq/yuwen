@@ -16,9 +16,30 @@
             </div>
         </div>
         <div class="col-md-12">
-            {!! $content->account !!}
+            {!! str_replace('<img src="','<img src="'.config('app.img'),$content->account) !!}
         </div>
-
+        @if(!$article_tag->isEmpty())
+            <div class="col-md-12">
+                <p class="col-md-1 text-center">tag:</p>
+                @foreach($article_tag as $article_tag)
+                    <a href="{{url('label/'.$article_tag->id)}}" class="col-md-2 text-center" style="margin: 5px;border-radius: 10px;background: #e7e7e7;text-decoration: none;">{{$article_tag->name}}</a>
+                @endforeach
+            </div>
+        @endif
+        <div class="col-md-12">
+            @if($up_article)
+                <div class="col-md-12">
+                    <div  class="col-md-2">上一篇 : </div>
+                    <a href="{{url('content/'.$up_article->id)}}">{{$up_article->title}}</a>
+                </div>
+            @endif
+            @if($next_article)
+                <div class="col-md-12">
+                    <div  class="col-md-2 ">下一篇 : </div>
+                    <a href="{{url('content/'.$next_article->id)}}">{{$next_article->title}}</a>
+                </div>
+            @endif
+        </div>
     </div>
     {{--右侧栏--}}
     <div class="col-md-3 clearfix " style="">

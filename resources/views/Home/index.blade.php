@@ -7,10 +7,13 @@
     @include('public.header')
     {{--内容--}}
     <div class="col-md-5 col-md-offset-2" style="padding: 10px 0 5px 0">
+        @if($title)
+            {!! $title !!}
+        @endif
         @foreach($list as $list)
         <article class="col-lg-11 table-bordered " style="margin-top: 5%">
             <div class="col-lg-12" style="margin-bottom: 10px " title="{{$list->title}}" target="_blank">
-                <a href="#/content?id=30" class="col-lg-11 h3 text-primary">{{$list->title}}</a>
+                <a href="{{url('/content/'.$list->id)}}" class="col-lg-11 h3 text-primary">{{$list->title}}</a>
                 <div class="col-md-12" style="margin-bottom: 3px">
                     <div class="col-lg-3"><span class="glyphicon glyphicon-user"></span>&nbsp;余温</div>
                     <div class="col-lg-6"><span class="glyphicon glyphicon-time"></span>{{date('Y年m月d日 H时i分',$list->time)}}</div>
@@ -26,7 +29,7 @@
                         {{str_limit($list->desc,100)}}
                     </p>
                 </div>
-                <a href="" class="text-center col-md-3 col-md-offset-9 bg-primary img-rounded" style="color: white;margin-top: 5%">查看原文</a>
+                <a href="{{url('/content/'.$list->id)}}" class="text-center col-md-3 col-md-offset-9 bg-primary img-rounded" style="color: white;margin-top: 5%">查看原文</a>
             </div>
 
         </article>

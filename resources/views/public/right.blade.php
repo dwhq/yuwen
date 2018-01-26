@@ -1,9 +1,11 @@
 <div>
     <div class="row" style="padding:10px 0 10px 0 ">
-        <div class="col-lg-8 ">
-            <input type="text" class="form-control" placeholder="全文搜索">
-        </div>
-        <button type="button" class="btn btn-success col-lg-3">全文搜索</button>
+        <form action="{{url('search')}}" method="get">
+            <div class="col-lg-8">
+                <input type="text" name="seek" class="form-control" placeholder="全文搜索">
+            </div>
+            <button type="submit" class="btn btn-success col-lg-3">全文搜索</button>
+        </form>
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -11,7 +13,7 @@
         </div>
         @if($info[0]->qq)
         <div class="panel-body h4">
-            QQ : {{$info[0]->qq}}
+            QQ : <a href="http://wpa.qq.com/msgrd?v=3&uin=1581176417&site=qq&menu=yes">{{$info[0]->qq}}</a>
         </div>
         @endif
         @if($info[0]->email)
@@ -31,7 +33,7 @@
         </div>
         <div class="panel-body">
             @foreach($tag as $tag)
-                <a href="{{url('/')}}" class="col-md-3 " style="margin: 5px;border-radius: 10px;background: #e7e7e7;text-decoration: none;">{{$tag->name}}</a>
+                <a href="{{url('label/'.$tag->id)}}" class="col-md-3 text-center" style="margin: 5px;border-radius: 10px;background: #e7e7e7;text-decoration: none;">{{$tag->name}}</a>
             @endforeach
         </div>
     </div>
@@ -41,7 +43,7 @@
         </div>
         @foreach($new_article as $list)
             <div class="panel-body">
-                <a href="#/content?id=25" class="thumbnail clearfix aft" title="{{$list->title}}" target="_blank">
+                <a href="{{url('/content/'.$list->id)}}" class="thumbnail clearfix aft" title="{{$list->title}}" target="_blank">
                                     <span class=" clearfix col-lg-5">
                                     <img src="{{config('app.img').$list->pic}}" alt="{{$list->title}}" class="img-rounded " style="display: block;width: 122px; height:86px">
                                     </span>

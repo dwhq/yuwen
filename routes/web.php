@@ -47,7 +47,9 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 Route::prefix('/')->namespace('Home')->group(function () {
     Route::get('/','ArticleController@index');//设置根目录
     Route::get('home/{type}','ArticleController@home');//栏目分类
+    Route::get('search','ArticleController@search');//栏目分类
     Route::get('content/{id}','ArticleController@content')->where('id', '[0-9]+');//栏目分类
+    Route::get('label/{tag_id}','ArticleController@label')->where('tag_id', '[0-9]+');//标签搜索
 
 });
 //直接定义路由
