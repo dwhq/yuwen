@@ -40,20 +40,24 @@
                 </div>
             @endif
         </div>
-        <div class="panel panel-default col-md-12">
-            <div class="panel-heading">
-                <h3 class="panel-title">
-                    评论留言区:
-                </h3>
-            </div>
-            <div class="panel-body">
-                <div class="form-group">
-                    <label for="name">说点什么：</label>
-                    <textarea class="form-control " style="resize: none;" rows="3" ></textarea>
-                </div>
-                <button class="btn btn-success pull-right" id="but">畅所欲言</button>
-            </div>
-        </div>
+        {{--<div class="panel panel-default col-md-12">--}}
+            {{--<div class="panel-heading">--}}
+                {{--<h3 class="panel-title">--}}
+                    {{--评论留言区:--}}
+                {{--</h3>--}}
+            {{--</div>--}}
+            {{--<div class="panel-body">--}}
+                {{--<div class="form-group">--}}
+                    {{--<label for="name">说点什么：</label>--}}
+                    {{--<textarea class="form-control " style="resize: none;" rows="3" ></textarea>--}}
+                    {{--<div class="input-group">--}}
+                        {{--<span class="input-group-addon">@</span>--}}
+                        {{--<input type="text" class="form-control" name="email" id="email" placeholder="接受回复的email地址">--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                {{--<button class="btn btn-success pull-right" id="but">评论</button>--}}
+            {{--</div>--}}
+        {{--</div>--}}
     </div>
     {{--右侧栏--}}
     <div class="col-md-3 clearfix " style="">
