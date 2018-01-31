@@ -34,15 +34,7 @@ Route::prefix('article')->group(function () {
 //    Route::get('index', 'ArticleController@index');
 //});
 //嵌套路由
-Route::prefix('admin')->namespace('Admin')->group(function () {
-    //article控制器名称
-    Route::prefix('article')->group(function () {
-        Route::get('index/{id}', 'ArticleController@index');
-        //create方法名称 where定义id为纯数字
-        Route::get('create/{id}/{name}', 'ArticleController@create')->where('id', '[0-9]+');
-    });
 
-});
 //数据接口
 Route::prefix('/')->namespace('Home')->group(function () {
     Route::get('/','ArticleController@index');//设置根目录
@@ -55,3 +47,20 @@ Route::prefix('/')->namespace('Home')->group(function () {
 });
 //直接定义路由
 // Route::get('/article/index','ArticleController@index');
+
+//登陆页面
+Route::get('/login888',function (){
+    return view('Admin/login');
+});
+/**
+ * 后台路由
+ */
+Route::prefix('dwhq')->namespace('Admin')->group(function () {
+    Route::post('login', 'LoginController@index');
+    //article控制器名称
+    Route::prefix('article')->group(function () {
+        //create方法名称 where定义id为纯数字
+        Route::get('create/{id}/{name}', 'ArticleController@create')->where('id', '[0-9]+');
+    });
+
+});
