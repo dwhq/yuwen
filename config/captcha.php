@@ -9,6 +9,7 @@ return [
         'width'     => 180,
         'height'    => 80,
         'quality'   => 100,
+        'sensitive' => false,
     ],
 
     'flat'   => [
