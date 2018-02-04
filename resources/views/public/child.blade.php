@@ -10,6 +10,7 @@
     <link rel='stylesheet' href='{{asset('css/nprogress.css') }}'/>
     <link rel="stylesheet" href="{{asset('css/style.css') }}" />
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    @yield('import')
 </head>
 <body>
     <div role='bar'></div>

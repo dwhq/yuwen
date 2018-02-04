@@ -63,9 +63,16 @@ Route::prefix('/')->namespace('Admin')->group(function () {
  */
 Route::prefix('admin')->namespace('Admin')->middleware('token')->group(function () {
     Route::get('index', 'HomeController@index');
+    //编辑网站信息
+    Route::get('info', 'InfoController@index');
+    Route::post('redact', 'InfoController@Store');
 //    Route::prefix('article')->group(function () {
 //        //create方法名称 where定义id为纯数字
 //
 //    });
 
+});
+//上传文件 到时候重新写中间件吧
+Route::prefix('upload')->namespace('Upload')->middleware('token')->group(function () {
+    Route::post('upload', 'UploadController@upload');
 });
