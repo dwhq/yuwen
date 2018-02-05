@@ -45,7 +45,7 @@
                             </div>
                         </div>
                     </div>
-        @endif
+            @endif
 
         <!-- Create Post Form -->
             <form class="col-md-4" action="{{url('admin/redact')}}" enctype="multipart/form-data" method="post" id="form" class="center-block " style=" margin: 0 auto;">

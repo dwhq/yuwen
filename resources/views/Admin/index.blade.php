@@ -63,13 +63,15 @@
                 <a href="{{url('admin/info')}}" target="view_window"> <span class="glyphicon glyphicon-home"></span> &nbsp;网站信息</a>
             </li>
             <li>
-                <!-- 利用data-target指定URL -->
-                <a href="{{url('admin/articleList')}}" target="view_window"> <span class="glyphicon glyphicon-list-alt"></span> &nbsp;文章列表</a>
+
             </li>
             <li class="has-sub">
-                <a href="javascript:void(0);"><span>文章管理</span><i class="fa fa-caret-right fa-fw pull-right"></i></a>
+                <a href="javascript:void(0);"><span class="glyphicon glyphicon-list-alt"></span> &nbsp;文章列表<i class="fa fa-caret-right fa-fw pull-right"></i></a>
                 <ul class="sub-menu">
-                    <li><a href="{{url('admin/info')}}" target="view_window"><i class="fa fa-circle-o fa-fw"></i>&nbsp;文章列表</a></li>
+                    <!-- 利用data-target指定URL -->
+                    <li><a href="{{url('admin/article/list')}}" target="view_window"><i class="fa fa-circle-o fa-fw"></i>&nbsp;文章列表</a></li>
+                    <li><a href="{{url('admin/articleList')}}" target="view_window"><i class="fa fa-circle-o fa-fw"></i>&nbsp;文章分类</a></li>
+                    <li><a href="{{url('admin/article/create')}}" target="view_window"><i class="fa fa-circle-o fa-fw"></i>&nbsp;添加文章</a></li>
                 </ul>
             </li>
         </ul>

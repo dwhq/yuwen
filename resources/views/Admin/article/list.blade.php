@@ -47,19 +47,39 @@
         </div>
         @endif
         <!-- Create Post Form -->
-        <table>
-            <tr>
-                <td>文章ID</td>
-                <td>文章名称</td>
-                <td>文章介绍</td>
-                <td>文章类型</td>
-                <td>时间</td>
-                <td>是否显示</td>
-                <td>操作</td>
-            </tr>
-
-
-        </table>
+        <div class="col-md-12">
+            <table class="table table-striped table-hover table table-bordered">
+                <tr>
+                    <td>文章ID</td>
+                    <td>文章名称</td>
+                    <td>文章介绍</td>
+                    <td>文章类型</td>
+                    <td>时间</td>
+                    <td>是否显示</td>
+                    <td>操作</td>
+                </tr>
+                @foreach($list as $vo)
+                    <tr>
+                        <td>{{$vo->id}}</td>
+                        <td>{{$vo->title}}</td>
+                        <td>{{str_limit($vo->desc,50)}}</td>
+                        <td>{{$vo->cateid}}</td>
+                        <td>{{date('Y年m月d日 H:i:s',$vo->time)}}</td>
+                        <td>
+                            @if($vo->state == 1)
+                                显示
+                            @elseif($vo->state == 0)
+                             不显示
+                            @endif
+                        </td>
+                        <td>操作</td>
+                    </tr>
+                @endforeach
+            </table>
+            <div class="pull-right">
+                {{$list->links()}}
+            </div>
+        </div>
     </div>
 </div>
 @endsection

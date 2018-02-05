@@ -45,12 +45,13 @@ return [
         // 本地端的local空间
         'local' => [
             'driver' => 'local',
-            'root' => storage_path('app'),
+            'root' => public_path('uploads'),
+            //'root' => storage_path('app'),
         ],
         // 本地端的public空间
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
+            'root' => storage_path('app/uploads'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],

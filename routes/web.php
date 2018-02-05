@@ -69,8 +69,13 @@ Route::prefix('admin')->namespace('Admin')->middleware('token')->group(function 
     //编辑网站信息
     Route::get('info', 'InfoController@index');
     Route::post('redact', 'InfoController@Store');
-    //文章列表
-    Route::get('articleList', 'ArticleController@List');
+    Route::group(['prefix' => 'article'], function () {
+        //文章列表
+        Route::get('list', 'ArticleController@List');
+        //添加文章
+        Route::get('create', 'ArticleController@create');
+        Route::post('store', 'ArticleController@store');
+    });
 //    Route::prefix('article')->group(function () {
 //        //create方法名称 where定义id为纯数字
 //
@@ -80,4 +85,8 @@ Route::prefix('admin')->namespace('Admin')->middleware('token')->group(function 
 //上传文件 到时候重新写中间件吧
 Route::prefix('upload')->namespace('Upload')->middleware('token')->group(function () {
     Route::post('upload', 'UploadController@upload');
+    Route::get('get', 'UploadController@get');
 });
+//Route::prefix('/laravel-u-editor-server/server')->namespace('Stevenyangecho\UEditor')->middleware('token')->group(function () {
+//    Route::post('upload', 'laravel-u-editor/src/Controller.php@server');
+//});
