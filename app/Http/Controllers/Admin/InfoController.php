@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use function Sodium\randombytes_uniform;
+use Validator;
+use Illuminate\Support\MessageBag;
 use App\Http\Requests\StoreBlogPost;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -11,7 +14,7 @@ use App\Model\info;
 class InfoController extends Controller
 {
     //查询网站信息
-    public function index(Request $request){
+    public function index( Request $request){
         $info=new info();
         $data=$info->orderBy('id','desc')->first();
         return view('Admin.info')

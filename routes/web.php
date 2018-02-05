@@ -58,6 +58,9 @@ Route::get('/login888',function (){
 Route::prefix('/')->namespace('Admin')->group(function () {
     Route::post('login', 'LoginController@index');
 });
+Route::get('errors',function (){
+    return view('post/create');
+});
 /**
  * 后台路由
  */
@@ -66,6 +69,8 @@ Route::prefix('admin')->namespace('Admin')->middleware('token')->group(function 
     //编辑网站信息
     Route::get('info', 'InfoController@index');
     Route::post('redact', 'InfoController@Store');
+    //文章列表
+    Route::get('articleList', 'ArticleController@List');
 //    Route::prefix('article')->group(function () {
 //        //create方法名称 where定义id为纯数字
 //

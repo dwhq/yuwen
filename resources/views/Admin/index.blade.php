@@ -62,6 +62,10 @@
                 <!-- 利用data-target指定URL -->
                 <a href="{{url('admin/info')}}" target="view_window"> <span class="glyphicon glyphicon-home"></span> &nbsp;网站信息</a>
             </li>
+            <li>
+                <!-- 利用data-target指定URL -->
+                <a href="{{url('admin/articleList')}}" target="view_window"> <span class="glyphicon glyphicon-list-alt"></span> &nbsp;文章列表</a>
+            </li>
             <li class="has-sub">
                 <a href="javascript:void(0);"><span>文章管理</span><i class="fa fa-caret-right fa-fw pull-right"></i></a>
                 <ul class="sub-menu">

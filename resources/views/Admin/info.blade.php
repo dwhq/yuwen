@@ -27,6 +27,27 @@
             网站信息
         </div>
         <div class="panel-body">
+            <!-- /resources/views/post/create.blade.php -->
+            @if ($errors->any())
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                错误信息
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+        @endif
+
+        <!-- Create Post Form -->
             <form class="col-md-4" action="{{url('admin/redact')}}" enctype="multipart/form-data" method="post" id="form" class="center-block " style=" margin: 0 auto;">
                 <div class="form-group">
                     <label for="name" class="col-sm-2 control-label">网站名称</label>
@@ -78,7 +99,7 @@
                     </div>
                 </div>
                 <div class="form-group col-md-12">
-                    <button class="btn btn-success  btn-block" style="margin-top: 5%; display: block;">确认</button>
+                    <button class="btn btn-success  btn-block" style="margin-top: 5%; display: block;">确认保存</button>
                 </div>
             </form>
         </div>

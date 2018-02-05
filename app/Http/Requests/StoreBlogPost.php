@@ -27,6 +27,7 @@ class StoreBlogPost extends FormRequest
             'name'=>'required',//required不能为空
             'image'=>'required',
             'qq'=>'required',
+            'email'=>'required',
             'bottom_info'=>'required'
         ];
     }
@@ -41,6 +42,7 @@ class StoreBlogPost extends FormRequest
         return [
             'name'=>'网站名称',
             'qq'=>'QQ',
+            'email'=>'邮箱',
             'image'=>'网站logo',
             'bottom_info'=>'网站底部版权信息',
         ];
@@ -55,7 +57,8 @@ class StoreBlogPost extends FormRequest
     {
         return [
             //'tag_ids.required'=>'必须选择标签',
-            'qq.required'=>'qq不能为空'
+            'qq.required'=>'qq不能为空',
+            'email.required'=>'邮箱不能为空'
         ];
     }
 }
