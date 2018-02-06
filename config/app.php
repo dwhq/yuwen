@@ -141,6 +141,7 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
+        LaravelChen\MyFlash\MyFlashProvider::class,
         Stevenyangecho\UEditor\UEditorServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
@@ -192,7 +193,7 @@ return [
     */
 
     'aliases' => [
-
+        'MyFlash'=>LaravelChen\MyFlash\MyFlash::class,
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,

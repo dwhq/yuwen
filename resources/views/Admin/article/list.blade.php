@@ -16,7 +16,6 @@
 <script type="text/javascript" src="{{asset('webuploader/webuploader.nolog.js')}}"></script>
 @endsection
 @section('content')
-
 <ol class="breadcrumb">
     <li><a href="#">后台管理</a></li>
     <li><a href="#">文章管理</a></li>
@@ -72,7 +71,17 @@
                              不显示
                             @endif
                         </td>
-                        <td>操作</td>
+                        <td>
+                            <a class="btn btn-primary " href="{{url('admin/article/look/'.$vo->id)}}">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                            </a>&nbsp;&nbsp;
+                            <a class="btn btn-primary " href="{{url('admin/article/alter/'.$vo->id)}}">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>&nbsp;&nbsp;
+                            <a class="btn btn-primary " href="{{url('admin/article/delect/'.$vo->id)}}" onClick="return confirm('确定删除?');">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </a>
+                        </td>
                     </tr>
                 @endforeach
             </table>

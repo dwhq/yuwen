@@ -124,7 +124,7 @@ class ArticleController extends Controller
     /**
      * 一个文章的所有标签
      */
-    private function article_tag($id){
+    public function article_tag($id){
         $data = DB::table('tags')->where([['tags.u_id',$id]])->leftjoin('tag','tag.id','=','tags.tag_id')->select('tag.id','tag.name')->get();
         return $data;
     }
@@ -134,7 +134,7 @@ class ArticleController extends Controller
      * @return bool
      * 上一篇
      */
-    private function up_article($id){
+    public function up_article($id){
         $data = DB::table('article')->select('title','id')->where([['state',1],['id','<',$id]])->orderBy('id','desc')->limit(1)->first();
         return $data;
     }
@@ -144,7 +144,7 @@ class ArticleController extends Controller
      * @return bool
      * 下一篇
      */
-    private function next_article($id){
+    public function next_article($id){
         $data = DB::table('article')->select('title','id')->where([['state',1],['id','>',$id]])->orderBy('id','asc')->limit(1)->first();
         return $data;
     }

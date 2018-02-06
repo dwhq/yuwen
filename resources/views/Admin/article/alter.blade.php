@@ -21,11 +21,11 @@
     <ol class="breadcrumb">
         <li><a href="#">后台管理</a></li>
         <li><a href="#">文章管理</a></li>
-        <li class="active">添加文章</li>
+        <li class="active">修改文章</li>
     </ol>
     <div class="panel panel-default">
         <div class="panel-heading h4">
-            添加文章
+            修改文章内容
         </div>
 
         <div class="panel-body">
@@ -47,20 +47,21 @@
                     </div>
                 </div>
             @endif
-                <form class="col-md-12" action="{{url('admin/article/store')}}" enctype="multipart/form-data" method="post" id="form" class="center-block " style=" margin: 0 auto;">
+                <form class="col-md-12" action="{{url('admin/article/amend')}}" enctype="multipart/form-data" method="post" id="form" class="center-block " style=" margin: 0 auto;">
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="name" class="col-sm-2 control-label">文章标题</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="title" id="title" placeholder="文章标题" value="">
+                                <input type="text" class="form-control" name="title" id="title" placeholder="文章标题" value="{{$data->title}}">
                             </div>
                         </div>
+                        <input type="hidden" name="id" value="{{$data->id}}">
                         <div class="form-group">
                             <label for="name" class="col-sm-2 control-label">栏目</label>
                             <div class="col-sm-10">
                                 <select class="form-control" name="cateid">
                                     @foreach ($list as $vo)
-                                        <option value="{{$vo->type}}">{{$vo->name}}</option>
+                                        <option value="{{$vo->type}}" @if($data->cateid == $vo->type)selected @endif>{{$vo->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -79,29 +80,29 @@
                         <div class="form-group">
                             <label for="image" class="col-sm-2 control-label "><span class="pull-right">缩略图地址:</span></label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="image" name="image" placeholder="" value="">
+                                <input type="text" class="form-control" id="image" name="image" placeholder="" value="{{$data->pic}}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="name" class="col-sm-2 control-label">标签:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="tags" id="tags" placeholder="标签之间用英文逗号分开" value="">
+                                <input type="text" class="form-control" name="tags" id="tags" placeholder="标签之间用英文逗号分开" value="{{$tags}}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="name" class="col-sm-2 control-label">摘要:</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="desc" id="desc" placeholder="50个字左右" value="">
+                                <input type="text" class="form-control" name="desc" id="desc" placeholder="50个字左右" value="{{$data->desc}}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="name" class="col-sm-2 control-label">是否显示:</label>
                             <div class="col-sm-10">
                                 <label class="radio-inline">
-                                    <input type="radio" name="state" id="state" value="1" checked> 显示
+                                    <input type="radio" name="state" id="state" value="1" @if($data->state == 1)checked @endif> 显示
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="state" id="state"  value="0"> 不显示
+                                    <input type="radio" name="state" id="state"  value="0" @if($data->state == 0)checked @endif> 不显示
                                 </label>
                             </div>
                         </div>
@@ -115,7 +116,7 @@
                         </div>
                         <div class="panel-body">
                             <script id="container"  name="account" type="text/plain" >
-
+                                {!! $data->account !!}
                             </script>
                         </div>
                     </div>

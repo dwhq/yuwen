@@ -66,7 +66,7 @@
 
             </li>
             <li class="has-sub">
-                <a href="javascript:void(0);"><span class="glyphicon glyphicon-list-alt"></span> &nbsp;文章列表<i class="fa fa-caret-right fa-fw pull-right"></i></a>
+                <a href="javascript:void(0);"><span class="glyphicon glyphicon-list-alt"></span> &nbsp;文章管理<i class="fa fa-caret-right fa-fw pull-right"></i></a>
                 <ul class="sub-menu">
                     <!-- 利用data-target指定URL -->
                     <li><a href="{{url('admin/article/list')}}" target="view_window"><i class="fa fa-circle-o fa-fw"></i>&nbsp;文章列表</a></li>

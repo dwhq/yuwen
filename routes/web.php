@@ -75,6 +75,13 @@ Route::prefix('admin')->namespace('Admin')->middleware('token')->group(function 
         //添加文章
         Route::get('create', 'ArticleController@create');
         Route::post('store', 'ArticleController@store');
+        //后台查看文章
+        Route::get('look/{u_id}', 'ArticleController@look');
+        //删除文章
+        Route::get('delect/{u_id}', 'ArticleController@delect');
+        //修改文章
+        Route::get('alter/{u_id}', 'ArticleController@alter')->where('u_id', '[0-9]+');
+        Route::post('amend', 'ArticleController@amend');
     });
 //    Route::prefix('article')->group(function () {
 //        //create方法名称 where定义id为纯数字

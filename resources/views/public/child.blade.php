@@ -10,10 +10,14 @@
     <link rel='stylesheet' href='{{asset('css/nprogress.css') }}'/>
     <link rel="stylesheet" href="{{asset('css/style.css') }}" />
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     @yield('import')
 </head>
 <body>
     <div role='bar'></div>
+    @include('myflash::top-message')
+    {{--@include('myflash::notification')--}}
+    {{--@include('myflash::bottom-message')--}}
     <div style="background: rgba(246,246,246,1);">
         @yield('content')
     </div>
