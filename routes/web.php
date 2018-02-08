@@ -102,6 +102,23 @@ Route::prefix('admin')->namespace('Admin')->middleware('token')->group(function 
         //删除栏目
         Route::get('delect/{u_id}', 'ColumnController@delect');
     });
+    //友情链接管理
+    Route::group(['prefix' => 'link'], function () {
+        //栏目列表
+        Route::get('index', 'LinkController@index');
+        //添加栏目
+        Route::get('create', 'LinkController@create');
+        Route::post('store', 'LinkController@store');
+        //修改栏目
+        Route::get('alter/{id}', 'LinkController@alter')->where('id', '[0-9]+');
+        Route::post('amend', 'LinkController@amend');
+        //栏目显示与隐藏
+        Route::post('state', 'LinkController@state');
+        //修改栏目顺序
+        Route::post('sort', 'LinkController@sort');
+        //删除栏目
+        Route::get('delect/{u_id}', 'LinkController@delect');
+    });
 //    Route::prefix('article')->group(function () {
 //        //create方法名称 where定义id为纯数字
 //

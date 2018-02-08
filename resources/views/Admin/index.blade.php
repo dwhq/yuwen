@@ -83,6 +83,14 @@
                     <li><a href="{{url('admin/column/create')}}" target="view_window"><i class="fa fa-circle-o fa-fw"></i>&nbsp;添加栏目</a></li>
                 </ul>
             </li>
+            <li class="has-sub">
+                <a href="javascript:void(0);"><span class="ion-link h4"></span> &nbsp;友情链接<i class="fa fa-caret-right fa-fw pull-right"></i></a>
+                <ul class="sub-menu">
+                    <!-- 利用data-target指定URL -->
+                    <li><a href="{{url('admin/link/index')}}" target="view_window"><i class="fa fa-circle-o fa-fw"></i>&nbsp;链接列表</a></li>
+                    <li><a href="{{url('admin/link/create')}}" target="view_window"><i class="fa fa-circle-o fa-fw"></i>&nbsp;添加链接</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
     <div class="maincontent row" style="height:1000px;">
