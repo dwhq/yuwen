@@ -22,6 +22,8 @@
     <link href="{{asset('css/admin/default.css') }}" rel="stylesheet" type="text/css" />
     <!--主要写的js代码-->
     <script src="{{asset('js/admin/default.js') }}" type="text/javascript"></script>
+    {{--图标字体库--}}
+    <link rel="stylesheet" href="https://cdn.bootcss.com/ionicons/2.0.1/css/ionicons.min.css" />
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -70,8 +72,15 @@
                 <ul class="sub-menu">
                     <!-- 利用data-target指定URL -->
                     <li><a href="{{url('admin/article/list')}}" target="view_window"><i class="fa fa-circle-o fa-fw"></i>&nbsp;文章列表</a></li>
-                    <li><a href="{{url('admin/articleList')}}" target="view_window"><i class="fa fa-circle-o fa-fw"></i>&nbsp;文章分类</a></li>
                     <li><a href="{{url('admin/article/create')}}" target="view_window"><i class="fa fa-circle-o fa-fw"></i>&nbsp;添加文章</a></li>
+                </ul>
+            </li>
+            <li class="has-sub">
+                <a href="javascript:void(0);"><span class="ion-navicon-round h4"></span> &nbsp;栏目管理<i class="fa fa-caret-right fa-fw pull-right"></i></a>
+                <ul class="sub-menu">
+                    <!-- 利用data-target指定URL -->
+                    <li><a href="{{url('admin/column/index')}}" target="view_window"><i class="fa fa-circle-o fa-fw"></i>&nbsp;栏目列表</a></li>
+                    <li><a href="{{url('admin/column/create')}}" target="view_window"><i class="fa fa-circle-o fa-fw"></i>&nbsp;添加栏目</a></li>
                 </ul>
             </li>
         </ul>

@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="col-md-12">
-            {!! str_replace('<img src="','<img src="'.config('app.img'),$content->account) !!}
+            {!! $content->back==1?str_replace('<img src="','<img src="'.config('app.img'),$content->account):$content->account !!}
         </div>
         @if(!$article_tag->isEmpty())
             <div class="col-md-12">
@@ -26,7 +26,7 @@
                 @endforeach
             </div>
         @endif
-        <div class="col-md-12">
+        <div class="col-md-12" style="padding-bottom: 10px">
             @if($up_article)
                 <div class="col-md-12">
                     <div  class="col-md-2">上一篇 : </div>

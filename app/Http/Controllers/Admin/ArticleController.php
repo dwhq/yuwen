@@ -12,6 +12,7 @@ use App\Http\Controllers\Home\PublicControllerr;
 use App\Http\Controllers\Home\ArticleController as Articles;
 use LaravelChen\MyFlash\MyFlash;
 
+
 class ArticleController extends Controller
 {
     //文章列表
@@ -40,6 +41,7 @@ class ArticleController extends Controller
         $add['cateid'] = $request->cateid;
         $add['state'] = $request->state;
         $add['account'] = $request->account;
+        $add['back'] = 2;
         $add['time'] = time();
         if ($add['desc'] == '') {
             $add['desc'] = str_limit($add['account'], 50);
@@ -141,5 +143,13 @@ class ArticleController extends Controller
         }
         myflash()->error('修改文章失败!');
         return redirect('admin/article/alter/' . $id);
+    }
+    //文章的显示与隐藏
+    public function state(Request $request,article $article){
+        if ($request->isMethod('post')) {
+            $u_id=$request->u_id;
+            $show=$request->show;
+            $article->where([['id',$u_id]])->update(['state'=>$show]);
+        }
     }
 }

@@ -82,6 +82,25 @@ Route::prefix('admin')->namespace('Admin')->middleware('token')->group(function 
         //修改文章
         Route::get('alter/{u_id}', 'ArticleController@alter')->where('u_id', '[0-9]+');
         Route::post('amend', 'ArticleController@amend');
+        //文章显示与隐藏
+        Route::post('state', 'ArticleController@state');
+    });
+    //栏目管理
+    Route::group(['prefix' => 'column'], function () {
+        //栏目列表
+        Route::get('index', 'ColumnController@index');
+        //添加栏目
+        Route::get('create', 'ColumnController@create');
+        Route::post('store', 'ColumnController@store');
+        //修改栏目
+        Route::get('alter/{id}', 'ColumnController@alter')->where('id', '[0-9]+');
+        Route::post('amend', 'ColumnController@amend');
+        //栏目显示与隐藏
+        Route::post('state', 'ColumnController@state');
+        //修改栏目顺序
+        Route::post('sort', 'ColumnController@sort');
+        //删除栏目
+        Route::get('delect/{u_id}', 'ColumnController@delect');
     });
 //    Route::prefix('article')->group(function () {
 //        //create方法名称 where定义id为纯数字

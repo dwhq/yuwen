@@ -45,7 +45,7 @@
             <div class="panel-body">
                 <a href="{{url('/content/'.$list->id)}}" class="thumbnail clearfix aft" title="{{$list->title}}" target="_blank">
                                     <span class=" clearfix col-lg-5">
-                                    <img src="{{config('app.img').$list->pic}}" alt="{{$list->title}}" class="img-rounded " style="display: block;width: 122px; height:86px">
+                                    <img src="{{$list->back==1?config('app.img').$list->pic:$list->pic}}" alt="{{$list->title}}" class="img-rounded " style="display: block;width: 122px; height:86px">
                                     </span>
                     <span class="text" class="col-lg-6 text-muted">{{$list->title}}</span><br/>
                     <span class="muted" class="col-lg-6 text-muted">

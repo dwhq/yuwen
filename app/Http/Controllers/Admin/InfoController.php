@@ -23,7 +23,7 @@ class InfoController extends Controller
     //编辑网站信息 直接插入新的数据不更新
     public function Store(StoreBlogPost $request){
         $info=new info();
-        $data=$info->insertGetId(['name'=>$request->name,'image'=>$request->image,'qq'=>$request->qq,'email'=>$request->email,'mobile'=>$request->mobile,'bottom_info'=>$request->bottom_info]);
+        $data=$info->insertGetId(['name'=>$request->name,'image'=>$request->image,'qq'=>$request->qq,'email'=>$request->email,'mobile'=>$request->mobile,'bottom_info'=>$request->bottom_info,'back'=>2,'time'=>time()]);
         return redirect('admin/info');
     }
 }

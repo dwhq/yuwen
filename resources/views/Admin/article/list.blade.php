@@ -52,9 +52,9 @@
                     <td>文章ID</td>
                     <td>文章名称</td>
                     <td>文章介绍</td>
+                    <td>是否显示</td>
                     <td>文章类型</td>
                     <td>时间</td>
-                    <td>是否显示</td>
                     <td>操作</td>
                 </tr>
                 @foreach($list as $vo)
@@ -62,23 +62,20 @@
                         <td>{{$vo->id}}</td>
                         <td>{{$vo->title}}</td>
                         <td>{{str_limit($vo->desc,50)}}</td>
+                        <td>
+                            <div class="show1 text-center" dd="{{$vo->id}}"  onclick="state({{$vo->id}},0)" @if($vo->state == 0) hidden @endif ><span style="font-size: 22px;color: #399bff" class=" icon ion-checkmark-circled"></span></div>
+                            <div class="show1 text-center" dd="{{$vo->id}}" onclick="state({{$vo->id}},1)"  @if($vo->state == 1) hidden @endif ><span style="font-size: 22px;color: #399bff" class="  icon ion-close-circled"></span></div>
+                        </td>
                         <td>{{$vo->cateid}}</td>
                         <td>{{date('Y年m月d日 H:i:s',$vo->time)}}</td>
-                        <td>
-                            @if($vo->state == 1)
-                                显示
-                            @elseif($vo->state == 0)
-                             不显示
-                            @endif
-                        </td>
-                        <td>
-                            <a class="btn btn-primary " href="{{url('admin/article/look/'.$vo->id)}}">
-                                <span class="glyphicon glyphicon-eye-open"></span>
+                        <td class="text-center">
+                            <a class="btn btn-primary btn-lg" href="{{url('admin/article/look/'.$vo->id)}}">
+                                <span class="icon ion-ios-eye"></span>
                             </a>&nbsp;&nbsp;
-                            <a class="btn btn-primary " href="{{url('admin/article/alter/'.$vo->id)}}">
+                            <a class="btn btn-primary btn-lg " href="{{url('admin/article/alter/'.$vo->id)}}">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </a>&nbsp;&nbsp;
-                            <a class="btn btn-primary " href="{{url('admin/article/delect/'.$vo->id)}}" onClick="return confirm('确定删除?');">
+                            <a class="btn btn-primary btn-lg " href="{{url('admin/article/delect/'.$vo->id)}}" onClick="return confirm('确定删除?');">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </a>
                         </td>
@@ -90,5 +87,11 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        function state( id,show) {
+            $(' [dd= '+ id+ ' ]').toggle();
+            $.post("{{url('admin/article/state')}}",{'u_id':id,'show':show,'_token':"{{csrf_token()}}"});
+        }
+    </script>
 </div>
 @endsection
