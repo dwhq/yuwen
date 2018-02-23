@@ -37,19 +37,19 @@ Route::prefix('article')->group(function () {
 
 //数据接口
 Route::prefix('/')->namespace('Home')->group(function () {
-    Route::get('/','ArticleController@index');//设置根目录
-    Route::get('home/{type}','ArticleController@home');//栏目分类
-    Route::get('search','ArticleController@search');//栏目分类
-    Route::get('mood','MoodController@index');//时间轴
-    Route::get('content/{id}','ArticleController@content')->where('id', '[0-9]+');//栏目分类
-    Route::get('label/{tag_id}','ArticleController@label')->where('tag_id', '[0-9]+');//标签搜索
+    Route::get('/', 'ArticleController@index');//设置根目录
+    Route::get('home/{type}', 'ArticleController@home');//栏目分类
+    Route::get('search', 'ArticleController@search');//栏目分类
+    Route::get('mood', 'MoodController@index');//时间轴
+    Route::get('content/{id}', 'ArticleController@content')->where('id', '[0-9]+');//栏目分类
+    Route::get('label/{tag_id}', 'ArticleController@label')->where('tag_id', '[0-9]+');//标签搜索
 
 });
 //直接定义路由
 // Route::get('/article/index','ArticleController@index');
 
 //登陆页面
-Route::get('/login888',function (){
+Route::get('/login888', function () {
     return view('Admin/login');
 });
 
@@ -58,7 +58,7 @@ Route::get('/login888',function (){
 Route::prefix('/')->namespace('Admin')->group(function () {
     Route::post('login', 'LoginController@index');
 });
-Route::get('errors',function (){
+Route::get('errors', function () {
     return view('post/create');
 });
 /**
@@ -123,7 +123,8 @@ Route::prefix('admin')->namespace('Admin')->middleware('token')->group(function 
 //        //create方法名称 where定义id为纯数字
 //
 //    });
-
+    Route::get('excel/export','ExcelController@export');
+    Route::get('excel/import','ExcelController@import');
 });
 //上传文件 到时候重新写中间件吧
 Route::prefix('upload')->namespace('Upload')->middleware('token')->group(function () {
