@@ -158,7 +158,7 @@ class ArticleController extends Controller
         $tag = $this->tag();
         $url = $this->url();
         $new_article = $this->new_article();
-        $list = DB::table('tags')->select('tag.name','article.title','article.pic','article.id','article.desc','article.cateid','article.time')->where([['article.state',1],['tag.id',$tag_id]])->leftjoin('tag','tag.id','=','tags.tag_id')->leftjoin('article','article.id','=','tags.u_id')->orderBy('article.id','sort')->paginate(10);
+        $list = DB::table('tags')->select('tag.name','article.back','article.title','article.pic','article.id','article.desc','article.cateid','article.time')->where([['article.state',1],['tag.id',$tag_id]])->leftjoin('tag','tag.id','=','tags.tag_id')->leftjoin('article','article.id','=','tags.u_id')->orderBy('article.id','sort')->paginate(10);
         if ($list->isEmpty()){
             return view('404');
         }

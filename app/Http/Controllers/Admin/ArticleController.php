@@ -111,7 +111,7 @@ class ArticleController extends Controller
         $list = $column->where([['state', 1]])->get();
         //把数组类型的标签转换城字符串
         $tags = $article_tag->pluck('name')->implode(',');
-        return view('admin.article.alter')
+        return view('Admin.article.alter')
             ->with('data', $data)
             ->with('list', $list)
             ->with('tags', $tags);
@@ -139,10 +139,10 @@ class ArticleController extends Controller
                 $tag->write($data, $label);
             }
             myflash()->success('修改文章成功');
-            return redirect('admin/article/list');
+            return redirect('Admin/article/list');
         }
         myflash()->error('修改文章失败!');
-        return redirect('admin/article/alter/' . $id);
+        return redirect('Admin/article/alter/' . $id);
     }
     //文章的显示与隐藏
     public function state(Request $request,article $article){

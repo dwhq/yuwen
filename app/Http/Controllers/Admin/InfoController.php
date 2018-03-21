@@ -24,6 +24,6 @@ class InfoController extends Controller
     public function Store(StoreBlogPost $request){
         $info=new info();
         $data=$info->insertGetId(['name'=>$request->name,'image'=>$request->image,'qq'=>$request->qq,'email'=>$request->email,'mobile'=>$request->mobile,'bottom_info'=>$request->bottom_info,'back'=>2,'time'=>time()]);
-        return redirect('admin/info');
+        return redirect('Admin/info');
     }
 }
