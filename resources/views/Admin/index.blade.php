@@ -73,6 +73,8 @@
                     <!-- 利用data-target指定URL -->
                     <li><a href="{{url('admin/article/list')}}" target="view_window"><i class="fa fa-circle-o fa-fw"></i>&nbsp;文章列表</a></li>
                     <li><a href="{{url('admin/article/create')}}" target="view_window"><i class="fa fa-circle-o fa-fw"></i>&nbsp;添加文章</a></li>
+                    <li><a href="{{url('admin/article/mood_list')}}" target="view_window"><i class="fa fa-circle-o fa-fw"></i>&nbsp;时间轴列表</a></li>
+                    <li><a href="{{url('admin/article/mood_show')}}" target="view_window"><i class="fa fa-circle-o fa-fw"></i>&nbsp;添时间轴</a></li>
                 </ul>
             </li>
             <li class="has-sub">

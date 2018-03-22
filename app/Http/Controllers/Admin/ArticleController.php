@@ -10,6 +10,7 @@ use App\Model\column;
 use App\Model\tag;
 use App\Http\Controllers\Home\PublicControllerr;
 use App\Http\Controllers\Home\ArticleController as Articles;
+use App\Model\mood;
 use LaravelChen\MyFlash\MyFlash;
 
 
@@ -150,6 +151,43 @@ class ArticleController extends Controller
             $u_id=$request->u_id;
             $show=$request->show;
             $article->where([['id',$u_id]])->update(['state'=>$show]);
+        }
+    }
+
+    /**
+     * @param mood $mood
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * 时间轴列表
+     */
+    public function mood_list(mood $mood){
+        $list = $mood->where([['state',1]])->orderBy('id','desc')->paginate(20);
+        return view('Admin.article.mood_list', ['list' => $list]);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\Views
+     * 时间轴添加页面
+     */
+    public function mood_show(){
+        return view('Admin.article.mood_show');
+    }
+
+    /**
+     * @param Request $request
+     * @param mood $mood
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * 添加时间轴
+     */
+    public function mood_add(Request $request,mood $mood){
+        $data['title'] = $request->title;
+        $data['content'] = $request->contents;
+        $data['state'] = $request->state;
+        $add = $mood->insertGetId($data);
+        if ($add){
+            myflash()->success('添加成功');
+            return redirect('Admin/article/mood_list');
+        }else{
+            myflash()->error('添加失败');
         }
     }
 }

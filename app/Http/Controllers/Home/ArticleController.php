@@ -166,7 +166,7 @@ class ArticleController extends Controller
             return view('404');
         }
         $page = $list->links();//分页的
-        $title='<div class="h4">拥有标签'.$list[0]->name.'的文章</div>';//显示的文字
+        $title='<div class="h4">拥有标签:'.$list[0]->name.'的文章</div>';//显示的文字
         $type='';
         return view('Home/index')
             ->with('list',$list)

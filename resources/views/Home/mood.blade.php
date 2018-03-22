@@ -7,22 +7,31 @@
     @include('public.header')
     {{--内容--}}
     <div class="col-md-5 col-md-offset-2" style="padding: 10px 0 5px 0;background: white">
-        <section id="cd-timeline" class="cd-container">
-            @foreach($data as $data)
-                <div class="cd-timeline-block">
-                    <div class="cd-timeline-img cd-picture">
-                        <img src="./image/cd-icon-location.svg" alt="Picture">
-                    </div>
-                    <div class="cd-timeline-content">
-                        <h2>{{$data->title}}</h2>
-                        <p>
-                            {{$data->content}}
-                        </p>
-                        <span class="cd-date">{{$data->updated_at}}</span>
-                    </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">时间轴</h3>
+            </div>
+            <div class="panel-body">
+                <div class="layui-collapse" style="padding: 10px">
+                    <ul class="layui-timeline">
+
+                        @foreach($data as $data)
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">{{$data->updated_at}}</h3>
+                                   <div class="h4">{{$data->title}}</div>
+                                    <p>
+                                        {{$data->content}}
+                                    </p>
+                                </div>
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
-            @endforeach
-        </section>
+            </div>
+        </div>
+
     </div>
     {{--右侧栏--}}
     <div class="col-md-3 clearfix " style="">
