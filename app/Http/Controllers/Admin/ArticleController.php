@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\url;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\store;
@@ -160,7 +161,7 @@ class ArticleController extends Controller
      * 时间轴列表
      */
     public function mood_list(mood $mood){
-        $list = $mood->where([['state',1]])->orderBy('id','desc')->paginate(20);
+        $list = $mood->orderBy('id','desc')->paginate(20);
         return view('Admin.article.mood_list', ['list' => $list]);
     }
 
@@ -178,16 +179,29 @@ class ArticleController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      * 添加时间轴
      */
-    public function mood_add(Request $request,mood $mood){
+    public function mood_add(Request $request){
         $data['title'] = $request->title;
         $data['content'] = $request->contents;
         $data['state'] = $request->state;
-        $add = $mood->insertGetId($data);
+        $mood = new mood();
+        $add = $mood->create($data);
         if ($add){
-            myflash()->success('添加成功');
-            return redirect('Admin/article/mood_list');
+          $data['info'] = '插入成功';
+          $data['status'] = 1;
+          $data['url'] = url('admin/article/mood_list');
         }else{
-            myflash()->error('添加失败');
+            $data['info'] = '插入失败';
+            $data['status'] = 0;
+        }
+        return $data;
+    }
+    //文章的显示与隐藏
+    public function mood_state(Request $request,mood $mood){
+        if ($request->isMethod('post')) {
+            $u_id=$request->u_id;
+            $show=$request->show;
+            $data=$mood->where([['id',$u_id]])->update(['state'=>$show]);
+            pd($data);exit();
         }
     }
 }

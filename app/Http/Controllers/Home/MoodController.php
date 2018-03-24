@@ -18,7 +18,7 @@ class MoodController extends Controller
     {
         //
         $mood = new mood;
-        $data = $mood->get();
+        $data = $mood->where([['state',1]])->get();
         $public= new PublicControllerr();
         $colum = $public->column();
         $info = $public->info();

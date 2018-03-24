@@ -47,7 +47,7 @@
                     </div>
                 </div>
             @endif
-            <form class="col-md-12" action="{{url('admin/article/store')}}" enctype="multipart/form-data" method="post" id="form" class="center-block " style=" margin: 0 auto;">
+            <form class="col-md-12 layui-form"  enctype="multipart/form-data" method="post" id="form" class="center-block " style=" margin: 0 auto;">
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">标题</label>
@@ -59,12 +59,7 @@
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">是否显示:</label>
                         <div class="col-sm-10">
-                            <label class="radio-inline">
-                                <input type="radio" name="state" id="state" value="1" checked> 显示
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="state" id="state"  value="0"> 不显示
-                            </label>
+                            <input type="checkbox" name="state" value="1"  title="写作" checked lay-text="开启|关闭>
                         </div>
                     </div>
                 </div>
@@ -76,14 +71,12 @@
                         </h4>
                     </div>
                     <div class="panel-body">
-                        <textarea class="layui-textarea" name="account" id="demo" style="display: none"></textarea>
+                        <textarea class="layui-textarea" name="contents" id="demo" style="display: none"></textarea>
                     </div>
                 </div>
-
-
                 <!-- 实例化编辑器 -->
                 <div class="col-md-4" style="padding-top: 10px">
-                    <button class="btn btn-success  btn-block" style="display: block;">确认保存</button>
+                    <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
                 </div>
             </form>
         </div>
@@ -99,10 +92,9 @@
                 tool: ['face', 'link', 'unlink', '|', 'left', 'center', 'right']
                 ,height: 200
             }); //建立编辑器 一定要吧编辑器赋值给index下面要用的
-
             form.on('submit(formDemo)', function(data){
                 layedit.sync(index);//将编辑器的内容赋值给表单
-                $.post("{:U('Notice/addNotice')}",$('#form').serialize(),
+                $.post("{{url('admin/article/mood_add')}}",$('#form').serialize(),
                     function(data){
                         console.log(data)
                         if(data.status == 1){

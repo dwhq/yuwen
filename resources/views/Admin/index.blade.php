@@ -94,11 +94,12 @@
                 </ul>
             </li>
             <li class="has-sub">
-                <a href="javascript:void(0);"><span class="ion-link h4"></span> &nbsp;测试功能<i class="fa fa-caret-right fa-fw pull-right"></i></a>
+                <a href="javascript:void(0);"><span class="icon ion-calendar h4"></span> &nbsp;测试功能<i class="fa fa-caret-right fa-fw pull-right"></i></a>
                 <ul class="sub-menu">
                     <!-- 利用data-target指定URL -->
                     <li><a href="{{url('admin/link/index')}}" target="view_window"><i class="fa fa-circle-o fa-fw"></i>&nbsp;二维码</a></li>
                     <li><a href="{{url('admin/link/create')}}" target="view_window"><i class="fa fa-circle-o fa-fw"></i>&nbsp;excel表格</a></li>
+                    <li><a href="{{url('admin/email_show')}}" target="view_window"><i class="fa fa-circle-o fa-fw"></i>&nbsp;发送邮件</a></li>
                 </ul>
             </li>
         </ul>

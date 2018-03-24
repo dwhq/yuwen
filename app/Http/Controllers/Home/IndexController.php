@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+//use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class IndexController extends Controller
 {
@@ -19,7 +20,7 @@ class IndexController extends Controller
         $data = DB::table('info')->orderBy('id','desc')->limit(1)->get();
         return $data;
     }
-    public function home(){
-        return 1111;
-    }
+//    public function qrcode(){
+//        QrCode::generate('Hello,LaravelAcademy!');
+//    }
 }
