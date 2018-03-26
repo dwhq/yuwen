@@ -141,10 +141,10 @@ class ArticleController extends Controller
                 $tag->write($data, $label);
             }
             myflash()->success('修改文章成功');
-            return redirect('Admin/article/list');
+            return redirect('admin/article/list');
         }
         myflash()->error('修改文章失败!');
-        return redirect('Admin/article/alter/' . $id);
+        return redirect('admin/article/alter/' . $id);
     }
     //文章的显示与隐藏
     public function state(Request $request,article $article){
