@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\url;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\store;
@@ -10,6 +11,7 @@ use App\Model\column;
 use App\Model\tag;
 use App\Http\Controllers\Home\PublicControllerr;
 use App\Http\Controllers\Home\ArticleController as Articles;
+use App\Model\mood;
 use LaravelChen\MyFlash\MyFlash;
 
 
@@ -139,10 +141,10 @@ class ArticleController extends Controller
                 $tag->write($data, $label);
             }
             myflash()->success('修改文章成功');
-            return redirect('Admin/article/list');
+            return redirect('admin/article/list');
         }
         myflash()->error('修改文章失败!');
-        return redirect('Admin/article/alter/' . $id);
+        return redirect('admin/article/alter/' . $id);
     }
     //文章的显示与隐藏
     public function state(Request $request,article $article){
@@ -150,6 +152,56 @@ class ArticleController extends Controller
             $u_id=$request->u_id;
             $show=$request->show;
             $article->where([['id',$u_id]])->update(['state'=>$show]);
+        }
+    }
+
+    /**
+     * @param mood $mood
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * 时间轴列表
+     */
+    public function mood_list(mood $mood){
+        $list = $mood->orderBy('id','desc')->paginate(20);
+        return view('Admin.article.mood_list', ['list' => $list]);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\Views
+     * 时间轴添加页面
+     */
+    public function mood_show(){
+        return view('Admin.article.mood_show');
+    }
+
+    /**
+     * @param Request $request
+     * @param mood $mood
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * 添加时间轴
+     */
+    public function mood_add(Request $request){
+        $data['title'] = $request->title;
+        $data['content'] = $request->contents;
+        $data['state'] = $request->state;
+        $mood = new mood();
+        $add = $mood->create($data);
+        if ($add){
+          $data['info'] = '插入成功';
+          $data['status'] = 1;
+          $data['url'] = url('admin/article/mood_list');
+        }else{
+            $data['info'] = '插入失败';
+            $data['status'] = 0;
+        }
+        return $data;
+    }
+    //文章的显示与隐藏
+    public function mood_state(Request $request,mood $mood){
+        if ($request->isMethod('post')) {
+            $u_id=$request->u_id;
+            $show=$request->show;
+            $data=$mood->where([['id',$u_id]])->update(['state'=>$show]);
+            pd($data);exit();
         }
     }
 }

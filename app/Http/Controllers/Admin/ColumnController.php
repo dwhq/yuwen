@@ -45,7 +45,7 @@ class ColumnController extends Controller
     public function alter(Request $request, column $column, $id)
     {
         $data = $column->where([['id', $id]])->first();
-        return view('admin.column.alter')
+        return view('Admin.column.alter')
             ->with('data', $data);
     }
 
