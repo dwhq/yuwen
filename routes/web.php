@@ -41,6 +41,7 @@ Route::prefix('/')->namespace('Home')->group(function () {
     Route::get('home/{type}', 'ArticleController@home');//栏目分类
     Route::get('search', 'ArticleController@search');//栏目分类
     Route::get('mood', 'MoodController@index');//时间轴
+    Route::get('qrcode', 'IndexController@qrcode');//二维码
     Route::get('content/{id}', 'ArticleController@content')->where('id', '[0-9]+');//栏目分类
     Route::get('label/{tag_id}', 'ArticleController@label')->where('tag_id', '[0-9]+');//标签搜索
 
@@ -66,6 +67,10 @@ Route::get('errors', function () {
  */
 Route::prefix('admin')->namespace('Admin')->middleware('token')->group(function () {
     Route::get('index', 'HomeController@index');
+    //发送邮件
+    Route::post('email', 'HomeController@email');
+    //发送邮件页面
+    Route::get('email_show', 'HomeController@email_show');
     //编辑网站信息
     Route::get('info', 'InfoController@index');
     Route::post('redact', 'InfoController@Store');
@@ -75,6 +80,12 @@ Route::prefix('admin')->namespace('Admin')->middleware('token')->group(function 
         //添加文章
         Route::get('create', 'ArticleController@create');
         Route::post('store', 'ArticleController@store');
+        //时间轴列表
+        Route::get('mood_list', 'ArticleController@mood_list');
+        //添加时间轴
+        Route::get('mood_show', 'ArticleController@mood_show');
+        Route::post('mood_add', 'ArticleController@mood_add');
+        Route::post('mood_state', 'ArticleController@mood_state');
         //后台查看文章
         Route::get('look/{u_id}', 'ArticleController@look');
         //删除文章
@@ -123,8 +134,8 @@ Route::prefix('admin')->namespace('Admin')->middleware('token')->group(function 
 //        //create方法名称 where定义id为纯数字
 //
 //    });
-    Route::get('excel/export','ExcelController@export');
-    Route::get('excel/import','ExcelController@import');
+    Route::get('excel/export', 'ExcelController@export');
+    Route::get('excel/import', 'ExcelController@import');
 });
 //上传文件 到时候重新写中间件吧
 Route::prefix('upload')->namespace('Upload')->middleware('token')->group(function () {
