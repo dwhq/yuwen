@@ -1,6 +1,6 @@
 @extends('public.child')
 
-@section('title', '文章列表')
+@section('title', '时间轴列表')
 <style>
     td {
         padding: 5% 0 0 20px;
@@ -18,12 +18,11 @@
 @section('content')
     <ol class="breadcrumb">
         <li><a href="#">后台管理</a></li>
-        <li><a href="#">文章管理</a></li>
-        <li class="active">文章列表</li>
+        <li class="active">时间轴列表</li>
     </ol>
     <div class="panel panel-default">
         <div class="panel-heading h4">
-            文章列表
+            时间轴列表
         </div>
         <div class="panel-body">
             <!-- /resources/views/post/create.blade.php -->
