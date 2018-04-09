@@ -23,7 +23,7 @@ class LoginController extends Controller
                 session(['name' => 'petrichor']);
                 $data['info']='登陆成功';
                 $data['state']='1';
-                $data['url']=url('Admin/index');
+                $data['url']=url('admin/index');
                 return $data;
             }else{
                 $data['info']='用户名或密码错误';
