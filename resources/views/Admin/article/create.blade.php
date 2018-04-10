@@ -14,10 +14,9 @@
     <link rel="stylesheet" type="text/css" href="{{asset('webuploader/webuploader.css')}}">
     <!--引入JS-->
     <script type="text/javascript" src="{{asset('webuploader/webuploader.nolog.js')}}"></script>
-    @include('UEditor::head');
+    @include('UEditor::head')
 @endsection
 @section('content')
-
     <ol class="breadcrumb">
         <li><a href="#">后台管理</a></li>
         <li><a href="#">文章管理</a></li>
