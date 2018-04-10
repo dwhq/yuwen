@@ -29,6 +29,12 @@ Route::prefix('article')->group(function () {
     Route::get('create', 'ArticleController@create');
 });
 
+//前台登陆
+Route::prefix('login')->namespace('Home')->group(function () {
+//    Route::match(['get', 'post'], 'github','LoginController@handleProviderCallback');
+    Route::get('github', 'LoginController@handleProviderCallback');
+    Route::get('loginGithub', 'LoginController@redirectToProvider');
+});
 //namespace 控制器文件名
 //Route::prefix('admin/article')->namespace('Admin')->group(function () {
 //    Route::get('index', 'ArticleController@index');
@@ -55,7 +61,6 @@ Route::get('/login888', function () {
 });
 
 //判断登陆
-
 Route::prefix('/')->namespace('Admin')->group(function () {
     Route::post('login', 'LoginController@index');
 });
