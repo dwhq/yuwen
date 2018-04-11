@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Model\user;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -18,6 +19,7 @@ class ArticleController extends Controller
         //
         $colum = $this->column();
         $info = $this->info();
+        $user_info = user::user_info(session('user_id'),'id',['id','account','avatar','nickname']);
         $tag = $this->tag();
         $url = $this->url();
         $title='';
@@ -32,6 +34,7 @@ class ArticleController extends Controller
             ->with('type',$type)
             ->with('tag',$tag)
             ->with('url',$url)
+            ->with('user_info', $user_info)
             ->with('title',$title)
             ->with('new_article',$new_article)
             ->with('page',$page);
@@ -43,6 +46,7 @@ class ArticleController extends Controller
         $tag = $this->tag();
         $url = $this->url();
         $title='';
+        $user_info = user::user_info(session('user_id'),'id',['id','account','avatar','nickname']);
         $new_article = $this->new_article();
         $data=DB::table('column')->where([['type',$type],['state',1]])->value('type');
         //栏目不存在报错
@@ -58,6 +62,7 @@ class ArticleController extends Controller
             ->with('type',$type)
             ->with('tag',$tag)
             ->with('title',$title)
+            ->with('user_info',$user_info)
             ->with('url',$url)
             ->with('new_article',$new_article)
             ->with('page',$page);
@@ -99,6 +104,7 @@ class ArticleController extends Controller
         if (!$content){
             return view('404');
         }
+        $user_info = user::user_info(session('user_id'),'id',['id','account','avatar','nickname']);
         $colum = $this->column();
         $info = $this->info();
         $tag = $this->tag();
@@ -113,6 +119,7 @@ class ArticleController extends Controller
             ->with('colum',$colum)
             ->with('type',$type)
             ->with('tag',$tag)
+            ->with('user_info',$user_info)
             ->with('content',$content)
             ->with('up_article',$up_article)
             ->with('next_article',$next_article)
