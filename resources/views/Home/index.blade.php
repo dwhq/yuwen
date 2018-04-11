@@ -21,7 +21,7 @@
                 </div>
                 <div style="height: 100px">
                     <img class="col-md-4 img-thumbnail aft"
-                         src="{{$list->back==1?config('app.img').$list->pic:$list->pic}}" alt="{{$list->title}}" class="thumb"
+                         src="{{$list->back==1?config('app.img').$list->pic:asset($list->pic)}}" alt="{{$list->title}}" class="thumb"
                          style="display: inline; height: 100px">
                 </div>
                 <div class="col-md-6" style="margin-top: 3%">

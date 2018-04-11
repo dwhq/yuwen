@@ -17,7 +17,6 @@
     @include('UEditor::head')
 @endsection
 @section('content')
-
     <ol class="breadcrumb">
         <li><a href="#">后台管理</a></li>
         <li><a href="#">栏目管理</a></li>

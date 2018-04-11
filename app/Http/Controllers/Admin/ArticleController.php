@@ -30,7 +30,7 @@ class ArticleController extends Controller
         //显示页面
         $list = $column->where([['state', 1]])->get();
         return view('Admin.article.create')
-            ->with('list', $list);
+            ->with('list',$list);
     }
 
     //添加文章
