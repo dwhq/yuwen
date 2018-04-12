@@ -52,7 +52,8 @@ Route::prefix('/')->namespace('Home')->group(function () {
     Route::get('label/{tag_id}', 'ArticleController@label')->where('tag_id', '[0-9]+');//标签搜索
     Route::prefix('vip')->middleware('vip')->group(function () {
         //退出登陆
-        Route::get('logout/{user_id}', 'vipController@logout')->where('user_id', '[0-9]+');//栏目分类;
+        Route::get('logout/{user_id}', 'vipController@logout')->where('user_id', '[0-9]+');//退出登录
+        Route::post('comment', 'vipController@comment');
     });
 });
 //直接定义路由

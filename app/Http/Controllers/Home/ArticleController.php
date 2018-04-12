@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Home;
 
 use App\Model\user;
+use App\Model\word;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -100,6 +101,7 @@ class ArticleController extends Controller
     }
     //文章内容
     public function content(Request $request,$id){
+        $word = word::inquire($id);//文章留言信息
         $content=DB::table('article')->where([['id',$id],['state',1]])->first();
         if (!$content){
             return view('404');
@@ -119,6 +121,7 @@ class ArticleController extends Controller
             ->with('colum',$colum)
             ->with('type',$type)
             ->with('tag',$tag)
+            ->with('word',$word)
             ->with('user_info',$user_info)
             ->with('content',$content)
             ->with('up_article',$up_article)
