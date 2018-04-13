@@ -30,7 +30,11 @@ class word extends Model
     public static function inquire($article_id){
         $data = DB::table('word as a')->where([['a.u_id',$article_id],['a.state',1],['a.type',1]])->join('users as b','b.id','=','a.name_id')->select('a.*','b.nickname','b.avatar','b.id as user_id')->get();
         foreach ($data as &$vo){
-            $vo->level = DB::table('word as a')->where([['a.u_id',$vo->id],['a.state',1],['a.type',3]])->join('users as b','b.id','=','a.name_id')->select('a.*','b.nickname','b.avatar','b.id as user_id')->get();
+            $vo->level = DB::table('word as a')->where([['a.u_id',$vo->id],['a.state',1],['a.type',3]])
+                ->join('users as b','b.id','=','a.name_id')
+                ->join('word as c','c.id','=','a.u_id')
+                ->join('users as d','d.id','=','c.name_id')
+                ->select('a.*','b.nickname','b.avatar','b.id as user_id','d.nickname as father_nickname','d.avatar as father_avatar','d.id as father_user_id')->get();
         }
         return $data;
     }

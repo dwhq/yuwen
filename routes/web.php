@@ -54,6 +54,7 @@ Route::prefix('/')->namespace('Home')->group(function () {
         //退出登陆
         Route::get('logout/{user_id}', 'vipController@logout')->where('user_id', '[0-9]+');//退出登录
         Route::post('comment', 'vipController@comment');
+
     });
 });
 //直接定义路由
