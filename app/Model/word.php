@@ -17,7 +17,7 @@ class word extends Model
      *
      * @var string
      */
-    protected $dateFormat = 'U';
+   //protected $dateFormat = 'U';
     /**
      * 自动维护时间戳
      */

@@ -38,7 +38,7 @@ class LoginController extends Controller
         }
         session(['user_id' => $id]);
         myflash()->success('登录成功');
-        return redirect('/');
+        return redirect()->back();
     }
 
     /**

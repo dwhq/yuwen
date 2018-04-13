@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Model\user;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\word;
-
+use Illuminate\Support\Facades\DB;
 class vipController extends Controller
 {
     /**
@@ -26,16 +27,18 @@ class vipController extends Controller
      * @return mixed
      * 评论文章
      */
-    public function comment(Request $request,word $word){
-        $add['contents'] = $request->contents;
+    public function comment(Request $request){
+        $add['content'] = $request->contents;
         $add['email'] = $request->email;
         $add['u_id'] = $request->u_id;
+        $add['name_id'] = session('user_id');
+        $add['state'] = 1;
         $add['type'] = $request->type;
-        if (strlen($add['contents']) < 15){
+        if (strlen($add['content']) < 15){
             $data['info'] = '多写点！！';
             $data['status'] = 0;
         }else{
-            $words = $word->insertGetId($add);
+            $words = DB::table('word')->insert($add);
             if ($words){
                 $data['info'] = '评论成功！！';
                 $data['status'] = 1;
