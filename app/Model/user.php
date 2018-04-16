@@ -17,25 +17,32 @@ class user extends Model
      *
      * @var string
      */
-    protected $dateFormat = 'U';
+    //protected $dateFormat = 'U';
     /**
      * 自动维护时间戳
      */
     public $timestamps = true;
-
+    /**
+     * 不允许赋值的字段
+     *
+     * @var array
+     */
+    protected $guarded = [];
     /**
      * @param $data
      * @return bool
      * 添加会员
      */
-    public static function add_user($data){
+    public function add_user($data){
         if ($data['email'] == ''){
             return false;
         }
+//        $data['finally_ip'] = $request->getClientIp();
+        $data['finally_time'] = time();
         $data['account'] = self::user_account();
-        $list = DB::table('users')->insertGetId($data);
+        $list = $this->create($data);
         if ($list){
-            return $list;
+            return $list->id;
         }else{
             return false;
         }

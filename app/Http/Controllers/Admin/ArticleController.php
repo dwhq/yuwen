@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\url;
+use App\Model\user;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\store;
@@ -13,8 +14,7 @@ use App\Http\Controllers\Home\PublicControllerr;
 use App\Http\Controllers\Home\ArticleController as Articles;
 use App\Model\mood;
 use LaravelChen\MyFlash\MyFlash;
-
-
+use App\Model\word;
 class ArticleController extends Controller
 {
     //文章列表
@@ -66,8 +66,10 @@ class ArticleController extends Controller
     public function look(Request $request, Articles $articleController, article $article, $u_id)
     {
         $content = $article->where([['id', $u_id]])->first();
+        $word = word::inquire($u_id);//文章留言信息
         $public = new PublicControllerr();
         $colum = $public->column();
+        $user_info = array();
         $info = $public->info();
         $tag = $public->tag();
         $url = $public->url();
@@ -82,6 +84,8 @@ class ArticleController extends Controller
             ->with('colum', $colum)
             ->with('type', $type)
             ->with('tag', $tag)
+            ->with('user_info', $user_info)
+            ->with('word', $word)
             ->with('content', $content)
             ->with('up_article', $up_article)
             ->with('next_article', $next_article)
@@ -184,7 +188,7 @@ class ArticleController extends Controller
         $data['content'] = $request->contents;
         $data['state'] = $request->state;
         $mood = new mood();
-        $add = $mood->create($data);
+        $add = $mood->add($data);
         if ($add){
           $data['info'] = '插入成功';
           $data['status'] = 1;

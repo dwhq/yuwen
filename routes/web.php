@@ -123,6 +123,12 @@ Route::prefix('admin')->namespace('Admin')->middleware('token')->group(function 
         //删除栏目
         Route::get('delect/{u_id}', 'ColumnController@delect');
     });
+    //会员管理
+    Route::group(['prefix' => 'users'],function () {
+       //会员列表
+        Route::get('index', 'usersController@index');
+        Route::get('word', 'usersController@word');
+    });
     //友情链接管理
     Route::group(['prefix' => 'link'], function () {
         //栏目列表

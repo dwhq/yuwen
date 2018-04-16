@@ -59,7 +59,7 @@
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">是否显示:</label>
                         <div class="col-sm-10">
-                            <input type="checkbox" name="state" value="1"  title="写作" checked lay-text="开启|关闭>
+                            <input type="checkbox" name="state" value="1"  title="显示" checked lay-text="显示|隐藏">
                         </div>
                     </div>
                 </div>

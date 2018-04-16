@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Home;
 
+use Illuminate\Http\Request;
 use Socialite;
 use App\Http\Controllers\Controller;
 use App\Model\user;
@@ -14,6 +15,11 @@ class LoginController extends Controller
      */
     public function redirectToProvider()
     {
+        // 记录登录前的url
+        $data = [
+            'targetUrl' => $_SERVER['HTTP_REFERER']
+        ];
+        session($data);
         return Socialite::driver('github')->redirect();
     }
 
@@ -22,28 +28,32 @@ class LoginController extends Controller
      *
      * @return Response
      */
-    public function handleProviderCallback()
+    public function handleProviderCallback(Request $request,user $users)
     {
         $user = Socialite::driver('github')->user();
+        $data['finally_ip'] = $request->getClientIp();
+        $data['finally_time'] = time();
         $data['github_id'] = $user->id;
         $data['nickname'] = $user->nickname;
         $data['name'] = $user->name;
         $data['email'] = $user->email;
         $data['avatar'] = $user->avatar;
+        //查询此会员信息如果没有 则插入
         $info = user::user_info($data['github_id'],'github_id');
         if (!$info){
-            $id = user::add_user($data);
+            $id = $users->add_user($data);
         }else{
+            $users->where([['github_id', $data['github_id']]])->update($data);
          $id = $info->id;
         }
         session(['user_id' => $id]);
         myflash()->success('登录成功');
-        return redirect()->back();
+        return redirect(session('targetUrl', url('/')));
     }
 
     /**
      * @param $id
-     * 会员登陆
+     * 会员注册
      */
     public function register($id,$password){
         $info = user::user_info($id);

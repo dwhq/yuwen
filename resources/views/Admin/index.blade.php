@@ -94,6 +94,14 @@
                 </ul>
             </li>
             <li class="has-sub">
+                <a href="javascript:void(0);"><span class="icon ion-android-contacts h4"></span> &nbsp;会员管理<i class="fa fa-caret-right fa-fw pull-right"></i></a>
+                <ul class="sub-menu">
+                    <!-- 利用data-target指定URL -->
+                    <li><a href="{{url('admin/users/index')}}" target="view_window"><i class="fa fa-circle-o fa-fw"></i>&nbsp;会员列表</a></li>
+                    <li><a href="{{url('admin/users/word')}}" target="view_window"><i class="fa fa-circle-o fa-fw"></i>&nbsp;留言列表</a></li>
+                </ul>
+            </li>
+            <li class="has-sub">
                 <a href="javascript:void(0);"><span class="icon ion-calendar h4"></span> &nbsp;测试功能<i class="fa fa-caret-right fa-fw pull-right"></i></a>
                 <ul class="sub-menu">
                     <!-- 利用data-target指定URL -->
