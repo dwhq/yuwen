@@ -64,6 +64,11 @@ Route::prefix('/')->namespace('Home')->group(function () {
 Route::get('/login888', function () {
     return view('Admin/login');
 });
+Route::get('/url111111111', function () {
+    Storage::append('file.log',$_SERVER['REMOTE_ADDR']);
+   return redirect('https://www.bilibili.com/video/av16329096?from=search&seid=13713348465042281393');
+});
+
 
 //判断登陆
 Route::prefix('/')->namespace('Admin')->group(function () {
