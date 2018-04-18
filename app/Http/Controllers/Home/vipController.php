@@ -31,11 +31,15 @@ class vipController extends Controller
         $add['content'] = $request->contents;
         $add['email'] = $request->email;
         $add['u_id'] = $request->u_id;
+        $add['article_id'] = (int)$request->article_id;
         $add['name_id'] = session('user_id');
         $add['state'] = 1;
         $add['type'] = $request->type;
         if (strlen($add['content']) < 15){
             $data['info'] = '多写点！！';
+            $data['status'] = 0;
+        }elseif ($add['article_id'] == ''){
+            $data['info'] = '未知的错误';
             $data['status'] = 0;
         }else{
             $words = DB::table('word')->insert($add);
@@ -47,6 +51,11 @@ class vipController extends Controller
                 $data['status'] = 0;
             }
         }
+        return $data;
+    }
+    public function article_work(Request $request){
+        $article_id =  $request->article_id;
+        $data = word::inquire($article_id);
         return $data;
     }
 }

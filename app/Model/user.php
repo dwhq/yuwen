@@ -34,9 +34,9 @@ class user extends Model
      * 添加会员
      */
     public function add_user($data){
-        if ($data['email'] == ''){
-            return false;
-        }
+//        if ($data['email'] == ''){
+//            return false;
+//        }
 //        $data['finally_ip'] = $request->getClientIp();
         $data['finally_time'] = time();
         $data['account'] = self::user_account();

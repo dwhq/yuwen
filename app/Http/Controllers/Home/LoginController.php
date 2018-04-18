@@ -13,14 +13,14 @@ class LoginController extends Controller
      *
      * @return Response
      */
-    public function redirectToProvider()
+    public function redirectToProvider($service)
     {
         // 记录登录前的url
         $data = [
             'targetUrl' => $_SERVER['HTTP_REFERER']
         ];
         session($data);
-        return Socialite::driver('github')->redirect();
+        return Socialite::driver($service)->redirect();
     }
 
     /**
@@ -30,20 +30,27 @@ class LoginController extends Controller
      */
     public function handleProviderCallback(Request $request,user $users)
     {
-        $user = Socialite::driver('github')->user();
+        $type = [
+          'github'=>1,
+          'qq'=>2,
+          'weibo'=>3,
+        ];
+        $service = $request->service;
+        $user = Socialite::driver($service)->user();
         $data['finally_ip'] = $request->getClientIp();
         $data['finally_time'] = time();
-        $data['github_id'] = $user->id;
+        $data['type'] = $type[$service];
         $data['nickname'] = $user->nickname;
         $data['name'] = $user->name;
         $data['email'] = $user->email;
         $data['avatar'] = $user->avatar;
         //查询此会员信息如果没有 则插入
-        $info = user::user_info($data['github_id'],'github_id');
+        $info = user::user_info($user->id,'github_id');
         if (!$info){
+            $data['github_id'] = $user->id;
             $id = $users->add_user($data);
         }else{
-            $users->where([['github_id', $data['github_id']]])->update($data);
+            $users->where([['id',$info->id]])->update($data);
          $id = $info->id;
         }
         session(['user_id' => $id]);

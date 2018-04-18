@@ -33,7 +33,7 @@ Route::prefix('article')->group(function () {
 Route::prefix('login')->namespace('Home')->group(function () {
 //    Route::match(['get', 'post'], 'github','LoginController@handleProviderCallback');
     Route::get('github', 'LoginController@handleProviderCallback');
-    Route::get('loginGithub', 'LoginController@redirectToProvider');
+    Route::get('loginGithub/{service}', 'LoginController@redirectToProvider');
 });
 //namespace 控制器文件名
 //Route::prefix('admin/article')->namespace('Admin')->group(function () {
@@ -54,6 +54,7 @@ Route::prefix('/')->namespace('Home')->group(function () {
         //退出登陆
         Route::get('logout/{user_id}', 'vipController@logout')->where('user_id', '[0-9]+');//退出登录
         Route::post('comment', 'vipController@comment');
+        Route::post('article_work', 'vipController@article_work');
 
     });
 });
@@ -64,10 +65,10 @@ Route::prefix('/')->namespace('Home')->group(function () {
 Route::get('/login888', function () {
     return view('Admin/login');
 });
-Route::get('/url111111111', function () {
-    Storage::append('file.log',$_SERVER['REMOTE_ADDR']);
-   return redirect('https://www.bilibili.com/video/av16329096?from=search&seid=13713348465042281393');
-});
+//Route::get('/url111111111', function () {
+//    Storage::append('file.log',$_SERVER['REMOTE_ADDR']);
+//   return redirect('https://www.bilibili.com/video/av16329096?from=search&seid=13713348465042281393');
+//});
 
 
 //判断登陆

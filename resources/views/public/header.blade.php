@@ -47,13 +47,13 @@
                     '            <div class="col-xs-12 col-md-12 col-lg-12 b-login-row" style="height:100px;margin-top:30px">\n' +
                     '                <ul class="row">\n' +
                     '                    <li class="col-xs-6 col-md-4 col-lg-4 b-login-img">\n' +
-                    '                        <a href="javascript:;" onclick="alert(data)"><img src="https://baijunyao.com/images/home/qq-login.png" alt="QQ登录" title="QQ登录"></a>\n' +
+                    '                        <a href="{{url('/login/loginGithub/qq')}}"><img src="https://baijunyao.com/images/home/qq-login.png" alt="QQ登录" title="QQ登录"></a>\n' +
                     '                    </li>\n' +
                     '                    <li class="col-xs-6 col-md-4 col-lg-4 b-login-img">\n' +
-                    '                        <a href="javascript:;" onclick="alert(data)"><img src="https://baijunyao.com/images/home/sina-login.png" alt="微博登录" title="微博登录"></a>\n' +
+                    '                        <a href="{{url('/login/loginGithub/weibo')}}"><img src="https://baijunyao.com/images/home/sina-login.png" alt="微博登录" title="微博登录"></a>\n' +
                     '                    </li>\n' +
                     '                    <li class="col-xs-6 col-md-4 col-lg-4 b-login-img">\n' +
-                    '                        <a href="{{url('/login/loginGithub')}}"><img src="https://baijunyao.com/images/home/github-login.jpg" alt="github登录" title="github登录"></a>\n' +
+                    '                        <a href="{{url('/login/loginGithub/github')}}"><img src="https://baijunyao.com/images/home/github-login.jpg" alt="github登录" title="github登录"></a>\n' +
                     '                    </li>\n' +
                     '                </ul>\n' +
                     '            </div>\n' //这里content是一个普通的String
