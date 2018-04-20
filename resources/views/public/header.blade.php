@@ -11,7 +11,7 @@
                 <img src="{{$info[0]->back==1?config('app.img').$info[0]->image:asset($info[0]->image)}}" alt="{{$info[0]->name}}">
             </a>
         </div>
-        <div class="col-md-3 col-md-offset-3">
+        <div class="col-md-2 col-md-offset-3">
             <ul class="nav nav-pills">
                 @foreach($colum as $colum)
                     <li @if($colum->type==$type)class="active" @endif><a href="{{url('home/'.$colum->type)}}" style="color: white">{{$colum->name}}</a></li>
@@ -25,12 +25,9 @@
                     <span style="color: white">{{$user_info->nickname}}</span>
                     <a href="{{url('/vip/logout/'.$user_info->id)}}" style="color: white">退出</a>
                 </div>
-                @else
+            @else
                 <a href="javascript:;" class="login col-md-3 text-center" onclick="login()" style="color: white;display: block;padding: 10px 15px;">登 录</a>
             @endif
-        </div>
-        <div id="login">
-
         </div>
     </div>
     <script>

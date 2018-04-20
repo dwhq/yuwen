@@ -24,4 +24,34 @@ class UsersController extends Controller
         return view('Admin.users.word')
             ->with('data',$data);
     }
+
+    /**
+     * @param Request $request
+     * @param word $word
+     * @return \Illuminate\Http\RedirectResponse
+     * 删除留言
+     */
+    public function wordDelect(Request $request,word $word,$u_id){
+        $delect = $word->where([['id',$u_id]])->delete();
+        if ($delect){
+            myflash()->success('删除成功');
+        }else{
+            myflash()->error('删除失败');
+        }
+        return redirect()->back();
+    }
+
+    /**
+     * @param Request $request
+     * @param word $word
+     * 隐藏留言  上级留言隐藏后就不显示下层的
+     */
+    public function wordState(Request $request,word $word){
+        if ($request->isMethod('post')) {
+            $id=$request->id;
+            $show=$request->show;
+            $a = $word->where([['id',$id]])->update(['state'=>$show]);
+
+        }
+    }
 }

@@ -1,5 +1,5 @@
-<div>
-    <div class="row" style="padding:10px 0 10px 0 ">
+<div style="margin:50px 10px 0 10px">
+    <div class="row" style="padding:20px 0 10px 0 ">
         <form action="{{url('search')}}" method="get">
             <div class="col-lg-8">
                 <input type="text" name="seek" class="form-control" placeholder="全文搜索">

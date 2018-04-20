@@ -37,6 +37,7 @@ class LoginController extends Controller
         ];
         $service = $request->service;
         $user = Socialite::driver($service)->user();
+        pd($user);
         $data['finally_ip'] = $request->getClientIp();
         $data['finally_time'] = time();
         $data['type'] = $type[$service];

@@ -22,7 +22,7 @@ class LoginController extends Controller
                 $data['state']='0';
                 return $data;
             }
-            if ($request->name == '余温' && $request->password=='dwhq963.-+'){
+            if ($request->name == '余温' && $request->password==env('PASSWORD')){
                 session(['name' => 'petrichor']);
                 $data['info']='登陆成功';
                 $data['state']='1';

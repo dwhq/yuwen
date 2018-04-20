@@ -44,13 +44,16 @@
                             <td>{{$vo->nickname}}</td>
                             <td>{{$vo->content}}</td>
                             <td>
-                                <div class="show1 text-center" dd="{{$vo->state}}"  onclick="state({{$vo->state}},0)" @if($vo->state == 0) hidden @endif ><span style="font-size: 22px;color: #399bff" class=" icon ion-checkmark-circled"></span></div>
-                                <div class="show1 text-center" dd="{{$vo->state}}" onclick="state({{$vo->state}},1)"  @if($vo->state == 1) hidden @endif ><span style="font-size: 22px;color: #399bff" class="  icon ion-close-circled"></span></div>
+                                <div class="show1 text-center" dd="{{$vo->id}}"  onclick="state({{$vo->id}},0)" @if($vo->state == 0) hidden @endif ><span style="font-size: 22px;color: #399bff" class=" icon ion-checkmark-circled"></span></div>
+                                <div class="show1 text-center" dd="{{$vo->id}}" onclick="state({{$vo->id}},1)"  @if($vo->state == 1) hidden @endif ><span style="font-size: 22px;color: #399bff" class="  icon ion-close-circled"></span></div>
                             </td>
                             <td>{{$vo->time}}</td>
                             <td class="text-center">
                                 <a class="btn btn-success btn-lg " href="{{url('admin/article/look/'.$vo->article_id)}}">
                                     <span class="icon ion-ios-eye"></span>
+                                </a>
+                                <a class="btn btn-primary btn-lg " href="{{url('admin/users/wordDelect/'.$vo->id)}}" onClick="return confirm('确定删除?');">
+                                    <span class="glyphicon glyphicon-trash"></span>
                                 </a>
                             </td>
                         </tr>
@@ -62,6 +65,10 @@
             </div>
         </div>
         <script type="text/javascript">
+            function state( id,show) {
+                $(' [dd= '+ id+ ' ]').toggle();
+                $.post("{{url('admin/users/wordState')}}",{'id':id,'show':show,'_token':"{{csrf_token()}}"});
+            }
         </script>
     </div>
 @endsection

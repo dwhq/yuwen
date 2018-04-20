@@ -139,6 +139,10 @@ Route::prefix('admin')->namespace('Admin')->middleware('token')->group(function 
        //会员列表
         Route::get('index', 'usersController@index');
         Route::get('word', 'usersController@word');
+        //删除留言
+        Route::get('wordDelect/{u_id}', 'usersController@wordDelect')->where('u_id', '[0-9]+');;
+        //留言显示与隐藏
+        Route::post('wordState', 'usersController@wordState');
     });
     //友情链接管理
     Route::group(['prefix' => 'link'], function () {

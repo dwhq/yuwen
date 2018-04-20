@@ -49,4 +49,9 @@ return [
         'client_secret' => env('WEIBO_CLIENT_SECRET'), // Your GitHub Client Secret
         'redirect' => env('WEIBO_URL'),//回调地址
     ],
+    'facebook' => [
+        'client_id' => env('FACEBOOK_CLIENT_ID'),         // Your GitHub Client ID
+        'client_secret' => env('FACEBOOK_CLIENT_SECRET'), // Your GitHub Client Secret
+        'redirect' => env('FACEBOOK_URL'),//回调地址
+    ],
 ];
