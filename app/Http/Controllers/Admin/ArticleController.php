@@ -69,7 +69,7 @@ class ArticleController extends Controller
         $word = word::inquire($u_id);//文章留言信息
         $public = new PublicControllerr();
         $colum = $public->column();
-        $user_info = array();
+        $user_info = 'admin';
         $info = $public->info();
         $tag = $public->tag();
         $url = $public->url();

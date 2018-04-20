@@ -8,7 +8,7 @@
     <div class="row" style="padding: 10px;background-color: #393D49;">
         <div class="col-md-2 col-md-offset-2">
             <a href="{{url('/')}}">
-                <img src="{{$info[0]->back==1?config('app.img').$info[0]->image:$info[0]->image}}" alt="{{$info[0]->name}}">
+                <img src="{{$info[0]->back==1?config('app.img').$info[0]->image:asset($info[0]->image)}}" alt="{{$info[0]->name}}">
             </a>
         </div>
         <div class="col-md-3 col-md-offset-3">
@@ -19,7 +19,7 @@
             </ul>
         </div>
         <div class="col-md-2">
-            @if(session('user_id'))
+            @if(session('user_id') && $user_info != 'admin')
                 <div>
                     <img src="{{$user_info->avatar}}" width="40" class="layui-anim-rotate img-circle" alt="{{$user_info->nickname}}">
                     <span style="color: white">{{$user_info->nickname}}</span>

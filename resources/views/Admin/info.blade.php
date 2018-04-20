@@ -279,7 +279,7 @@
         });
         uploader.on('uploadSuccess', function (file, data) {
             imgurl = data; //上传图片的路径
-            $('#image').val("{{storage_path()}}"+imgurl._raw);
+            $('#image').val("uploads/"+'/'+imgurl._raw);
             console.log(imgurl);
         });
     </script>

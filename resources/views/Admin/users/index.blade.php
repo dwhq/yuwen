@@ -39,6 +39,7 @@
                         <td>email</td>
                         <td>QQ</td>
                         <td>mobile</td>
+                        <td>会员来源</td>
                         <td>操作</td>
                     </tr>
                     @foreach($data as $vo)
@@ -50,6 +51,16 @@
                             <td>{{$vo->meail or '暂无'}}</td>
                             <td>{{$vo->qq or '暂无'}}</td>
                             <td>{{$vo->mobile or '暂无'}}</td>
+                            <td>@if($vo->type == 1)
+                                    github
+                                @elseif($vo->type == 2)
+                                    qq
+                                @elseif($vo->type == 3)
+                                    weibo
+                                @else
+                                    其他
+                                @endif
+                            </td>
                             <td class="text-center">
                                 {{--<a class="btn btn-primary btn-lg " href="{{url('admin/column/alter/'.$vo->id)}}">--}}
                                     {{--<span class="glyphicon glyphicon-pencil"></span>--}}

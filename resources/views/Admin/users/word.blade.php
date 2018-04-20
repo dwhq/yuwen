@@ -49,8 +49,8 @@
                             </td>
                             <td>{{$vo->time}}</td>
                             <td class="text-center">
-                                <a class="btn btn-primary btn-lg " href="{{url('admin/article/delect/'.$vo->u_id)}}" onClick="return confirm('确定删除?');">
-                                    <span class="glyphicon glyphicon-trash"></span>
+                                <a class="btn btn-success btn-lg " href="{{url('admin/article/look/'.$vo->article_id)}}">
+                                    <span class="icon ion-ios-eye"></span>
                                 </a>
                             </td>
                         </tr>

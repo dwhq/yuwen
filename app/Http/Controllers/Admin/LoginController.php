@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Filesystem\Cache;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Validator;
+use LaravelChen\MyFlash\MyFlash;
 
 class LoginController extends Controller
 {
@@ -30,6 +33,22 @@ class LoginController extends Controller
                 $data['state']='2';
                 return $data;
             }
+    }
+    //后台退出登录
+    public function logOut(Request $request){
+        $request->session()->forget('name');
+        myflash()->success('退出登陆');
+        return redirect('/');
 
+    }
+    //清楚缓存
+    public function clearCache(){
+        Artisan::call('cache:clear');
+        Artisan::call('config:clear');
+        Artisan::call('route:clear');
+        Artisan::call('view:clear');
+        Artisan::call('clear-compiled');
+        myflash()->success('清除缓存成功');
+        return redirect()->back();
     }
 }

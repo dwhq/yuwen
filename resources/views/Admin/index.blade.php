@@ -47,9 +47,9 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                        aria-expanded="false"><i class="fa fa-user fa-fw"></i>&nbsp;余温&nbsp;<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li class=""><a href="#" style=" background: white;color: black">清楚缓存</a></li>
+                        <li class=""><a href="{{url('admin/clearCache')}}" style=" background: white;color: black">清楚缓存</a></li>
                         <li class="divider"></li>
-                        <li class=""><a href="#" style=" background: white;color: black">退出登陆</a></li>
+                        <li class=""><a href="{{url('admin/logOut')}}" style=" background: white;color: black">退出登陆</a></li>
                         <li class="divider"></li>
                     </ul>
                 </li>

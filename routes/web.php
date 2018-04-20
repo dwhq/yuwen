@@ -32,7 +32,7 @@ Route::prefix('article')->group(function () {
 //前台github第三方登陆
 Route::prefix('login')->namespace('Home')->group(function () {
 //    Route::match(['get', 'post'], 'github','LoginController@handleProviderCallback');
-    Route::get('github', 'LoginController@handleProviderCallback');
+    Route::any('github', 'LoginController@handleProviderCallback');
     Route::get('loginGithub/{service}', 'LoginController@redirectToProvider');
 });
 //namespace 控制器文件名
@@ -50,6 +50,7 @@ Route::prefix('/')->namespace('Home')->group(function () {
     Route::get('qrcode', 'IndexController@qrcode');//二维码
     Route::get('content/{id}', 'ArticleController@content')->where('id', '[0-9]+');//栏目分类
     Route::get('label/{tag_id}', 'ArticleController@label')->where('tag_id', '[0-9]+');//标签搜索
+    Route::any('demo', 'DemoController@demo');//测试页面
     Route::prefix('vip')->middleware('vip')->group(function () {
         //退出登陆
         Route::get('logout/{user_id}', 'vipController@logout')->where('user_id', '[0-9]+');//退出登录
@@ -87,6 +88,10 @@ Route::prefix('admin')->namespace('Admin')->middleware('token')->group(function 
     Route::post('email', 'HomeController@email');
     //发送邮件页面
     Route::get('email_show', 'HomeController@email_show');
+    //退出后台
+    Route::get('logOut','LoginController@LogOut');
+    //清除缓存
+    Route::get('clearCache','LoginController@clearCache');
     //编辑网站信息
     Route::get('info', 'InfoController@index');
     Route::post('redact', 'InfoController@Store');

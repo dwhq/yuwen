@@ -167,6 +167,7 @@ class ArticleController extends Controller
         $info = $this->info();
         $tag = $this->tag();
         $url = $this->url();
+        $user_info = user::user_info(session('user_id'),'id',['id','account','avatar','nickname']);
         $new_article = $this->new_article();
         $list = DB::table('tags')->select('tag.name','article.back','article.title','article.pic','article.id','article.desc','article.cateid','article.time')->where([['article.state',1],['tag.id',$tag_id]])->leftjoin('tag','tag.id','=','tags.tag_id')->leftjoin('article','article.id','=','tags.u_id')->orderBy('article.id','sort')->paginate(10);
         if ($list->isEmpty()){
@@ -184,6 +185,7 @@ class ArticleController extends Controller
             ->with('colum',$colum)
             ->with('type',$type)
             ->with('tag',$tag)
+            ->with('user_info',$user_info)
             ->with('title',$title)
             ->with('url',$url)
             ->with('new_article',$new_article)
@@ -196,6 +198,7 @@ class ArticleController extends Controller
         $colum = $this->column();
         $info = $this->info();
         $tag = $this->tag();
+        $user_info = user::user_info(session('user_id'),'id',['id','account','avatar','nickname']);
         $url = $this->url();
         $seek = $request->input('seek');
         $title='<div class="h4">关于'.$seek.'的搜索结果</div>';//显示的文字
@@ -208,6 +211,7 @@ class ArticleController extends Controller
             ->with('info',$info)
             ->with('colum',$colum)
             ->with('type',$type)
+            ->with('user_info',$user_info)
             ->with('tag',$tag)
             ->with('url',$url)
             ->with('title',$title)
