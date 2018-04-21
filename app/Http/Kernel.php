@@ -58,6 +58,7 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'token' => Middleware\CheckToken::class,//使用中间件
-        'vip' => Middleware\CheckVip::class//前台检测登陆中间件
+        'vip' => Middleware\CheckVip::class,//前台检测登陆中间件
+        'cache.response' => \Flc\Laravel\Http\Middleware\CacheResponse::class,//Laravel中间件-Response缓存
     ];
 }

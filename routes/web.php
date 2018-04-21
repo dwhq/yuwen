@@ -42,7 +42,7 @@ Route::prefix('login')->namespace('Home')->group(function () {
 //嵌套路由
 
 //数据接口
-Route::prefix('/')->namespace('Home')->group(function () {
+Route::prefix('/')->namespace('Home')->middleware('cache.response:20')->group(function () {
     Route::get('/', 'ArticleController@index');//设置根目录
     Route::get('home/{type}', 'ArticleController@home');//栏目分类
     Route::get('search', 'ArticleController@search');//栏目分类
