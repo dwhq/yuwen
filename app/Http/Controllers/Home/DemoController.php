@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Home;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redis;
 
 class DemoController extends Controller{
 
@@ -25,5 +26,12 @@ class DemoController extends Controller{
         }else{
             return view('Home.demo');
         }
+    }
+    public function demo23()
+    {
+        Redis::set('name', 'Taylor');
+        $user = Redis::get('name');
+        pd($user);
+        $values = Redis::lrange('names', 5, 10);
     }
 }
