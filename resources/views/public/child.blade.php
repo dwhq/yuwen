@@ -30,4 +30,13 @@
         setTimeout(function() { NProgress.done(); $('.fade').removeClass('out'); }, 1000);
     </script>
 </body>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?f9d98324805485a927839ff3df6aaf81";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
 </html>
