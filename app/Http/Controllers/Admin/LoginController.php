@@ -20,7 +20,12 @@ class LoginController extends Controller
                 'captcha' => 'required|captcha'
             ];
             $validator = Validator::make($request->all(), $rules);
-            if ($validator->fails()) {
+            $result = $this->validate($request, [
+                'geetest_challenge' => 'geetest',
+            ], [
+                'geetest' => config('geetest.server_fail_alert')
+            ]);
+            if (!$request) {
                 $data['info']='验证码错误';
                 $data['state']='0';
                 return $data;

@@ -32,11 +32,16 @@
                                            placeholder="密码">
                                 </div>
                             </div>
+                            {{--<div class="form-group">--}}
+                                    {{--<img class="col-sm-4" src="{{captcha_src()}}" onclick="this.src=this.src+'?'" alt="点击刷新">--}}
+                                {{--<div class="col-sm-8">--}}
+                                    {{--<input type="text" class="form-control" name="captcha" id="captcha"--}}
+                                           {{--placeholder="请输入验证码">--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
                             <div class="form-group">
-                                    <img class="col-sm-4" src="{{captcha_src()}}" onclick="this.src=this.src+'?'" alt="点击刷新">
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" name="captcha" id="captcha"
-                                           placeholder="请输入验证码">
+                                <div class="col-lg-8 col-lg-offset-2">
+                                    {!! Geetest::render() !!}
                                 </div>
                             </div>
                             <button type="button" class="btn btn-success btn-block" id="button"> 登 陆</button>

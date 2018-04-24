@@ -141,6 +141,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Germey\Geetest\GeetestServiceProvider::class,
 
         /**
          * 社会化登录
@@ -206,6 +207,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Geetest' => Germey\Geetest\Geetest::class,
 //        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,//二维码
     ],
     'img' => env('IMG_URL', 'http://5.56ve.com'),
