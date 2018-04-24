@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Model\admin;
 use Illuminate\Filesystem\Cache;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use LaravelChen\MyFlash\MyFlash;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -22,7 +25,8 @@ class LoginController extends Controller
                 $data['state']='0';
                 return $data;
             }
-            if ($request->name == '余温' && $request->password==env('PASSWORD')){
+            $admin = admin::admin_info($request->name,['password']);
+            if (Hash::check($request->password, $admin->password)){
                 session(['name' => 'petrichor']);
                 $data['info']='登陆成功';
                 $data['state']='1';
