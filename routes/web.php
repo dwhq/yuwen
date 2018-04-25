@@ -162,6 +162,15 @@ Route::prefix('admin')->namespace('Admin')->middleware('token')->group(function 
         //删除栏目
         Route::get('delect/{u_id}', 'LinkController@delect');
     });
+    //权限管理
+    Route::group(['prefix' => 'manage'], function () {
+    //管理员列表
+        Route::any('admin_list','manageController@admin_list');
+    //添加管理员
+        Route::any('add_admin','manageController@add_admin');
+    //删除管理员
+        Route::get('delect/{id}','manageController@delect')->where('id', '[0-9]+');
+    });
 //    Route::prefix('article')->group(function () {
 //        //create方法名称 where定义id为纯数字
 //

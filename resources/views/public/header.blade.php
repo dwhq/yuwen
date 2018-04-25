@@ -19,7 +19,7 @@
             </ul>
         </div>
         <div class="col-md-2">
-            @if(session('user_id') && $user_info != 'admin')
+            @if($user_info && $user_info != 'admin')
                 <div>
                     <img src="{{$user_info->avatar}}" width="40" class="layui-anim-rotate img-circle" alt="{{$user_info->nickname}}">
                     <span style="color: white">{{$user_info->nickname}}</span>

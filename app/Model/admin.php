@@ -43,8 +43,8 @@ class admin extends Model
         }
     }
 
-    public static function admin_info($name,$select=['id','name','mobile','auth_group_id']){
-        $info = DB::table('admin')->where([["name",$name]])->select($select)->first();
+    public static function admin_info($name,$select=['id','name','mobile','auth_group_id'],$type= 'name'){
+        $info = DB::table('admin')->where([["$type",$name]])->select($select)->first();
         if ($info){
             return $info;
         }else{

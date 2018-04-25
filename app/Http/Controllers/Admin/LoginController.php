@@ -20,19 +20,21 @@ class LoginController extends Controller
                 'captcha' => 'required|captcha'
             ];
             $validator = Validator::make($request->all(), $rules);
+            //检验验证码
             $result = $this->validate($request, [
                 'geetest_challenge' => 'geetest',
             ], [
                 'geetest' => config('geetest.server_fail_alert')
             ]);
-            if (!$request) {
+            if (!$result) {
                 $data['info']='验证码错误';
                 $data['state']='0';
                 return $data;
             }
-            $admin = admin::admin_info($request->name,['password']);
+            $admin = admin::admin_info($request->name,['id','password']);
             if (Hash::check($request->password, $admin->password)){
                 session(['name' => 'petrichor']);
+                session(['admin_id' => $admin->id]);
                 $data['info']='登陆成功';
                 $data['state']='1';
                 $data['url']=url('admin/index');

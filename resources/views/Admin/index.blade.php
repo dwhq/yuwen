@@ -68,6 +68,15 @@
 
             </li>
             <li class="has-sub">
+                <a href="javascript:void(0);"><span class="glyphicon glyphicon-list-alt"></span> &nbsp;权限管理<i class="fa fa-caret-right fa-fw pull-right"></i></a>
+                <ul class="sub-menu">
+                    <!-- 利用data-target指定URL -->
+                    <li><a href="{{url('admin/manage/')}}" target="view_window"><i class="fa fa-circle-o fa-fw"></i>&nbsp;角色管理</a></li>
+                    <li><a href="{{url('admin/manage/admin_list')}}" target="view_window"><i class="fa fa-circle-o fa-fw"></i>&nbsp;管理员列表</a></li>
+                    <li><a href="{{url('admin/article/list')}}" target="view_window"><i class="fa fa-circle-o fa-fw"></i>&nbsp;管理员日志</a></li>
+                </ul>
+            </li>
+            <li class="has-sub">
                 <a href="javascript:void(0);"><span class="glyphicon glyphicon-list-alt"></span> &nbsp;文章管理<i class="fa fa-caret-right fa-fw pull-right"></i></a>
                 <ul class="sub-menu">
                     <!-- 利用data-target指定URL -->

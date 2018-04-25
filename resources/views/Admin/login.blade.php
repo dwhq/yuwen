@@ -17,7 +17,7 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" id="form">
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <label for="firstname" class="col-sm-4 control-label">用户名:</label>
@@ -68,12 +68,7 @@
                     return false;
                 }
 
-                $.post("{{url('login')}}", {
-                    'name': $('#name').val(),
-                    'password': $('#password').val(),
-                    '_token': "{{csrf_token()}}",
-                    'captcha': $('#captcha').val()
-                }, function (data) {
+                $.post("{{url('login')}}", $('#form').serialize(), function (data) {
                     if (data.state == 1) {
                         location.href = data.url;
                     } else {
