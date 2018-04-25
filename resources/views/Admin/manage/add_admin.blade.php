@@ -47,13 +47,18 @@
                         <input type="text" name="title" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="name" class="col-sm-2 control-label">性别:</label>
-                    <div class="col-sm-10">
-                        <input type="checkbox" name="state" value="1"  title="显示" checked lay-text="显示|隐藏">
-                        <input type="radio" name="sex" value="nan" title="男">
-                        <input type="radio" name="sex" value="nv" title="女" >
-                        <input type="radio" name="sex" value="" title="不显示" checked>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">性别:</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="sex" value="1" title="男">
+                        <input type="radio" name="sex" value="2" title="女" >
+                        <input type="radio" name="sex" value="0" title="不显示" checked>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">用户组可多选:</label>
+                    <div class="layui-input-block">
+                        <input type="checkbox" name="" title="写作">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -65,5 +70,12 @@
             </form>
         </div>
     </div>
+    <script>
+        //只有执行了这一步，部分表单元素才会自动修饰成功
+        layui.use('form', function(){
+            //var form = layui.form;
 
+            //form.render();
+        });
+    </script>
 @endsection
