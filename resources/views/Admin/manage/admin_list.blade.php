@@ -88,6 +88,9 @@
                             <td>{{$vo->mobile or '暂无'}}</td>
                             <td>{{date('Y-m-d H时i分',$vo->time) }}</td>
                             <td class="text-center">
+                                <a class="btn btn-primary btn-lg " href="{{url('admin/manage/revamped_admin/'.$vo->id)}}">
+                                    <span class="glyphicon glyphicon-edit"></span>
+                                </a>
                                 @if($vo->id != 1)
                                 <a class="btn btn-primary btn-lg " href="{{url('admin/manage/delect/'.$vo->id)}}" onClick="return confirm('确定删除?');">
                                     <span class="glyphicon glyphicon-trash"></span>

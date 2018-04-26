@@ -90,9 +90,9 @@ Route::prefix('admin')->namespace('Admin')->middleware('token')->group(function 
     //发送邮件页面
     Route::get('email_show', 'HomeController@email_show');
     //退出后台
-    Route::get('logOut','LoginController@LogOut');
+    Route::get('logOut', 'LoginController@LogOut');
     //清除缓存
-    Route::get('clearCache','LoginController@clearCache');
+    Route::get('clearCache', 'LoginController@clearCache');
     //编辑网站信息
     Route::get('info', 'InfoController@index');
     Route::post('redact', 'InfoController@Store');
@@ -136,8 +136,8 @@ Route::prefix('admin')->namespace('Admin')->middleware('token')->group(function 
         Route::get('delect/{u_id}', 'ColumnController@delect');
     });
     //会员管理
-    Route::group(['prefix' => 'users'],function () {
-       //会员列表
+    Route::group(['prefix' => 'users'], function () {
+        //会员列表
         Route::get('index', 'usersController@index');
         Route::get('word', 'usersController@word');
         //删除留言
@@ -164,12 +164,18 @@ Route::prefix('admin')->namespace('Admin')->middleware('token')->group(function 
     });
     //权限管理
     Route::group(['prefix' => 'manage'], function () {
-    //管理员列表
-        Route::any('admin_list','manageController@admin_list');
-    //添加管理员
-        Route::any('add_admin','manageController@add_admin');
-    //删除管理员
-        Route::get('delect/{id}','manageController@delect')->where('id', '[0-9]+');
+        //管理员列表
+        Route::any('admin_list', 'manageController@admin_list');
+        //添加管理员
+        Route::any('add_admin', 'manageController@add_admin');
+        //修改管理员
+        Route::any('revamped_admin/{id}', 'manageController@revamped_admin')->where('id', '[0-9]+');
+        //删除管理员
+        Route::get('delect/{id}', 'manageController@delect')->where('id', '[0-9]+');
+        //模板列表
+        Route::get('module_list', 'manageController@module_list');
+        //添加模板
+        Route::any('add_url/{id}', 'manageController@add_url')->where('id', '[0-9]+');
     });
 //    Route::prefix('article')->group(function () {
 //        //create方法名称 where定义id为纯数字

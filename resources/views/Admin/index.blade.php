@@ -73,6 +73,7 @@
                     <!-- 利用data-target指定URL -->
                     <li><a href="{{url('admin/manage/')}}" target="view_window"><i class="fa fa-circle-o fa-fw"></i>&nbsp;角色管理</a></li>
                     <li><a href="{{url('admin/manage/admin_list')}}" target="view_window"><i class="fa fa-circle-o fa-fw"></i>&nbsp;管理员列表</a></li>
+                    <li><a href="{{url('admin/manage/module_list')}}" target="view_window"><i class="fa fa-circle-o fa-fw"></i>&nbsp;模块管理</a></li>
                     <li><a href="{{url('admin/article/list')}}" target="view_window"><i class="fa fa-circle-o fa-fw"></i>&nbsp;管理员日志</a></li>
                 </ul>
             </li>
