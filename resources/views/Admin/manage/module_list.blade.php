@@ -34,12 +34,12 @@
                     <tr>
                         <td>
                             <ul class="list-inline row" style="margin-left: 2% ">
-                                <li class="col-md-2">{{$vo->name}}&nbsp;@if($vo->status == 1)
+                                <li class="col-md-2"><span class="{{$vo->icon}}"></span>&nbsp;{{$vo->name}}&nbsp;@if($vo->status == 1)
                                         <span class="layui-bg-red">显示</span>@else<span
                                                 class="layui-bg-blue">隐藏</span>@endif</li>
                                 <li class="col-md-2 col-md-offset-8">
                                     <a href="#" class="layui-btn layui-btn-primary layui-btn-sm" onclick="popup('{{url('admin/manage/add_url/'.$vo->id)}}')">管理列表</a>
-                                    <a href="#" class="layui-btn layui-btn-normal layui-btn-sm">编辑列表</a>
+                                    <a href="#" onclick="popup('{{url('admin/manage/alter_url/'.$vo->id)}}')" class="layui-btn layui-btn-normal layui-btn-sm">编辑列表</a>
                                 </li>
                             </ul>
                         </td>
@@ -48,7 +48,7 @@
                         <td>
                             <ul class="list-inline row" style="margin-left: 2%">
                                 @foreach($vo->level as $dd)
-                                    <li class="col-md-1">{{$dd->name}}&nbsp;@if($dd->status == 1)<span
+                                    <li class="col-md-1"><span class="{{$dd->icon}}"></span>&nbsp;{{$dd->name}}&nbsp;@if($dd->status == 1)<span
                                                 class="layui-bg-red">显示</span>@else<span
                                                 class="layui-bg-blue">隐藏</span>@endif </li>
                                 @endforeach
@@ -67,10 +67,10 @@
             layui.use('layer', function(){
                 layer.open({
                     type: 2,
-                    area: ['600px', '500px'],
+                    area: ['600px', '700px'],
                     fixed: false, //不固定
                     maxmin: true,
-                    content: "{{url('admin/manage/add_url/0')}}"
+                    content: url
                 });
             })
         }

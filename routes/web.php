@@ -174,8 +174,10 @@ Route::prefix('admin')->namespace('Admin')->middleware('token')->group(function 
         Route::get('delect/{id}', 'manageController@delect')->where('id', '[0-9]+');
         //模板列表
         Route::get('module_list', 'manageController@module_list');
-        //添加模板
+        //添加列表
         Route::any('add_url/{id}', 'manageController@add_url')->where('id', '[0-9]+');
+        //修改列表
+        Route::any('alter_url/{id}', 'manageController@alter_url')->where('id', '[0-9]+');
     });
 //    Route::prefix('article')->group(function () {
 //        //create方法名称 where定义id为纯数字

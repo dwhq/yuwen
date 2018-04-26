@@ -28,12 +28,12 @@
             </h3>
         </div>
         <div class="panel-body">
-            <form class="layui-form col-md-4 center-block" action="{{url('admin/manage/add_url/'.$id)}}"  method="post">
+            <form class="layui-form col-md-4 center-block" action="{{url('admin/manage/add_url/'.$data->id)}}"  method="post">
                 <div class="layui-form-item">
                     <label class="layui-form-label">名称:</label>
                     <div class="layui-input-block">
                         {{--pattern="[\u4e00-\u9fa5]{2,}" 验证表单的正则表单   required 表单不能为空--}}
-                        <input type="name" name="name" id="name" required   lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+                        <input type="name" name="name" id="name" required value="{{$data->name}}"  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -246,21 +246,21 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">图标:</label>
                     <div class="layui-input-block">
-                        <input type="name" name="icon" id="icon" required   lay-verify="required" placeholder="也可以直接输入icon编号" autocomplete="off" class="layui-input">
+                        <input type="name" name="icon" id="icon" value="{{$data->icon}}" required   lay-verify="required" placeholder="也可以直接输入icon编号" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">路由地址</label>
                     <div class="layui-input-block">
                         {{--pattern="[\u4e00-\u9fa5]{2,}" 验证表单的正则表单   required 表单不能为空--}}
-                        <input type="name" name="url" id="url" required @if($id == 0)readonly="true" value="#"@endif lay-verify="required" placeholder="请输地址" autocomplete="off" class="layui-input">
+                        <input type="name" name="url" id="url" required @if($data->father_id == 0)readonly="true" value="#"@endif lay-verify="required" placeholder="请输地址" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 {{ csrf_field() }}
                 <div class="layui-form-item">
                     <label class="layui-form-label">是否显示:</label>
                     <div class="layui-input-block">
-                        <input type="checkbox" class="checkbox" value="1" name="status" title="显示">
+                        <input type="checkbox" class="checkbox" @if($data->status == 1) checked @endif value="1" name="status" title="显示">
                     </div>
                 </div>
                 <button id="btn" class="layui-btn layui-btn-normal layui-btn-fluid">提 交</button>
