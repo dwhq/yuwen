@@ -178,6 +178,18 @@ Route::prefix('admin')->namespace('Admin')->middleware('token')->group(function 
         Route::any('add_url/{id}', 'manageController@add_url')->where('id', '[0-9]+');
         //修改列表
         Route::any('alter_url/{id}', 'manageController@alter_url')->where('id', '[0-9]+');
+        //修改auth状态
+        Route::any('show_url', 'manageController@show_url');
+        //删除auth_url
+        Route::any('delete_url', 'manageController@delete_url');
+        //角色管理列表
+        Route::get('auth_group_list', 'manageController@auth_group_list');
+        //添加角色
+        Route::any('add_auth_group', 'manageController@add_auth_group');
+        //删除角色
+        Route::post('delete_auth_group', 'manageController@delete_auth_group');
+        //修改角色
+        Route::any('revamped_auth_group/{id}', 'manageController@revamped_auth_group')->where('id', '[0-9]+');
     });
 //    Route::prefix('article')->group(function () {
 //        //create方法名称 where定义id为纯数字

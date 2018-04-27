@@ -277,5 +277,10 @@
         function iocn(icon) {
             $('#icon').val(icon);
         }
+        //添加成功后关闭页面
+        if(@json($state) == 1 ){
+            window.parent.location.reload();
+            parent.layer.close();
+        }
     </script>
 @endsection

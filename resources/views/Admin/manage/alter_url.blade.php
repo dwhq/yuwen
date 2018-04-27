@@ -277,5 +277,9 @@
         function iocn(icon) {
             $('#icon').val(icon);
         }
+        if(@json($state) == 1 ){
+            window.parent.location.reload();
+            parent.layer.close();
+        }
     </script>
 @endsection

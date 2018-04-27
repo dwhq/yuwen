@@ -152,7 +152,7 @@ class manageController extends Controller
             $auth_list = DB::table('auth_list')->insertGetId($data);
             if ($auth_list) {
                 myflash()->success('添加成功');
-                return redirect()->back();
+                return redirect()->back()->with('state',1);
             } else {
                 myflash()->error('添加失败');
                 return redirect()->back();
@@ -167,6 +167,7 @@ class manageController extends Controller
 //            }
 //            exit();
             return view('Admin.manage.add_url')
+                ->with('state', session()->get('state'))//添加成功后传值到页面关闭页面
                 ->with('id', $id);
         }
     }
@@ -187,7 +188,7 @@ class manageController extends Controller
             $auth_list = DB::table('auth_list')->where('id',$id)->update($data);
             if ($auth_list) {
                 myflash()->success('修改成功');
-                return redirect()->back();
+                return redirect()->back()->with('state',1);
             } else {
                 myflash()->error('修改失败');
                 return redirect()->back();
@@ -195,7 +196,130 @@ class manageController extends Controller
         } else {
             $data = DB::table('auth_list')->where('id',$id)->select('id','url','name','status','father_id','icon')->first();
             return view('Admin.manage.alter_url')
+                ->with('state', session()->get('state'))//添加成功后传值到页面关闭页面
                 ->with('data', $data);
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     * 删除路由
+     */
+    public function delete_url(Request $request){
+        $id = $request->id;
+        $auth_list = DB::table('auth_list')->where('father_id',$id)->exists();
+        //如果下级有auth则不能删除
+        if (!$auth_list){
+            $auth = DB::table('auth_list')->where('id',$id)->delete();
+            if ($auth){
+                $data['info'] = '删除成功';
+                $data['state'] = 1;
+            }else{
+                $data['info'] = '删除失败';
+                $data['state'] = 0;
+            }
+        }else{
+            $data['info'] = '下面有控制器不能删除';
+            $data['state'] = 0;
+        }
+        return $data;
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     * 修改模板状态
+     */
+    public function show_url(Request $request){
+        $id = $request->id;
+        $status =  $request->status;
+        $auth = DB::table('auth_list')->where('id',$id)->update(['status'=>$status]);
+        if ($auth){
+            $data['info'] = '修改成功';
+            $data['state'] = 1;
+        }else{
+            $data['info'] = '修改失败';
+            $data['state'] = 0;
+        }
+        return $data;
+    }
+
+    /**
+     * @return $this
+     * 角色列表
+     */
+    public function auth_group_list(){
+        $data = DB::table('auth_group')->paginate(20);
+        return view('Admin.manage.auth_group_list')
+            ->with('data',$data);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     * 添加角色
+     */
+    public function add_auth_group(Request $request){
+        if ($request->isMethod('post')) {
+            $rulers = implode(',', $request->rulers);
+            $data['title'] = $request->title;
+            $data['rulers'] = $rulers;
+            $data['status'] = $request->status;
+            $info = DB::table('auth_group')->insertGetId($data);
+            if ($info) {
+                myflash()->success('添加成功');
+                return redirect()->back()->with('state',1);
+            } else {
+                myflash()->error('添加失败');
+                return redirect()->back();
+            }
+        }else{
+            return view('Admin.manage.add_auth_group');
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     * 删除角色
+     */
+    public function delete_auth_group(Request $request){
+        $id = $request->id;
+        $auth = DB::table('auth_group')->where('id',$id)->delete();
+            if ($auth){
+                $data['info'] = '删除成功';
+                $data['state'] = 1;
+            }else{
+                $data['info'] = '删除失败';
+                $data['state'] = 0;
+            }
+        return $data;
+    }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return $this|\Illuminate\Http\RedirectResponse
+     */
+    public function revamped_auth_group (Request $request,$id){
+        if ($request->isMethod('post')) {
+            $rulers = implode(',', $request->rulers);
+            $data['title'] = $request->title;
+            $data['rulers'] = $rulers;
+            $data['status'] = $request->status;
+            $info = DB::table('auth_group')->where('id',$id)->update($data);
+            if ($info) {
+                myflash()->success('修改成功');
+                return redirect()->back()->with('state',1);
+            } else {
+                myflash()->error('修改失败');
+                return redirect()->back();
+            }
+        }else{
+            $data = DB::table('auth_group')->where('id',$id)->firest();
+            return view('Admin.manage.revamped_auth_group')
+                ->with('data',$data);
         }
     }
 }
