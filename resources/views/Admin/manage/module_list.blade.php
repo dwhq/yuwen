@@ -62,6 +62,7 @@
                                             <span
                                                     class="layui-bg-blue"
                                                     onclick="show_url({{$dd->id}},1)">隐藏</span>@endif
+                                        <a href="#" onclick="popup('{{url('admin/manage/alter_url/'.$dd->id)}}')")><span>修改</span></a>
                                         <a href=" #" onclick="delete_url({{$dd->id}})">删除</a>
                                     </li>
                                 @endforeach
@@ -78,7 +79,7 @@
             layui.use('layer', function () {
                 layer.open({
                     type: 2,
-                    area: ['600px', '700px'],
+                    area: ['600px', '800px'],
                     fixed: false, //不固定
                     maxmin: true,
                     content: url

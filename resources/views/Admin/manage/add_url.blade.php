@@ -246,21 +246,27 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">图标:</label>
                     <div class="layui-input-block">
-                        <input type="name" name="icon" id="icon" required   lay-verify="required" placeholder="也可以直接输入icon编号" autocomplete="off" class="layui-input">
+                        <input type="name" name="icon" id="icon" required value="fa fa-circle-o fa-fw"   lay-verify="required" placeholder="也可以直接输入icon编号" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">路由地址</label>
                     <div class="layui-input-block">
                         {{--pattern="[\u4e00-\u9fa5]{2,}" 验证表单的正则表单   required 表单不能为空--}}
-                        <input type="name" name="url" id="url" required @if($id == 0)readonly="true" value="#"@endif lay-verify="required" placeholder="请输地址" autocomplete="off" class="layui-input">
+                        <input type="name" name="url" id="url"  required @if($id == 0)readonly="true" value="#"@endif lay-verify="required" placeholder="请输地址" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 {{ csrf_field() }}
                 <div class="layui-form-item">
                     <label class="layui-form-label">是否显示:</label>
                     <div class="layui-input-block">
-                        <input type="checkbox" class="checkbox" value="1" name="status" title="显示">
+                        <input type="checkbox" class="checkbox" checked value="1" name="status" title="显示">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">是否是提交页面:</label>
+                    <div class="layui-input-block">
+                        <input type="checkbox" class="checkbox" value="1" name="type" title="提交">
                     </div>
                 </div>
                 <button id="btn" class="layui-btn layui-btn-normal layui-btn-fluid">提 交</button>

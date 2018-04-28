@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Model\manage;
 use function Sodium\randombytes_uniform;
 use Validator;
 use Illuminate\Support\MessageBag;

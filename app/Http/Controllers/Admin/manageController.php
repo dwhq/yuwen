@@ -147,6 +147,7 @@ class manageController extends Controller
             $data['url'] = $request->url;
             $data['name'] = $request->name;
             $data['status'] = $request->status;
+            $data['type'] = $request->type;
             $data['icon'] = $request->icon;
             $data['father_id'] = $id;
             $auth_list = DB::table('auth_list')->insertGetId($data);
@@ -183,6 +184,7 @@ class manageController extends Controller
             $data['url'] = $request->url;
             $data['name'] = $request->name;
             $data['status'] = $request->status;
+            $data['type'] = $request->type;
             $data['icon'] = $request->icon;
             //$data['father_id'] = $id;
             $auth_list = DB::table('auth_list')->where('id',$id)->update($data);
@@ -194,7 +196,7 @@ class manageController extends Controller
                 return redirect()->back();
             }
         } else {
-            $data = DB::table('auth_list')->where('id',$id)->select('id','url','name','status','father_id','icon')->first();
+            $data = DB::table('auth_list')->where('id',$id)->select('id','url','type','name','status','father_id','icon')->first();
             return view('Admin.manage.alter_url')
                 ->with('state', session()->get('state'))//添加成功后传值到页面关闭页面
                 ->with('data', $data);
@@ -249,10 +251,17 @@ class manageController extends Controller
      * @return $this
      * 角色列表
      */
-    public function auth_group_list(){
+    public function auth_group_list(Request $request){
         $data = DB::table('auth_group')->paginate(20);
+        $title = '';
+        if ($request->isMethod('post')) {
+            $title = $request->title;
+            $data = DB::table('auth_group')->where('title',$title)->paginate(20);
+
+        }
         return view('Admin.manage.auth_group_list')
-            ->with('data',$data);
+            ->with('data',$data)
+            ->with('title',$title);
     }
 
     /**
@@ -265,17 +274,24 @@ class manageController extends Controller
             $rulers = implode(',', $request->rulers);
             $data['title'] = $request->title;
             $data['rulers'] = $rulers;
-            $data['status'] = $request->status;
+            $data['status'] = 1;
+            $data['time'] = time();
+            $data['remark'] = $request->remark;
             $info = DB::table('auth_group')->insertGetId($data);
             if ($info) {
                 myflash()->success('添加成功');
-                return redirect()->back()->with('state',1);
+                return redirect('admin/manage/auth_group_list');
             } else {
                 myflash()->error('添加失败');
                 return redirect()->back();
             }
         }else{
-            return view('Admin.manage.add_auth_group');
+            $data = DB::table('auth_list')->where('father_id', 0)->select('id', 'icon', 'url', 'name', 'status', 'father_id')->get();
+            foreach ($data as &$vo) {
+                $vo->level = DB::table('auth_list')->where('father_id', $vo->id)->select('id', 'icon', 'url', 'name', 'status', 'father_id')->get();
+            }
+            return view('Admin.manage.add_auth_group')
+                ->with('data' ,$data);
         }
     }
 
@@ -307,19 +323,27 @@ class manageController extends Controller
             $rulers = implode(',', $request->rulers);
             $data['title'] = $request->title;
             $data['rulers'] = $rulers;
-            $data['status'] = $request->status;
+            $data['time'] = time();
+            $data['status'] = 1;
             $info = DB::table('auth_group')->where('id',$id)->update($data);
             if ($info) {
                 myflash()->success('修改成功');
-                return redirect()->back()->with('state',1);
+                return redirect('admin/manage/auth_group_list');
             } else {
                 myflash()->error('修改失败');
                 return redirect()->back();
             }
         }else{
-            $data = DB::table('auth_group')->where('id',$id)->firest();
+            $data = DB::table('auth_list')->where('father_id', 0)->select('id', 'icon', 'url', 'name', 'status', 'father_id')->get();
+            foreach ($data as &$vo) {
+                $vo->level = DB::table('auth_list')->where('father_id', $vo->id)->select('id', 'icon', 'url', 'name', 'status', 'father_id')->get();
+            }
+            $info = DB::table('auth_group')->where('id',$id)->first();
+
+            $info->rulers= (explode(',',$info->rulers));//把rulers  转换为数组  方便页面使用
             return view('Admin.manage.revamped_auth_group')
-                ->with('data',$data);
+                ->with('data',$data)
+                ->with('info',$info);
         }
     }
 }
