@@ -36,17 +36,17 @@ class manage extends Model
         $list = '';
         foreach ($auth_list as &$vo) {
             if ($admin_id ==1){
-                $level = DB::table('auth_list')->where([['father_id', $vo->id]])->select('id', 'icon', 'url', 'name', 'status', 'father_id')->get();
+                $level = DB::table('auth_list')->where([['father_id', $vo->id],['type',0]])->select('id', 'icon', 'url', 'name', 'status', 'father_id')->get();
             }else{
                 $level = DB::table('auth_list')->where([['father_id',$vo->id],['status',1],['type','<>','1']])->whereIn('id',$url_list)->select('id', 'icon', 'url', 'name', 'status', 'father_id')->get();
             }
             $li ='';
            foreach ($level as $dd){
                    $li .= " <!-- 利用data-target指定URL -->
-                    <li><a href=\"url($dd->url)\" target=\"view_window\"><i class=\"{$dd->icon}\"></i>&nbsp;{$dd->name}</a></li>";
+                    <li><a href=\"{url($dd->url)}\" target=\"view_window\"><i class=\"{$dd->icon}\"></i>&nbsp;{$dd->name}</a></li>";
                 }
             $list .= "<li class=\"has-sub\">
-                        <a href=\"javascript:void(0);\"><span class=\"{$vo->icon}\"></span> &nbsp;{$vo->name}<i class=\"fa fa-caret-right fa-fw pull-right\"></i></a>
+                        <a href=\"{url($vo->url)}\"><span class=\"{$vo->icon}\"></span> &nbsp;{$vo->name}<i class=\"fa fa-caret-right fa-fw pull-right\"></i></a>
                         <ul class=\"sub-menu\">
                             {$li}
                         </ul>
