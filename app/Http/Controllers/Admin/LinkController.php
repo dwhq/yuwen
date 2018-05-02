@@ -45,7 +45,7 @@ class LinkController extends Controller
     public function alter(Request $request, url $url, $id)
     {
         $data = $url->where([['id', $id]])->first();
-        return view('admin.link.alter')
+        return view('Admin.link.alter')
             ->with('data', $data);
     }
 

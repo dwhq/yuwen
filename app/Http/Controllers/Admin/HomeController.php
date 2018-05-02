@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Model\manage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
@@ -9,7 +10,6 @@ use Illuminate\Support\Facades\Mail;
 class HomeController extends Controller
 {
     public function index(){
-
         return view('Admin.index');
     }
     //发送邮件

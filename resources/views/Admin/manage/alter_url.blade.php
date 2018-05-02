@@ -253,7 +253,7 @@
                     <label class="layui-form-label">路由地址</label>
                     <div class="layui-input-block">
                         {{--pattern="[\u4e00-\u9fa5]{2,}" 验证表单的正则表单   required 表单不能为空--}}
-                        <input type="name" name="url" id="url"  required @if($data->father_id == 0)readonly="true" value="#"@endif lay-verify="required" placeholder="请输地址" autocomplete="off" class="layui-input">
+                        <input type="name" name="url" id="url" value="{{$data->url}}"  required @if($data->father_id == 0)readonly="true" value="#"@endif lay-verify="required" placeholder="请输地址" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 {{ csrf_field() }}
@@ -264,7 +264,7 @@
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label">是否显示:</label>
+                    <label class="layui-form-label">是否提交页面:</label>
                     <div class="layui-input-block">
                         <input type="checkbox" class="checkbox" @if($data->type == 1) checked @endif value="1" name="status" title="显示">
                     </div>

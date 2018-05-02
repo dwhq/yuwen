@@ -40,7 +40,7 @@ if (!function_exists('pd')) {
     }
 
 }
-if ( !function_exists('upload') ) {
+if (!function_exists('upload')) {
     /**
      * 上传文件函数
      *

@@ -58,9 +58,9 @@
     </div>
 </nav>
 <div class="container-fluid all">
-    {!! \App\Model\manage::list(1) !!}
+    {!! \App\Model\manage::list(session('admin_id')) !!}
     <div class="maincontent row" style="height:1000px;">
-        <iframe class="clearfix" style="height:100%;width: 100%;display: inline-table;"  src="{{url('admin/info')}}" scrolling="yes" name="view_window" ></iframe>
+        <iframe class="clearfix" style="height:100%;width: 100%;display: inline-table;"  src="{{url(\App\Model\manage::defaultUrl(session('admin_id')))}}" scrolling="yes" name="view_window" ></iframe>
     </div>
 </div>
 <a href="#top" id="goTop"><i class="fa fa-angle-up fa-3x"></i></a>
