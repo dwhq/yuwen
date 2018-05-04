@@ -63,15 +63,15 @@
             <a  href="https://www.kancloud.cn/manual/thinkphp5/118003" title="17点" target="_blank">17点</a>&nbsp;&nbsp;&nbsp;
         </div>
     </div>
-    {{--<div class="panel panel-info">--}}
-        {{--<div class="panel-heading">--}}
-            {{--<h3 class="panel-title">友情链接</h3>--}}
-        {{--</div>--}}
-        {{--@foreach($url as $url)--}}
-            {{--<div class="panel-body">--}}
-                {{--<span class="glyphicon glyphicon-hand-right">&nbsp;</span>--}}
-                {{--<a  href="{{$url->url}}" title="{{$url->title}}" target="_blank">{{$url->title}}</a>&nbsp;&nbsp;&nbsp;--}}
-            {{--</div>--}}
-        {{--@endforeach--}}
-    {{--</div>--}}
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">友情链接</h3>
+        </div>
+        @foreach($url as $url)
+            <div class="panel-body">
+                <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
+                <a  href="{{$url->url}}" title="{{$url->title}}" target="_blank">{{$url->title}}</a>&nbsp;&nbsp;&nbsp;
+            </div>
+        @endforeach
+    </div>
 </div>

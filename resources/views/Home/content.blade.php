@@ -48,70 +48,70 @@
                 </div>
             @endif
         </div>
-        {{--<div class="panel panel-default col-md-12 " id="word">--}}
-            {{--<div class="panel-heading">--}}
-                {{--<h3 class="panel-title">--}}
-                    {{--评论留言区:--}}
-                {{--</h3>--}}
-            {{--</div>--}}
-                {{--<div id="comment-2491" class="row b-user b-parent" v-for="(vo,key) in message" :key="key">--}}
-                    {{--<div class="col-xs-2 col-sm-1 col-md-1 col-lg-1 b-pic-col">--}}
-                        {{--<img class="b-user-pic js-head-img" :src="vo.avatar" :alt="vo.nickname"--}}
-                             {{--:title="vo.nickname">--}}
-                    {{--</div>--}}
-                    {{--<div class="col-xs-10 col-sm-11 col-md-11 col-lg-11 b-content-col b-cc-first">--}}
-                        {{--<div>--}}
-                            {{--<span class="b-user-name">@{{vo.nickname}}</span>：@{{vo.content}}--}}
-                            {{--<p class="b-date">--}}
-                                {{--@{{vo.time}} <a href="javascript:;" :username="vo.nickname"  v-on:click="reply(vo.id,vo.nickname,key)">回复</a>--}}
-                            {{--</p>--}}
-                        {{--</div>--}}
-                            {{--<div v-for="level in vo.level">--}}
-                                {{--<hr class="layui-bg-gray">--}}
-                                    {{--<div id="comment-2532" class="row b-user b-child">--}}
-                                        {{--<div class="col-xs-2 col-sm-1 col-md-1 col-lg-1 b-pic-col">--}}
-                                            {{--<img class="b-user-pic js-head-img" :src="level.avatar" :alt="level.nickname" :title="level.nickname">--}}
-                                        {{--</div>--}}
-                                        {{--<ul class="col-xs-10 col-sm-11 col-md-11 col-lg-11 b-content-col">--}}
-                                            {{--<li class="b-content">--}}
-                                                {{--<span class="b-reply-name">@{{level.nickname}}</span>--}}
-                                                {{--<span class="b-reply">回复</span>--}}
-                                                {{--<span class="b-user-name">@{{level.father_nickname}}</span>@{{level.content}}--}}
-                                            {{--</li>--}}
-                                            {{--<li class="b-date">--}}
-                                                {{--@{{level.time}} <a href="javascript:;" aid="120" pid="2532" v-on:click="reply(level.id,level.nickname,key)">回复</a>--}}
-                                            {{--</li>--}}
-                                            {{--<li class="b-clear-float"></li>--}}
-                                        {{--</ul>--}}
-                                    {{--</div>--}}
-                                    {{--<div class="b-clear-float"></div>--}}
-                            {{--</div>--}}
-                    {{--</div>--}}
-                    {{--<hr class="layui-bg-gray">--}}
-                {{--</div>--}}
-                {{--<hr class="layui-bg-gray">--}}
-            {{--@if(session('user_id'))--}}
-                {{--<div>--}}
-                    {{--<form id="form">--}}
-                        {{--<div class="panel-body">--}}
-                            {{--<div class="form-group">--}}
-                                {{--<label for="name" id="huifu_nickname">说点什么：</label>--}}
-                                {{--<textarea class="form-control" rows="3"  v-model="contents"  style="resize:none"></textarea>--}}
-                                {{--<div class="input-group">--}}
-                                    {{--<span class="input-group-addon">@</span>--}}
-                                    {{--<input type="text" class="form-control" v-model="email" name="email" id="email" placeholder="接受回复的email地址">--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                            {{--{{ csrf_field() }}--}}
-                        {{--</div>--}}
-                    {{--</form>--}}
-                    {{--<button class="layui-btn" v-on:click="butn()" id="btn">评论</button>--}}
+        <div class="panel panel-default col-md-12 " id="word">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    评论留言区:
+                </h3>
+            </div>
+                <div id="comment-2491" class="row b-user b-parent" v-for="(vo,key) in message" :key="key">
+                    <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1 b-pic-col">
+                        <img class="b-user-pic js-head-img" :src="vo.avatar" :alt="vo.nickname"
+                             :title="vo.nickname">
+                    </div>
+                    <div class="col-xs-10 col-sm-11 col-md-11 col-lg-11 b-content-col b-cc-first">
+                        <div>
+                            <span class="b-user-name">@{{vo.nickname}}</span>：@{{vo.content}}
+                            <p class="b-date">
+                                @{{vo.time}} <a href="javascript:;" :username="vo.nickname"  v-on:click="reply(vo.id,vo.nickname,key)">回复</a>
+                            </p>
+                        </div>
+                            <div v-for="level in vo.level">
+                                <hr class="layui-bg-gray">
+                                    <div id="comment-2532" class="row b-user b-child">
+                                        <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1 b-pic-col">
+                                            <img class="b-user-pic js-head-img" :src="level.avatar" :alt="level.nickname" :title="level.nickname">
+                                        </div>
+                                        <ul class="col-xs-10 col-sm-11 col-md-11 col-lg-11 b-content-col">
+                                            <li class="b-content">
+                                                <span class="b-reply-name">@{{level.nickname}}</span>
+                                                <span class="b-reply">回复</span>
+                                                <span class="b-user-name">@{{level.father_nickname}}</span>@{{level.content}}
+                                            </li>
+                                            <li class="b-date">
+                                                @{{level.time}} <a href="javascript:;" aid="120" pid="2532" v-on:click="reply(level.id,level.nickname,key)">回复</a>
+                                            </li>
+                                            <li class="b-clear-float"></li>
+                                        </ul>
+                                    </div>
+                                    <div class="b-clear-float"></div>
+                            </div>
+                    </div>
+                    <hr class="layui-bg-gray">
+                </div>
+                <hr class="layui-bg-gray">
+            @if(session('user_id'))
+                <div>
+                    <form id="form">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label for="name" id="huifu_nickname">说点什么：</label>
+                                <textarea class="form-control" rows="3"  v-model="contents"  style="resize:none"></textarea>
+                                <div class="input-group">
+                                    <span class="input-group-addon">@</span>
+                                    <input type="text" class="form-control" v-model="email" name="email" id="email" placeholder="接受回复的email地址">
+                                </div>
+                            </div>
+                            {{ csrf_field() }}
+                        </div>
+                    </form>
+                    <button class="layui-btn" v-on:click="butn()" id="btn">评论</button>
 
-                {{--</div>--}}
-            {{--@else--}}
-                {{--<div>请<a href="javascript:;" onclick="login()">登陆</a>后评论</div>--}}
-            {{--@endif--}}
-        {{--</div>--}}
+                </div>
+            @else
+                <div>请<a href="javascript:;" onclick="login()">登陆</a>后评论</div>
+            @endif
+        </div>
         <div class="col-md-12">
             <script type="text/javascript">var jd_union_unid="1000587754",jd_ad_ids="507:6",jd_union_pid="CLayt42uLBDqg4/dAxoAINah89cEKgA=";var jd_width=728;var jd_height=90;var jd_union_euid="";var p="AhEDXBpTEQcXD2VEH0hfIlgRRgYlXVZaCCsfSlpMWGVEH0hfIllRHVhySxt4NVs5ankbYQlOC29xV2dZF2sVARcOVRleFAcXN1UaWhQGGwFTH14lMk1DCEZrXmwTNwpfBkgyEgNWHlgUBxUOXR1bHTITN2Ur";</script><script type="text/javascript" charset="utf-8" src="//u-x.jd.com/static/js/auto.js"></script>
         </div>

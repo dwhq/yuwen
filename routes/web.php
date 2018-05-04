@@ -50,7 +50,7 @@ Route::prefix('/')->namespace('Home')->group(function () {
     Route::get('qrcode', 'IndexController@qrcode');//二维码
     Route::get('content/{id}', 'ArticleController@content')->where('id', '[0-9]+');//栏目分类
     Route::get('label/{tag_id}', 'ArticleController@label')->where('tag_id', '[0-9]+');//标签搜索
-//    Route::any('demo', 'DemoController@demo');//测试页面
+    Route::any('demo', 'DemoController@demo');//测试页面
 //    Route::any('demo23', 'DemoController@demo23');//测试页面
     Route::prefix('vip')->middleware('vip')->group(function () {
         //退出登陆
