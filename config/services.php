@@ -37,17 +37,17 @@ return [
     'github' => [
         'client_id' => env('GITHUB_CLIENT_ID'),         // Your GitHub Client ID
         'client_secret' => env('GITHUB_CLIENT_SECRET'), // Your GitHub Client Secret
-        'redirect' => env('GITHUB_URL'),//回调地址
+        'redirect' => url(env('GITHUB_URL')),//回调地址
     ],
     'qq' => [
-        'client_id' => '101474518',         // Your GitHub Client ID
-        'client_secret' => '24e096990b99ae1413402c02cf931613', // Your GitHub Client Secret
-        'redirect' => env('QQ_URL'),//回调地址
+        'client_id' => env('QQ_CLIENT_ID'),         // Your GitHub Client ID
+        'client_secret' => env('QQ_CLIENT_SECRET'), // Your GitHub Client Secret
+        'redirect' => url(env('QQ_URL')),//回调地址
     ],
     'weibo' => [
         'client_id' => env('WEIBO_CLIENT_ID'),         // Your GitHub Client ID
         'client_secret' => env('WEIBO_CLIENT_SECRET'), // Your GitHub Client Secret
-        'redirect' => env('WEIBO_URL'),//回调地址
+        'redirect' => url(env('WEIBO_URL')),//回调地址
     ],
     'facebook' => [
         'client_id' => env('FACEBOOK_CLIENT_ID'),         // Your GitHub Client ID
