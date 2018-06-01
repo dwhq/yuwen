@@ -12,11 +12,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
+use GuzzleHttp\Client;
 
 class DemoController extends Controller{
 
-    public function demo(Request $request){
-        pd(self::getIp());
+    public function demo(Request $request,Client $client){
+        $jar = new \GuzzleHttp\Cookie\CookieJar;
+        $jar = 'sessionid=ec8wseci4a2vwoswsd9ceui3iel7a2yb; csrftoken=8oKhnlWEgkE6RR6NM3yfnLLB3ciJsFWYTYEEGYm3Jwxt8h0CFPQpJQEwa00RjshE';
+        $r = $client->request('GET', 'http://httpbin.org/cookies', [
+            'Cookie' => ' '
+        ]);
+        pd($r);
+
 //        if ($request->isMethod('post')){
 //            $id = $request->id;
 //            echo $id;

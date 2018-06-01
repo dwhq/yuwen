@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="">
-        <div class="row" style="padding-top:15%;background: #e9f0f5">
+        <div class="row" style="padding-top:15%;padding-bottom: 20%;background:url('{{asset('image/111.gif')}}')">
             <div class="col-md-3 col-md-offset-4">
                 <div class="panel panel-primary">
                     <div class="panel-heading">

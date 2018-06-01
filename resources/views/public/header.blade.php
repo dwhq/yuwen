@@ -11,7 +11,7 @@
                 <img src="{{$info[0]->back==1?config('app.img').$info[0]->image:asset($info[0]->image)}}" alt="{{$info[0]->name}}">
             </a>
         </div>
-        <div class="col-md-2 col-md-offset-3">
+        <div class="col-md-3 col-md-offset-2">
             <ul class="nav nav-pills">
                 @foreach($colum as $colum)
                     <li @if($colum->type==$type)class="active" @endif><a href="{{url('home/'.$colum->type)}}" style="color: white">{{$colum->name}}</a></li>
