@@ -13,7 +13,7 @@
         </div>
         @if($info[0]->qq)
         <div class="panel-body h4">
-            QQ : <a href="http://wpa.qq.com/msgrd?v=3&uin=1581176417&site=qq&menu=yes">{{$info[0]->qq}}</a>
+            QQ : <a href="http://wpa.qq.com/msgrd?v=3&uin={{$info[0]->qq}}&site=qq&menu=yes">{{$info[0]->qq}}</a>
         </div>
         @endif
         @if($info[0]->email)
