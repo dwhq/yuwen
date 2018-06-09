@@ -61,7 +61,7 @@
                             <input type="text" class="form-control" name="type" id="type" placeholder="栏目类型" value="{{$data->type}}">
                         </div>
                     </div>
-                    {{ csrf_field() }}
+
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">排序</label>
                         <div class="col-sm-10">

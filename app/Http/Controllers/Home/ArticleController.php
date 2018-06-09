@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Model\article;
 use App\Model\user;
 use App\Model\word;
 use Illuminate\Http\Request;
@@ -192,7 +193,13 @@ class ArticleController extends Controller
             ->with('page',$page);
     }
 
-    public function search(Request $request)
+    /**
+     * @param Request $request
+     * @param article $article
+     * @return mixed
+     * 文章搜索
+     */
+    public function search(Request $request,article $article)
     {
         //
         $colum = $this->column();
@@ -203,7 +210,8 @@ class ArticleController extends Controller
         $seek = $request->input('seek');
         $title='<div class="h4">关于'.$seek.'的搜索结果</div>';//显示的文字
         $new_article = $this->new_article();
-        $list = DB::table('article')->where([['state',1],['account','like','%'.$seek.'%']])->orwhere([['title','like','%'.$seek.'%']])->orderBy('id','sort')->paginate(10);
+        //$list = DB::table('article')->where([['state',1],['account','like','%'.$seek.'%']])->orwhere([['title','like','%'.$seek.'%']])->orderBy('id','sort')->paginate(10);
+        $list = $article::search($seek)->orderBy('id','sort')->paginate(10);
         $page = $list->links();
         $type='';
         return view('Home/index')

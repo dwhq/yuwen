@@ -159,6 +159,13 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        /**
+         * TNTSearch 全文搜索
+         */
+         Laravel\Scout\ScoutServiceProvider::class,
+         Vanry\Scout\TNTSearchScoutServiceProvider::class,
+//        Vanry\Scout\TNTSearchScoutServiceProvider::class,
+//        Laravel\Scout\ScoutServiceProvider::class,
 //        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class//二维码
     ],
     /*

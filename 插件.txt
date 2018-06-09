@@ -1,0 +1,2 @@
+//搜索
+https://github.com/vanry/laravel-scout-tntsearch
