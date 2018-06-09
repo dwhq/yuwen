@@ -45,7 +45,7 @@ Route::prefix('login')->namespace('Home')->group(function () {
 Route::prefix('/')->namespace('Home')->group(function () {
     Route::get('/', 'ArticleController@index');//设置根目录
     Route::get('home/{type}', 'ArticleController@home');//栏目分类
-    Route::get('search', 'ArticleController@search');//栏目分类
+    Route::get('search', 'ArticleController@search');//文章搜索
     Route::get('mood', 'MoodController@index');//时间轴
     Route::get('qrcode', 'IndexController@qrcode');//二维码
     Route::get('content/{id}', 'ArticleController@content')->where('id', '[0-9]+');//栏目分类

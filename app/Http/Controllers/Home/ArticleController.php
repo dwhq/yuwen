@@ -219,6 +219,7 @@ class ArticleController extends Controller
             ->with('info',$info)
             ->with('colum',$colum)
             ->with('type',$type)
+            ->with('seek',$seek)
             ->with('user_info',$user_info)
             ->with('tag',$tag)
             ->with('url',$url)

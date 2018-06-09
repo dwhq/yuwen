@@ -2,7 +2,7 @@
     <div class="row" style="padding:20px 0 10px 0 ">
         <form action="{{url('search')}}" method="get">
             <div class="col-lg-8">
-                <input type="text" name="seek" class="form-control" placeholder="全文搜索">
+                <input type="text" name="seek" value="{{$seek or ''}}" class="form-control" placeholder="全文搜索">
             </div>
             <button type="submit" class="btn btn-success col-lg-3">全文搜索</button>
         </form>
