@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>上传</title>
+	<link rel="stylesheet" href="">
+	<link href="css/upload.css" rel="stylesheet">
+</head>
+<body>
+    <div id="T_upload"></div>
+    <script src="js/upload.js"></script>
+    <script type="text/javascript">
+    	let upload = new Tupload({
+                url: './upload.php', //上传路径
+                title: '余温2',
+                fileNum: 5, // 上传文件数量
+                divId: 'T_upload', // div  id
+                accept: 'image/jpeg,image/x-png', // 上传文件的类型;
+                fileSize: 9999999, // 上传文件的大小
+                allowFileTypes: ['png','jpg', 'gif'], //允许上传文件类型，格式'*.pdf;*.doc;'
+                path: 'path', //返回的图片地址字段 默认是path
+                formParam: {data:'dasdas',name:'users'}, //文件以外的配置参数，格式：{key1:value1,key2:value2}
+                timeout: 30000, //请求超时时间
+                okCode: 200, //与后端返回数据code值一致时执行成功回调，不配置默认200
+                images: 'images'
+                });
+    	// document.querySelector('#fileImage').onchange =function(){
+    	// 		upload.fileImage(document.querySelector('#fileImage'))
+    	// }
+        document.querySelector('#uploadFile').onclick =function(){
+                upload.uploadFile()
+        }
+    </script>
+</body>
+</html>
