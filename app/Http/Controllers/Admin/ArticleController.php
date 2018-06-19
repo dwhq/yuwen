@@ -20,7 +20,12 @@ class ArticleController extends Controller
     //文章列表
     public function list(Request $request, article $article)
     {
+
         $list = $article->select('id', 'title', 'desc', 'cateid', 'time', 'state')->orderBy('id', 'desc')->paginate(20);
+        if ($request->isMethod('post')){
+            $seek = $request->seek;
+            $list = $article::search($seek)->orderBy('id', 'desc')->paginate(20);
+        }
         return view('Admin.article.list', ['list' => $list]);
     }
 

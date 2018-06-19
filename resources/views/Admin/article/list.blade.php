@@ -21,9 +21,19 @@
     <li><a href="#">文章管理</a></li>
     <li class="active">文章列表</li>
 </ol>
+
 <div class="panel panel-default">
+
     <div class="panel-heading h4">
-        文章列表
+        <form class="form-horizonta" action="{{url('admin/article/list')}}" method="post">
+            <div class="col-md-2">
+                {{ csrf_field() }}
+                <input type="text" class="form-control" name="seek"  placeholder="搜索">
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary">搜索</button>
+            </div>
+        </form>
     </div>
     <div class="panel-body">
         <!-- /resources/views/post/create.blade.php -->

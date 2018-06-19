@@ -98,7 +98,7 @@ Route::prefix('admin')->namespace('Admin')->middleware('token')->group(function 
     Route::post('redact', 'InfoController@Store');
     Route::group(['prefix' => 'article'], function () {
         //文章列表
-        Route::get('list', 'ArticleController@List');
+        Route::any('list', 'ArticleController@List');
         //添加文章
         Route::get('create', 'ArticleController@create');
         Route::post('store', 'ArticleController@store');
