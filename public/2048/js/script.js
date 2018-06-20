@@ -4,6 +4,7 @@ class game {
         this.figure = [2, 4, 8];
         this.choice()
         this.towDiv();
+        this.reset();
         onkeydown = (event) => {
             let key = event.which || event.keyCode;
             switch (key) {
@@ -50,7 +51,7 @@ class game {
                 }
             })
         })
-        console.log(datas);
+       // console.log(datas);
         if (datas > 0) {
             let ran = Math.floor(Math.random() * 4);
             let rans = Math.floor(Math.random() * 4);
@@ -61,12 +62,6 @@ class game {
             } else {
                 th.ranDiv();
             }
-        } else {
-            //判断游戏结束
-            th.data.forEach(function (val, key) {
-
-            })
-            return false;
         }
     }
 
@@ -76,6 +71,12 @@ class game {
         for (let i = 0; i < 2; i++) {
             th.ranDiv()
         }
+        //判断游戏结束
+        if (!th.verdict()) {
+            alert('游戏结束');
+            return false;
+        }
+        th.score();
     }
 
     //随机生成248数字
@@ -95,9 +96,15 @@ class game {
             for (let j = 0; j < 4; j++) {
                 if (arr[j] != 0) {
                     for (let k = j + 1; k < 4; k++) {
+                        //相比较的这个数为空  跟下一个继续比较
+                        if (arr[j] !=0 && arr[k] == 0){
+                            continue;
+                        }
+                        //相邻的像个数不为空而且不相等退出
                         if (arr[j] == 0 || arr[j] != arr[k]) {
                             break;
                         }
+                        //如果相邻的两个数字相等就把两个数字的和放在第一个数字的位置第二个数字的位置设置为空
                         if (arr[j] == arr[k]) {
                             th.data[j][i].innerHTML = parseInt(arr[j]) + parseInt(arr[k]);
                             th.data[k][i].innerHTML = '';
@@ -109,6 +116,7 @@ class game {
                     }
                 }
             }
+            //如果前面是空的把后面的数字移动到前面
             for (let j = 0; j < 4; j++) {
                 let val = th.data[j][i].getAttribute('val');
                 if (val == 0) {
@@ -127,6 +135,7 @@ class game {
         th.towDiv();
     }
 
+//向下移动
     moveNex() {
         let th = this;
         for (let i = 0; i < 4; i++) {
@@ -134,11 +143,14 @@ class game {
             th.data.forEach(function (val, index) {
                 arr[index] = val[i].getAttribute('val');
             });
-            console.log(arr);
-            for (let j = 3; j >=0; j--) {
+            for (let j = 3; j >= 0; j--) {
                 if (arr[j] != 0) {
-                    for (let k = j - 1; k >=0; k--) {
-                        console.log('k',arr[j],'j',arr[k]);
+                    for (let k = j - 1; k >= 0; k--) {
+                        //相比较的这个数为空  跟下一个继续比较
+                        if (arr[j] !=0 && arr[k] == 0){
+                            continue;
+                        }
+                        //相邻的像个数不为空而且不相等退出
                         if (arr[j] == 0 || arr[j] != arr[k]) {
                             break;
                         }
@@ -153,7 +165,7 @@ class game {
                     }
                 }
             }
-            for (let j = 3; j >=0; j--) {
+            for (let j = 3; j >= 0; j--) {
                 let val = th.data[j][i].getAttribute('val');
                 if (val == 0) {
                     for (let k = j - 1; k >= 0; k--) {
@@ -178,10 +190,17 @@ class game {
             th.data[i].forEach(function (val, index) {
                 arr[index] = val.getAttribute('val');
             });
-            console.log(arr);
             for (let j = 0; j < 4; j++) {
                 if (arr[j] != 0) {
                     for (let k = j + 1; k < 4; k++) {
+                        //相比较的这个数为空  跟下一个继续比较
+                        if (arr[j] !=0 && arr[k] == 0){
+                            continue;
+                        }
+                        //相邻的像个数不为空而且不相等退出
+                        if (arr[j] !=0 && arr[k] == 0){
+                            continue;
+                        }
                         if (arr[j] == 0 || arr[j] != arr[k]) {
                             break;
                         }
@@ -221,10 +240,14 @@ class game {
             th.data[i].forEach(function (val, index) {
                 arr[index] = val.getAttribute('val');
             });
-            console.log(arr);
-            for (let j = 3; j >=0; j--) {
+            for (let j = 3; j >= 0; j--) {
                 if (arr[j] != 0) {
-                    for (let k = j - 1; k >=0; k--) {
+                    for (let k = j - 1; k >= 0; k--) {
+                        //相比较的这个数为空  跟下一个继续比较
+                        if (arr[j] !=0 && arr[k] == 0){
+                            continue;
+                        }
+                        //相邻的像个数不为空而且不相等退出
                         if (arr[j] == 0 || arr[j] != arr[k]) {
                             break;
                         }
@@ -239,7 +262,7 @@ class game {
                     }
                 }
             }
-            for (let j = 3; j >=0; j--) {
+            for (let j = 3; j >= 0; j--) {
                 let val = th.data[j][i].getAttribute('val');
                 if (val == 0) {
                     for (let k = j - 1; k >= 0; k--) {
@@ -256,6 +279,91 @@ class game {
         }
         th.towDiv();
     }
-}
 
+    //判断是否还能否移动
+    verdict() {
+        let th = this;
+        let state = 0;
+        let arr = new Array();   //先声明一维
+        for (var k = 0; k < 4; k++) {        //一维长度为i,i为变量，可以根据实际情况改变
+            arr[k] = new Array();    //声明二维，每一个一维数组里面的一个元素都是一个数组
+        }
+        for (let i = 0; i < th.data.length; i++) {
+            for (let j = 0; j < th.data[i].length; j++) {
+                arr[i][j] = th.data[i][j].getAttribute('val');
+            }
+        }
+        arr.forEach(function (value) {
+            for (let i = 0; i < value.length; i++) {
+                //如果有一个直接返回 true
+                if (value[i] == value[i + 1]) {
+                    state = 1;
+                    break;
+                }
+            }
+        })
+        if (state == 1) {
+            return true;
+        } else {
+            //将数组的行和列转换后继续比较
+            let arrs = th.change(arr);
+            arrs.forEach(function (values, index) {
+                for (let i = 0; i < values.length; i++) {
+                    //如果有一个直接返回 true
+                    if (values[i] == values[i + 1]) {
+                        state = 1;
+                        break;
+                    }
+                }
+            })
+        }
+        if (state == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //二维数组的行和列转换
+    change(arr) {
+        let new_arr = new Array();   //先声明一维
+        for (var k = 0; k < 4; k++) {        //一维长度为i,i为变量，可以根据实际情况改变
+            new_arr[k] = new Array();    //声明二维，每一个一维数组里面的一个元素都是一个数组
+        }
+        arr.forEach(function (value, index) {
+            value.forEach(function (val, key) {
+                new_arr[key][index] = val;
+            })
+        });
+        return new_arr;
+    }
+
+    //重置游戏
+    reset() {
+        let th = this;
+        document.querySelector('#newGame').onclick = function () {
+            th.data.forEach(function (val) {
+                val.forEach(function (vo) {
+                    vo.innerHTML = '';
+                    vo.setAttribute('val', 0);
+                })
+            })
+            th.towDiv();
+        }
+    }
+    //当前最高分数
+    score(){
+        let th = this;
+        let score = 0;
+        th.data.forEach(function (value) {
+            value.forEach(function (vo) {
+                let num = vo.getAttribute('val');
+                if (parseInt(num) > parseInt(score)){
+                    score = num;
+                }
+            })
+        })
+        document.querySelector('#game-score').innerHTML=score;
+    }
+}
 new game();
