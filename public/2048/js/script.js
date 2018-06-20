@@ -62,7 +62,10 @@ class game {
                 th.ranDiv();
             }
         } else {
-            console.log('游戏结束');
+            //判断游戏结束
+            th.data.forEach(function (val, key) {
+
+            })
             return false;
         }
     }
