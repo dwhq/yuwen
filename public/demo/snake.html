@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>贪吃蛇</title>
+</head>
+<style>
+    #dv {
+        background: #0C0C0C;
+        width: 600px;
+        height: 600px;
+        position: relative;
+        margin: 100px auto;
+    }
+</style>
+<body>
+<div id="dv">
+
+</div>
+</body>
+<script>
+    class snake {
+        constructor() {
+            this.length = 2;
+            this.dv = document.querySelector('#dv');
+            this.top = 0;
+            this.left = 0;
+            this.foodWidth = 30;
+            this.corp = [];
+            this.init();
+        }
+
+        init() {
+            this.food();
+            this.create();
+        }
+
+        food() {
+            let food = document.createElement("div");
+            food.style.cssText = `position:absolute;background:#55E61C;height:${this.foodWidth}px;width:30px`
+            this.rand();
+            food.style.top = `${this.top}px`;
+            food.style.left = `${this.left}px`;
+            document.querySelector('#dv').appendChild(food);
+        }
+        move(){
+        }
+        //初始设置蛇身
+        create(){
+            for (let i=0;i<=this.length;i++){
+                let snake = document.createElement("div");
+                snake.class='snake';
+                console.log('===',this.corp)
+                this.corp.push(snake);
+                document.querySelector('#dv').appendChild(snake);
+            }
+        }
+        //划分div
+        divide(){
+
+        }
+        rand() {
+            let rand = Math.floor(Math.random() * (this.dv.offsetWidth / this.foodWidth));
+            this.top = rand * (this.dv.offsetWidth / this.foodWidth);
+            console.log(this.dv.offsetWidth / this.foodWidth)
+            rand = Math.floor(Math.random() * (this.dv.offsetWidth / this.foodWidth));
+            this.left = rand * (this.dv.offsetWidth / this.foodWidth);
+        }
+    }
+    new snake();
+</script>
+</html>

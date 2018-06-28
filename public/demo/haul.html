@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>拖拽</title>
+</head>
+<style type="text/css">
+    #dv{
+        position: absolute;
+        background: #d92925;
+        width: 100px;
+        height: 100px;
+        border-radius: 50px;
+    }
+    .left{
+        top: 0;
+        left: 0;
+    }
+</style>
+<body>
+<div id="dv" .  class="left"></div>
+</body>
+<script>
+    class drag{
+        constructor(id){
+            this.dv = document.querySelector(id)
+            this.disx=0;
+            this.disy=0;
+            this.init();
+        }
+        init(){
+            this.dv.onmousedown=function(ev){
+                this.disx = ev.clientX - this.dv.offsetLeft;
+                this.disy = ev.clientY - this.dv.offsetTop;
+                document.onmousemove = this.fnMove.bind(this);
+                document.onmouseup = this.fnUp.bind(this);
+                return false;
+            }.bind(this)
+        }
+        fnMove(ev){
+            this.dv.style.left = `${ev.clientX - this.disx}px`;
+            this.dv.style.top = `${ev.clientY - this.disy}px`;
+            this.astrict();
+
+        }
+        fnUp(){
+            document.onmousemove = null;
+            document.onmouseup = null;
+        }
+        astrict(){
+            console.log(this.dv.offsetWidth )
+            if (this.dv.offsetLeft<=0){
+                this.dv.style.left = '0px';
+            }
+            if (this.dv.offsetLeft>=document.body.clientWidth-this.dv.offsetWidth){
+                this.dv.style.left = `${document.body.clientWidth-this.dv.offsetWidth}px`;
+            }
+            if (this.dv.offsetTop<=0){
+                this.dv.style.top = '0px';
+            }
+            if (this.dv.offsetTop<=document.body.clientHeight ){
+                this.dv.style.top = `${document.body.clientHeight}px`;
+            }
+        }
+    }
+    new drag('#dv')
+</script>
+</html>
