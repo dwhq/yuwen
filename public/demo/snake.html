@@ -22,45 +22,71 @@
 </div>
 </body>
 <script>
+    //val  0='空白' 1='食物' 2='蛇神'
     class snake {
         constructor() {
             this.length = 2;
             this.dv = document.querySelector('#dv');
             this.top = 0;
             this.left = 0;
+            this.foodMark = [];//食物的做标0X轴1Y轴
             this.foodWidth = 30;
+            this.foodHue = '#40F32B'//食物的颜色
             this.corp = [];
             this.init();
         }
-
         init() {
+            this.divide();//把初始的div分割开来
             this.food();
-            this.create();
+            this.create();//初始设置蛇身
         }
-
+        //设置食物所在的位置
         food() {
-            let food = document.createElement("div");
-            food.style.cssText = `position:absolute;background:#55E61C;height:${this.foodWidth}px;width:30px`
-            this.rand();
-            food.style.top = `${this.top}px`;
-            food.style.left = `${this.left}px`;
-            document.querySelector('#dv').appendChild(food);
+            let randx = Math.floor(Math.random() * this.corp.length);
+            let randy = Math.floor(Math.random() * this.corp[0].length);
+            //当所在位置空白的时候再执行
+            if (this.corp[randx][randy].getAttribute('val') == 0){
+                this.corp[randx][randy].style.background = this.foodHue;
+                this.corp[randx][randy].setAttribute('val',1);
+                this.foodMark[0]=randx;
+                this.foodMark[1]=randy;
+            }else{
+                this.food();
+            }
         }
         move(){
         }
         //初始设置蛇身
         create(){
-            for (let i=0;i<=this.length;i++){
-                let snake = document.createElement("div");
-                snake.class='snake';
-                console.log('===',this.corp)
-                this.corp.push(snake);
-                document.querySelector('#dv').appendChild(snake);
+            let randx = Math.floor((Math.random() * this.corp.length) - 5);
+            let randy = Math.floor(Math.random() * this.corp[0].length);
+            if (this.corp[randx][randy].getAttribute('val') == 0){
+                this.corp[randx][randy].style.background = this.foodHue;
+                this.corp[randx][randy].setAttribute('val',2);
+            }else{
+
             }
         }
         //划分div
         divide(){
-
+            //把div分割成N个元素块
+            for (let i=0;i<this.dv.offsetWidth / this.foodWidth;i++){
+                let row = document.createElement("div");
+                row.className = 'row';
+                document.querySelector('#dv').appendChild(row);
+                for (let j=0;j<this.dv.offsetWidth / this.foodWidth;j++){
+                    let line = document.createElement("div");
+                    line.className = 'line';
+                    line.setAttribute('val',0);
+                    // border:solid 1px red;
+                    line.style.cssText=`float: left;width:${this.foodWidth}px;height:${this.foodWidth}px;`;
+                    row.appendChild(line)
+                }
+            }
+            //把所有的div 设置到数组里面
+            document.querySelectorAll('.row').forEach(function (value, index) {
+                this.corp[index] = value.querySelectorAll(`.line`)
+            }.bind(this));
         }
         rand() {
             let rand = Math.floor(Math.random() * (this.dv.offsetWidth / this.foodWidth));
