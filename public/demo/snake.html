@@ -65,17 +65,31 @@
             this.state = 0;
             this.snakeCoord = [];//蛇身所在的坐标
             this.direction = 39;//蛇身移动的方向  37：左  38：上 39：右 40：下
+<<<<<<< HEAD
             this.moveTime = 1000//移动一次的间隔
+=======
+            this.moveTime = 1000; //移动一次的间隔
+>>>>>>> origin/master
             this.init();
         }
 
         init() {
             this.divide();//把初始的div分割开来
             this.hardship();//选择难度
+<<<<<<< HEAD
             this.keypad();//控制反方向
             this.button();//开始暂停
             this.create();//初始设置蛇身
             this.food();//食物的位置
+=======
+            this.button();//开始暂停
+            this.create();//初始设置蛇身
+            this.food();//食物的位置
+            this.move();//移动
+            this.keypad();//控制反方向
+
+
+>>>>>>> origin/master
         }
 
         //设置食物所在的位置
@@ -93,6 +107,7 @@
             }
         }
 
+<<<<<<< HEAD
         move(time) {
             let th = this;
             setTimeout(function () {
@@ -106,6 +121,20 @@
         moveLeft() {
             let arr = this.snakeCoord[0];
             console.log(this.snakeCoord[0]);
+=======
+        move() {
+            let th = this;
+            setInterval(function () {
+                //每隔一秒前进一步
+                if (th.state == 1) {
+                    th.addSnake();
+                }
+            }, th.moveTime)
+        }
+
+        moveLeft() {
+            let arr = this.snakeCoord[0];
+>>>>>>> origin/master
             let x = (arr.x) - 1;
             let y = arr.y;
             console.log('向左');
@@ -165,12 +194,19 @@
             }
             let [x, y] = arr;
             //查看是否撞上蛇身
+<<<<<<< HEAD
             console.log(x,'===',y)
             if ((x < 0) || (x > 19) || (y < 0) || (y > 19)) {
                 //碰到边界游戏结束
                 this.state = 0;
                 this.restart()
                 alert('游戏结束1');
+=======
+            if ((x < 0) || (x > 19) || (y < 0) || (y > 19)) {
+                //碰到边界游戏结束
+                this.state = 0;
+                alert('游戏结束');
+>>>>>>> origin/master
                 return false;
             } else {
                 let status = this.corp[y][x].getAttribute('val');
@@ -178,6 +214,10 @@
                     //吃到食物长度加一
                     this.corp[arrs.y][arrs.x].style.background = this.snakeHue;
                     this.corp[arrs.y][arrs.x].setAttribute('val', 2);
+<<<<<<< HEAD
+=======
+                    console.log(this.snakeCoord)
+>>>>>>> origin/master
                     console.log([...this.snakeCoord, {x: arrs.x, y: arrs.y}])
                     this.snakeCoord = [...this.snakeCoord, {x: arrs.x, y: arrs.y}];
 
@@ -187,8 +227,12 @@
                 } else if (status == 2) {
                     //碰到蛇身游戏结束
                     this.state = 0;
+<<<<<<< HEAD
                     this.restart()
                     alert('游戏结束2');
+=======
+                    alert('游戏结束');
+>>>>>>> origin/master
                     return false;
                 }
                 this.corp[y][x].style.background = this.snakeHue;
@@ -262,6 +306,7 @@
         keypad() {
             onkeydown = (event) => {
                 let key = event.which || event.keyCode;
+<<<<<<< HEAD
                 let arr = [0,37,38,39,40];
                 if (arr.indexOf(key) > 0){
                     switch (this.direction) {
@@ -286,6 +331,34 @@
                             }
                             break;
                     }
+=======
+                let direction = this.direction;
+                switch (this.direction) {
+                    case 37://左
+                        if (key != 39) {
+                            direction = key;
+                        }
+                        this.direction = direction;
+                        break;
+                    case 38://上
+                        if (key != 40) {
+                            direction = key;
+                        }
+                        this.direction = direction;
+                        break;
+                    case 39://右
+                        if (key != 37) {
+                            direction = key;
+                        }
+                        this.direction = direction;
+                        break;
+                    case 40://下
+                        if (key != 38) {
+                            direction = key;
+                        }
+                        this.direction = direction;
+                        break;
+>>>>>>> origin/master
                 }
             }
         }
@@ -300,9 +373,12 @@
             let th =this;
             but.onclick = function () {
                 if (but.getAttribute('val') == 0){
+<<<<<<< HEAD
                     th.move(th.moveTime);//移动
                     //关闭难度选择
                     document.querySelector('#hardship').style.display='none'
+=======
+>>>>>>> origin/master
                     th.state = 1;
                     but.innerHTML='暂停';
                     document.querySelector('#hardship')
@@ -316,14 +392,18 @@
                     th.state = 1;
                     but.innerHTML='暂停';
                     but.setAttribute('val', 1)
+<<<<<<< HEAD
                 }else if(but.getAttribute('val') == 4){
                     //游戏重新开始
+=======
+>>>>>>> origin/master
                 }
             }
         }
         hardship(){
             let but = document.querySelectorAll('.hardship');
             let th =this;
+<<<<<<< HEAD
             let moveTime = 1000;
             but.forEach(function (value) {
                 value.onchange = function () {
@@ -351,6 +431,17 @@
          document.querySelector('#button').setAttribute('val', 0)
      }
     }
+=======
+            but.forEach(function (value) {
+                value.onchange = function () {
+                    th.moveTime = value.value
+                }
+            })
+
+        }
+    }
+
+>>>>>>> origin/master
     new snake();
 </script>
 </html>
