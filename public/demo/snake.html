@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>贪吃蛇</title>
+</head>
+<style>
+    #dv {
+        background: #0C0C0C;
+        width: 600px;
+        height: 600px;
+        position: relative;
+        margin: 50px auto;
+    }
+    #button{
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 5px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin-left: 50px;
+        font-size: 16px;
+        float: left;
+    }
+    #hardship{
+        float: left;
+        margin-left: 30px;
+    }
+</style>
+<body>
+<div style=" margin: 0 auto ;padding-top:30px;width: 500px;">
+    <div style="float: left"><span>分数是:</span><span id="score">0分</span></div>
+    <button id="button" val = '0'>开 始</button>
+    <div id="hardship">
+        <input type="radio" name="hardship" class="hardship" value="1000" checked>简单
+        <input type="radio" name="hardship" class="hardship" value="800">一般
+        <input type="radio" name="hardship" class="hardship" value="400">困难
+        <input type="radio" name="hardship" class="hardship" value="100">地狱
+    </div>
+</div>
+<div id="dv">
+
+</div>
+</body>
+<script>
+    //val  0='空白' 1='食物' 2='蛇身'
+    class snake {
+        constructor() {
+            this.length = 2;
+            this.dv = document.querySelector('#dv');
+            this.top = 0;
+            this.left = 0;
+            this.game_score = 0;//分数
+            this.foodMark = [];//食物的做标0X轴1Y轴
+            this.foodWidth = 30;
+            this.background = '#0C0C0C';//背景颜色
+            this.foodHue = '#40F32B'//食物的颜色
+            this.snakeHue = '#3345f3'//蛇的颜色
+            this.corp = [];
+            this.state = 0;
+            this.snakeCoord = [];//蛇身所在的坐标
+            this.direction = 39;//蛇身移动的方向  37：左  38：上 39：右 40：下
+            this.moveTime = 1000//移动一次的间隔
+            this.init();
+        }
+
+        init() {
+            this.divide();//把初始的div分割开来
+            this.hardship();//选择难度
+            this.keypad();//控制反方向
+            this.button();//开始暂停
+            this.create();//初始设置蛇身
+            this.food();//食物的位置
+        }
+
+        //设置食物所在的位置
+        food() {
+            let randx = Math.floor(Math.random() * this.corp.length);
+            let randy = Math.floor(Math.random() * this.corp[0].length);
+            //当所在位置空白的时候再执行
+            if (this.corp[randx][randy].getAttribute('val') == 0) {
+                this.corp[randx][randy].style.background = this.foodHue;
+                this.corp[randx][randy].setAttribute('val', 1);
+                this.foodMark[0] = randx;
+                this.foodMark[1] = randy;
+            } else {
+                this.food();
+            }
+        }
+
+        move(time) {
+            let th = this;
+            setTimeout(function () {
+                //每隔一秒前进一步
+                if (th.state == 1) {
+                    th.addSnake();
+                    th.move(th.moveTime);
+                }
+            }, time)
+        }
+        moveLeft() {
+            let arr = this.snakeCoord[0];
+            console.log(this.snakeCoord[0]);
+            let x = (arr.x) - 1;
+            let y = arr.y;
+            console.log('向左');
+            return [x, y];
+
+        }
+
+        moveTop() {
+            let arr = this.snakeCoord[0];
+            let x = arr.x;
+            let y = (arr.y) - 1;
+            return [x, y];
+        }
+
+        moveRight() {
+            let arr = this.snakeCoord[0];
+            let x = (arr.x) + 1;
+            let y = arr.y;
+            return [x, y];
+            console.log('向右')
+        }
+
+        moveDown() {
+            let arr = this.snakeCoord[0];
+            let x = arr.x;
+            let y = (arr.y) + 1;
+            console.log('向下')
+            return [x, y];
+        }
+
+        //取消这个位置的蛇身
+        cancel() {
+            let arr = this.snakeCoord.pop();
+            //将蛇身的最后一个删除
+            this.corp[arr.y][arr.x].style.background = this.background;
+            this.corp[arr.y][arr.x].setAttribute('val', 0);
+            return arr;
+        }
+
+        //前进一步
+        addSnake() {
+            let arrs = this.cancel();
+            let arr = [];
+            switch (this.direction) {
+                case 37://左
+                    arr = this.moveLeft();
+                    break;
+                case 38://上
+                    arr = this.moveTop();
+                    break;
+                case 39://右
+                    arr = this.moveRight();
+                    break;
+                case 40://下
+                    arr = this.moveDown();
+                    break;
+            }
+            let [x, y] = arr;
+            //查看是否撞上蛇身
+            console.log(x,'===',y)
+            if ((x < 0) || (x > 19) || (y < 0) || (y > 19)) {
+                //碰到边界游戏结束
+                this.state = 0;
+                this.restart()
+                alert('游戏结束1');
+                return false;
+            } else {
+                let status = this.corp[y][x].getAttribute('val');
+                if (status == 1) {
+                    //吃到食物长度加一
+                    this.corp[arrs.y][arrs.x].style.background = this.snakeHue;
+                    this.corp[arrs.y][arrs.x].setAttribute('val', 2);
+                    console.log([...this.snakeCoord, {x: arrs.x, y: arrs.y}])
+                    this.snakeCoord = [...this.snakeCoord, {x: arrs.x, y: arrs.y}];
+
+                     this.game_score++;
+                     this.score();
+                     this.food();
+                } else if (status == 2) {
+                    //碰到蛇身游戏结束
+                    this.state = 0;
+                    this.restart()
+                    alert('游戏结束2');
+                    return false;
+                }
+                this.corp[y][x].style.background = this.snakeHue;
+                this.corp[y][x].setAttribute('val', 2);
+                this.snakeCoord = [{x: x, y: y}, ...this.snakeCoord]
+
+            }
+
+        }
+
+        //初始设置蛇身
+        create() {
+            let num = 3;//蛇神初始长度
+            let randx = this.createRandx(num);
+            let randy = this.createRandy(3);
+            for (let i = 0; i < num; i++) {
+                this.corp[randx][randy - i].style.background = this.snakeHue;
+                this.corp[randx][randy - i].setAttribute('val', 2);
+                this.snakeCoord.push({x: randy - i, y: randx})//把蛇身的坐标存在数组里面
+            }
+        }
+
+        //获取蛇的初始坐标
+        createRandx(num) {
+            let randx = Math.floor((Math.random() * (this.corp.length - num)));
+            if (randx < num) {
+                randx = this.createRandx(num);
+            }
+            return randx;
+        }
+
+        createRandy(nums) {
+            let randy = Math.floor((Math.random() * (this.corp[0].length - nums)));
+            if (randy < nums) {
+                randy = this.createRandy(nums);
+            }
+            return randy;
+        }
+
+        //划分div 建立坐标
+        divide() {
+            //把div分割成N个元素块
+            for (let i = 0; i < this.dv.offsetWidth / this.foodWidth; i++) {
+                let row = document.createElement("div");
+                row.className = 'row';
+                document.querySelector('#dv').appendChild(row);
+                for (let j = 0; j < this.dv.offsetWidth / this.foodWidth; j++) {
+                    let line = document.createElement("div");
+                    line.className = 'line';
+                    line.setAttribute('val', 0);
+                    // border:solid 1px red;
+                    line.style.cssText = `float: left;width:${this.foodWidth}px;height:${this.foodWidth}px;`;
+                    row.appendChild(line)
+                }
+            }
+            //把所有的div 设置到数组里面
+            document.querySelectorAll('.row').forEach(function (value, index) {
+                this.corp[index] = value.querySelectorAll(`.line`)
+            }.bind(this));
+        }
+
+        rand() {
+            let rand = Math.floor(Math.random() * (this.dv.offsetWidth / this.foodWidth));
+            this.top = rand * (this.dv.offsetWidth / this.foodWidth);
+            console.log(this.dv.offsetWidth / this.foodWidth)
+            rand = Math.floor(Math.random() * (this.dv.offsetWidth / this.foodWidth));
+            this.left = rand * (this.dv.offsetWidth / this.foodWidth);
+        }
+
+        //控制方向
+        keypad() {
+            onkeydown = (event) => {
+                let key = event.which || event.keyCode;
+                let arr = [0,37,38,39,40];
+                if (arr.indexOf(key) > 0){
+                    switch (this.direction) {
+                        case 37://左
+                            if (key != 39) {
+                                this.direction = key;
+                            }
+                            break;
+                        case 38://上
+                            if (key != 40) {
+                                this.direction = key;
+                            }
+                            break;
+                        case 39://右
+                            if (key != 37) {
+                                this.direction = key;
+                            }
+                            break;
+                        case 40://下
+                            if (key != 38) {
+                                this.direction = key;
+                            }
+                            break;
+                    }
+                }
+            }
+        }
+        //累加分数
+        score() {
+            let dv = document.querySelector('#score');
+            dv.innerHTML = `${this.game_score}分`;
+        }
+        //点击开始按钮
+        button(){
+            let but = document.querySelector('#button');
+            let th =this;
+            but.onclick = function () {
+                if (but.getAttribute('val') == 0){
+                    th.move(th.moveTime);//移动
+                    //关闭难度选择
+                    document.querySelector('#hardship').style.display='none'
+                    th.state = 1;
+                    but.innerHTML='暂停';
+                    document.querySelector('#hardship')
+                    but.setAttribute('val', 1)
+                }else if (but.getAttribute('val') == 1){
+                    console.log()
+                    th.state = 0;
+                    but.setAttribute('val', 2)
+                    but.innerHTML='继续';
+                }else if (but.getAttribute('val') == 2){
+                    th.state = 1;
+                    but.innerHTML='暂停';
+                    but.setAttribute('val', 1)
+                }else if(but.getAttribute('val') == 4){
+                    //游戏重新开始
+                }
+            }
+        }
+        hardship(){
+            let but = document.querySelectorAll('.hardship');
+            let th =this;
+            let moveTime = 1000;
+            but.forEach(function (value) {
+                value.onchange = function () {
+                    moveTime = value.value
+                    th.moveTime = moveTime
+                }
+            })
+        }
+        //游戏结束重新开始
+     restart(){
+         document.querySelector('#hardship').style.display='inline'
+         document.querySelector('#button').innerHTML='重新开始'
+         let th = this;
+         this.corp.forEach(function (value) {
+             value.forEach(function (vo) {
+                  vo.style.background = th.background;
+                   vo.setAttribute('val', 0)
+             })
+         })
+         console.log('`````````````````',th.moveTime);
+         this.direction = 39;
+         this.snakeCoord = [];
+         this.create();//初始设置蛇身
+         this.food();//食物的位置
+         document.querySelector('#button').setAttribute('val', 0)
+     }
+    }
+    new snake();
+</script>
+</html>
