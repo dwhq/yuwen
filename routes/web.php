@@ -11,9 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('Home/index');
-});
 
 //->middleware('token')  添加中间件
 //Route::prefix('/')->namespace('Home')->group(function () {
@@ -206,3 +203,14 @@ Route::prefix('upload')->namespace('Upload')->middleware('token')->group(functio
 //Route::prefix('/laravel-u-editor-server/server')->namespace('Stevenyangecho\UEditor')->middleware('token')->group(function () {
 //    Route::post('upload', 'laravel-u-editor/src/Controller.php@server');
 //});
+
+Route::group(['namespace' => 'Smartmd', 'prefix' => 'editor'], function () {
+    Route::post('/upload', 'UploadController@imSave');
+    Route::get('/write', function () {
+        return view('vendor/smartmd/write');
+    });
+    Route::get('/php-show','ParseController@index');
+    Route::get('/js-show',function(){
+        return view('vendor/smartmd/js-show');
+    });
+});

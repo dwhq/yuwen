@@ -19,6 +19,7 @@ class ArticleController extends Controller
     public function index(Request $request)
     {
         //
+
         $colum = $this->column();
         $info = $this->info();
         $user_info = user::user_info(session('user_id'),'id',['id','account','avatar','nickname']);
@@ -29,7 +30,7 @@ class ArticleController extends Controller
         $list = DB::table('article')->where([['state',1]])->orderBy('id','sort')->paginate(10);
         $page = $list->links();
         $type='';
-        return view('Home/index')
+        return view('Home.index')
             ->with('list',$list)
             ->with('info',$info)
             ->with('colum',$colum)

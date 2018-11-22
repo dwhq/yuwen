@@ -1,4 +1,5 @@
 <?php
+exit('上传成功');
 //header("Content-Type: text/html;charset=utf-8");
 //if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 //	upload();

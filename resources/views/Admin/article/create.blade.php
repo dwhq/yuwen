@@ -113,30 +113,36 @@
                             </h4>
                         </div>
                         <div class="panel-body">
-                            <script id="container"  name="account" type="text/plain" >
-
-                            </script>
+                            <textarea id="editor" placeholder="请输入正文" style="display: none"></textarea>
                         </div>
                     </div>
 
 
-                    <!-- 实例化编辑器 -->
-                    <script type="text/javascript">
-                        var ue = UE.getEditor('container',{
-                            // 设置宽高
-                            initialFrameWidth : 900,
-                            initialFrameHeight : 600,
-                        });
-                        ue.ready(function() {
-                            ue.execCommand('serverparam', '_token', '{{ csrf_token() }}');//此处为支持laravel5 csrf ,根据实际情况修改,目的就是设置 _token 值.
-                        });
-                    </script>
+                    {{--<!-- 实例化编辑器 -->--}}
+                    {{--<script type="text/javascript">--}}
+                        {{--var ue = UE.getEditor('container',{--}}
+                            {{--// 设置宽高--}}
+                            {{--initialFrameWidth : 900,--}}
+                            {{--initialFrameHeight : 600,--}}
+                        {{--});--}}
+                        {{--ue.ready(function() {--}}
+                            {{--ue.execCommand('serverparam', '_token', '{{ csrf_token() }}');//此处为支持laravel5 csrf ,根据实际情况修改,目的就是设置 _token 值.--}}
+                        {{--});--}}
+                    {{--</script>--}}
                     <div class="col-md-4" style="padding-top: 10px">
                         <button class="btn btn-success  btn-block" style="display: block;">确认保存</button>
                     </div>
                 </form>
         </div>
     </div>
+    <script>
+        var smartmd = new Smartmd();
+        smartmd.markdown("#editor");
+        if (document.body.clientWidth > 1200) {
+            smartmd.toggleSideBySide();
+            // smartmd.alert("success","preview init success");
+        }
+    </script>
     <script type="text/javascript">
         $(function () {
             var $list = $('#thelist'),

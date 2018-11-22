@@ -15,6 +15,7 @@
     <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('layui/css/layui.css') }}" />
     <script src="{{asset('layui/layui.js') }}"></script>
+    @include('Smartmd::head')
     @yield('import')
 </head>
 <body>
