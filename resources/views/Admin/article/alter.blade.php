@@ -114,11 +114,19 @@
                                 文章内容:
                             </h4>
                         </div>
-                        <div class="panel-body">
+
+                        @if($data->id > 100)
+                            <div class="panel-body">
+                                <textarea id="editor" name="account" placeholder="请输入正文" style="display: none">-{!! $data->account !!}</textarea>
+                            </div>
+                            @else
+                            <div class="panel-body">
                             <script id="container"  name="account" type="text/plain" >
-                                {!! $data->account !!}
+                            {!! $data->account !!}
                             </script>
-                        </div>
+                            </div>
+                        @endif
+
                     </div>
 
 
@@ -139,6 +147,14 @@
                 </form>
         </div>
     </div>
+    <script>
+        var smartmd = new Smartmd();
+        smartmd.markdown("#editor");
+        if (document.body.clientWidth > 1200) {
+            smartmd.toggleSideBySide();
+            // smartmd.alert("success","preview init success");
+        }
+    </script>
     <script type="text/javascript">
         $(function () {
             var $list = $('#thelist'),

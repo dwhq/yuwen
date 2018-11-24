@@ -5,6 +5,7 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
 use App\Model\tags;
+use NoisyWinds\Smartmd\Markdown;
 
 class article extends Model
 {
@@ -19,6 +20,7 @@ class article extends Model
      *
      * @var string
      */
+    protected $appends = ['accounts'];
     protected $dateFormat = 'U';
     /**
      * 自动维护时间戳
@@ -33,5 +35,12 @@ class article extends Model
     public function toSearchableArray()
     {
         return $this->only('id','title', 'desc', 'account');
+
+    }
+    public function getAccountsAttribute()
+    {
+        $parse = new Markdown();
+//        pd($parse);exit();
+        return $parse->text($this->account);
     }
 }

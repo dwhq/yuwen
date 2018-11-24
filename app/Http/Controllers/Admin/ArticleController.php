@@ -15,6 +15,7 @@ use App\Http\Controllers\Home\ArticleController as Articles;
 use App\Model\mood;
 use LaravelChen\MyFlash\MyFlash;
 use App\Model\word;
+
 class ArticleController extends Controller
 {
     //文章列表
@@ -102,14 +103,14 @@ class ArticleController extends Controller
     //删除文章
     public function delect(Request $request, article $article, $u_id)
     {
-//        MyFlash::success('删除成功');
-//        $delect = $article->where([['id',$u_id]])->delete();
-//        if ($delect){
-//            myflash()->success('删除成功');
-//        }else{
-//            myflash()->error('删除失败');
-//        }
-           myflash()->success('想什么呢要在数据库删除');
+        MyFlash::success('删除成功');
+        $delect = $article->where([['id',$u_id]])->delete();
+        if ($delect){
+            myflash()->success('删除成功');
+        }else{
+            myflash()->error('删除失败');
+        }
+//           myflash()->success('想什么呢要在数据库删除');
         return redirect()->back();
     }
 

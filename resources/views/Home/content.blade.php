@@ -23,7 +23,8 @@
             </div>
         </div>
         <div class="col-md-12">
-            {!! $content->back==1?str_replace('<img src="','<img src="'.config('app.img'),$content->account):$content->account !!}
+            {{--{!! $content->account !!}--}}
+            {!! $content->back==1?str_replace('<img src="','<img src="'.config('app.img'),$content->accounts):$content->accounts !!}
         </div>
         @if(!$article_tag->isEmpty())
             <div class="col-md-12">
@@ -112,9 +113,9 @@
                 <div>请<a href="javascript:;" onclick="login()">登陆</a>后评论</div>
             @endif
         </div>
-        <div class="col-md-12">
-            <script type="text/javascript">var jd_union_unid="1000587754",jd_ad_ids="507:6",jd_union_pid="CLayt42uLBDqg4/dAxoAINah89cEKgA=";var jd_width=728;var jd_height=90;var jd_union_euid="";var p="AhEDXBpTEQcXD2VEH0hfIlgRRgYlXVZaCCsfSlpMWGVEH0hfIllRHVhySxt4NVs5ankbYQlOC29xV2dZF2sVARcOVRleFAcXN1UaWhQGGwFTH14lMk1DCEZrXmwTNwpfBkgyEgNWHlgUBxUOXR1bHTITN2Ur";</script><script type="text/javascript" charset="utf-8" src="//u-x.jd.com/static/js/auto.js"></script>
-        </div>
+        {{--<div class="col-md-12">--}}
+            {{--<script type="text/javascript">var jd_union_unid="1000587754",jd_ad_ids="507:6",jd_union_pid="CLayt42uLBDqg4/dAxoAINah89cEKgA=";var jd_width=728;var jd_height=90;var jd_union_euid="";var p="AhEDXBpTEQcXD2VEH0hfIlgRRgYlXVZaCCsfSlpMWGVEH0hfIllRHVhySxt4NVs5ankbYQlOC29xV2dZF2sVARcOVRleFAcXN1UaWhQGGwFTH14lMk1DCEZrXmwTNwpfBkgyEgNWHlgUBxUOXR1bHTITN2Ur";</script><script type="text/javascript" charset="utf-8" src="//u-x.jd.com/static/js/auto.js"></script>--}}
+        {{--</div>--}}
     </div>
     <script>
     </script>

@@ -113,7 +113,7 @@
                             </h4>
                         </div>
                         <div class="panel-body">
-                            <textarea id="editor" placeholder="请输入正文" style="display: none"></textarea>
+                            <textarea id="editor" name="account" placeholder="请输入正文" style="display: none"></textarea>
                         </div>
                     </div>
 

@@ -3,7 +3,7 @@
     <title> @yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="{{asset('css/app.css') }}">
+
     <link rel="stylesheet" type="text/css" href="{{asset('css/look.css') }}">
     <script src="//cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src='{{asset('js/nprogress.js') }}'></script>
@@ -15,7 +15,9 @@
     <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('layui/css/layui.css') }}" />
     <script src="{{asset('layui/layui.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{asset('css/app.css') }}">
     @include('Smartmd::head')
+    {{--@include('Smartmd::php-parse')--}}
     @yield('import')
 </head>
 <body>

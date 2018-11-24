@@ -102,9 +102,9 @@ class ArticleController extends Controller
         return $url;
     }
     //文章内容
-    public function content(Request $request,$id){
+    public function content(Request $request,article $article,$id){
         $word = word::inquire($id);//文章留言信息
-        $content=DB::table('article')->where([['id',$id],['state',1]])->first();
+        $content=$article->where([['id',$id],['state',1]])->first();
         if (!$content){
             return view('404');
         }
