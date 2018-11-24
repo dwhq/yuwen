@@ -11,7 +11,7 @@
             {!! $title !!}
         @endif
         @foreach($list as $list)
-        <article class="col-lg-11 table-bordered " style="padding-top: 1px;margin-top:15px;background: white">
+        <article class="col-lg-12 table-bordered " style="padding-top: 1px;margin-top:15px;background: white">
             <div class="col-md-4" style="padding: 2% 0 3% 0">
                 <img class=" img-thumbnail aft"
                      src="{{$list->back==1?config('app.img').$list->pic:asset($list->pic)}}" alt="{{$list->title}}"
