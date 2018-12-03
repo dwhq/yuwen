@@ -135,8 +135,17 @@
                 </form>
         </div>
     </div>
+    {{storage_path('app/public/images')}}
     <script>
-        var smartmd = new Smartmd();
+        var smartmd = new Smartmd({
+            image:{
+                // your UploadController route
+                uploadPath:"{{url('editor/upload')}}",
+                type:['jpeg','png','bmp','gif','jpg'],
+                // fileSize (kb)
+                maxSize:4096,
+            },
+        });
         smartmd.markdown("#editor");
         if (document.body.clientWidth > 1200) {
             smartmd.toggleSideBySide();

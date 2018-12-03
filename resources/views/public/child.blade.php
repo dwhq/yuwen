@@ -16,9 +16,17 @@
     <link rel="stylesheet" href="{{asset('layui/css/layui.css') }}" />
     <script src="{{asset('layui/layui.js') }}"></script>
     <link rel="stylesheet" type="text/css" href="{{asset('css/app.css') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @include('Smartmd::head')
     {{--@include('Smartmd::php-parse')--}}
     @yield('import')
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
 </head>
 <body>
     <div role='bar'></div>
