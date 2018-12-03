@@ -135,7 +135,6 @@
                 </form>
         </div>
     </div>
-    {{storage_path('app/public/images')}}
     <script>
         var smartmd = new Smartmd({
             image:{
