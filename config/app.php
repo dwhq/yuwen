@@ -166,7 +166,7 @@ return [
          Vanry\Scout\TNTSearchScoutServiceProvider::class,
 //        Vanry\Scout\TNTSearchScoutServiceProvider::class,
 //        Laravel\Scout\ScoutServiceProvider::class,
-//        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class//二维码
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class//二维码
     ],
     /*
     |--------------------------------------------------------------------------
@@ -215,7 +215,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Geetest' => Germey\Geetest\Geetest::class,
-//        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,//二维码
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,//二维码
     ],
     'img' => env('IMG_URL', 'http://5.56ve.com'),
 ];

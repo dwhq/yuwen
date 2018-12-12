@@ -214,3 +214,6 @@ Route::group(['namespace' => 'Smartmd', 'prefix' => 'editor'], function () {
         return view('vendor/smartmd/js-show');
     });
 });
+Route::prefix('tool')->namespace('Tool')->group(function (){
+    Route::get('/qrCode','qrCodeController@show');
+});
