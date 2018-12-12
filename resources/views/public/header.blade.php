@@ -16,6 +16,7 @@
                 @foreach($colum as $colum)
                     <li @if($colum->type==$type)class="active" @endif><a href="{{url('home/'.$colum->type)}}" style="color: white">{{$colum->name}}</a></li>
                 @endforeach
+                    {{--<li><a href="{{url('tool')}}" style="color: white">工具</a></li>--}}
             </ul>
         </div>
         <div class="col-md-2">
