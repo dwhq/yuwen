@@ -27,10 +27,10 @@ class ArticleController extends Controller
         $url = $this->url();
         $title='';
         $new_article = $this->new_article();
-        $list = DB::table('article')->where([['state',1]])->orderBy('id','sort')->paginate(10);
+        $list = DB::table('article')->where([['state',1]])->orderBy('id','sort')->paginate(6);
         $page = $list->links();
         $type='';
-        return view('Home.index')
+        return view('Home1.index')
             ->with('list',$list)
             ->with('info',$info)
             ->with('colum',$colum)
@@ -56,9 +56,9 @@ class ArticleController extends Controller
         if (!$data){
             return view('404');
         }
-        $list = DB::table('article')->where([['state',1],['cateid',$type]])->orderBy('id','desc')->paginate(10);
+        $list = DB::table('article')->where([['state',1],['cateid',$type]])->orderBy('id','desc')->paginate(6);
         $page = $list->links();
-        return view('Home/index')
+        return view('Home1/index')
             ->with('list',$list)
             ->with('info',$info)
             ->with('colum',$colum)
@@ -78,7 +78,7 @@ class ArticleController extends Controller
     private function column()
     {
         //栏目查询
-        $data=DB::table('column')->select('id','name','type','sort')->where([['state',1],['time','>','0']])->orderBy('sort','desc')->get();
+        $data=DB::table('column')->select('id','name','type','sort')->where([['state',1],['time','>','0']])->orderBy('sort','asc')->get();
         return $data;
     }
     //网站信息

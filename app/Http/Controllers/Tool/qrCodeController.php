@@ -14,7 +14,7 @@ class qrCodeController extends Controller
 //        $qrcode = new QrReader('/timg.jpg');
 //        echo '<img src="/timg.jpg" alt="">';
 //        QrCode::generate('Make me into a QrCode!');
-       $a =  QrCode::format('png')->size(200)->encoding('UTF-8')->generate('识别二维码',public_path('phpqrcode.png'));
+        return QrCode::format('png')->size(200)->encoding('UTF-8')->generate('识别二维码',public_path('phpqrcode.png'));
 //       echo '<img src="'.$a.'">';
         //识别二维码
         $qrcode = new QrReader(public_path('phpqrcode.png'));
