@@ -30,6 +30,10 @@ class ArticleController extends Controller
         $list = DB::table('article')->where([['state',1]])->orderBy('id','sort')->paginate(6);
         $page = $list->links();
         $type='';
+        $blog = true;
+        if ($request->input('page') > 0){
+            $blog = false;
+        }
         return view('Home1.index')
             ->with('list',$list)
             ->with('info',$info)
@@ -37,6 +41,7 @@ class ArticleController extends Controller
             ->with('type',$type)
             ->with('tag',$tag)
             ->with('url',$url)
+            ->with('blog',$blog)
             ->with('user_info', $user_info)
             ->with('title',$title)
             ->with('new_article',$new_article)
@@ -64,6 +69,7 @@ class ArticleController extends Controller
             ->with('colum',$colum)
             ->with('type',$type)
             ->with('tag',$tag)
+            ->with('blog',false)
             ->with('title',$title)
             ->with('user_info',$user_info)
             ->with('url',$url)
@@ -83,7 +89,7 @@ class ArticleController extends Controller
     }
     //网站信息
     private function info(){
-        $data = DB::table('info')->orderBy('id','desc')->limit(1)->get();
+        $data = DB::table('info')->orderBy('id','desc')->limit(1)->first();
         return $data;
     }
     //最新文章
@@ -118,7 +124,7 @@ class ArticleController extends Controller
         $up_article=$this->up_article($id);
         $next_article=$this->next_article($id);
         $type = $content->cateid;
-        return view('Home/content')
+        return view('Home1/content')
             ->with('info',$info)
             ->with('colum',$colum)
             ->with('type',$type)

@@ -11,19 +11,19 @@
         <div class="panel-heading">
             <h3 class="panel-title ">联系站长</h3>
         </div>
-        @if($info[0]->qq)
+        @if($info->qq)
         <div class="panel-body h4">
-            QQ : <a href="http://wpa.qq.com/msgrd?v=3&uin={{$info[0]->qq}}&site=qq&menu=yes">{{$info[0]->qq}}</a>
+            QQ : <a href="http://wpa.qq.com/msgrd?v=3&uin={{$info->qq}}&site=qq&menu=yes">{{$info->qq}}</a>
         </div>
         @endif
-        @if($info[0]->email)
+        @if($info->email)
         <div class="panel-body h4">
-            email : {{$info[0]->email}}
+            email : {{$info->email}}
         </div>
         @endif
-        @if($info[0]->mobile)
+        @if($info->mobile)
         <div class="panel-body h4">
-            电话 : {{$info[0]->mobile}}
+            电话 : {{$info->mobile}}
         </div>
         @endif
     </div>

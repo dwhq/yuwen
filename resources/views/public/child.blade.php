@@ -9,7 +9,6 @@
     <script src='{{asset('js/nprogress.js') }}'></script>
     <link rel='stylesheet' href='{{asset('css/nprogress.css') }}'/>
     <link rel="stylesheet" href="{{asset('css/style.css') }}" />
-    <link rel="stylesheet" href="{{asset('css/style.css') }}" />
     <link rel="stylesheet" href="//cdn.bootcss.com/ionicons/2.0.1/css/ionicons.min.css" />
     <script src="//cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
