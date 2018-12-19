@@ -179,7 +179,7 @@ class ArticleController extends Controller
         $new_article = $this->new_article();
         $list = DB::table('tags')->select('tag.name','article.back','article.title','article.pic','article.id','article.desc','article.cateid','article.time')->where([['article.state',1],['tag.id',$tag_id]])->leftjoin('tag','tag.id','=','tags.tag_id')->leftjoin('article','article.id','=','tags.u_id')->orderBy('article.id','sort')->paginate(10);
         if ($list->isEmpty()){
-            return view('404');
+            return back();
         }
         if (!$list[0]->name){
             return view('404');
@@ -187,12 +187,13 @@ class ArticleController extends Controller
         $page = $list->links();//分页的
         $title='<div class="h4">拥有标签'.$list[0]->name.'的文章</div>';//显示的文字
         $type='';
-        return view('Home/index')
+        return view('Home1/index')
             ->with('list',$list)
             ->with('info',$info)
             ->with('colum',$colum)
             ->with('type',$type)
             ->with('tag',$tag)
+            ->with('blog',false)
             ->with('user_info',$user_info)
             ->with('title',$title)
             ->with('url',$url)
@@ -217,16 +218,17 @@ class ArticleController extends Controller
         $seek = $request->input('seek');
         $title='<div class="h4">关于'.$seek.'的搜索结果</div>';//显示的文字
         $new_article = $this->new_article();
-        //$list = DB::table('article')->where([['state',1],['account','like','%'.$seek.'%']])->orwhere([['title','like','%'.$seek.'%']])->orderBy('id','sort')->paginate(10);
-        $list = $article::search($seek)->orderBy('id','sort')->paginate(10);
+        $list = DB::table('article')->where([['state',1],['account','like','%'.$seek.'%']])->orwhere([['title','like','%'.$seek.'%']])->orderBy('id','sort')->paginate(10);
+//        $list = $article::search($seek)->orderBy('id','sort')->paginate(10);
         $page = $list->links();
         $type='';
-        return view('Home/index')
+        return view('Home1/index')
             ->with('list',$list)
             ->with('info',$info)
             ->with('colum',$colum)
             ->with('type',$type)
             ->with('seek',$seek)
+            ->with('blog',false)
             ->with('user_info',$user_info)
             ->with('tag',$tag)
             ->with('url',$url)

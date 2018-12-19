@@ -123,22 +123,24 @@
             </div>
             <div class="col-md-2">
                 <form action="{{url('search')}}" method="get">
-                    <input type="text" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;输入关键字搜索" style="width: 231px;;
-                    height: 40px;
-                    border: 0;
-                    font-family: PingFangSC-Medium;
-                    background-color: #e3e4e6;
-                    box-shadow: inset 0px 0px 3px 0px
-                    rgba(205, 214, 219, 0.2);
-                    border-radius: 20px;">
-                    {{--<button><span class="glyphicon glyphicon-search"></span></button>--}}
+                    <div class=""  style="width: 231px;
+                                        height: 40px;
+                                        border: 0;
+                                        font-family: PingFangSC-Medium;
+                                        background-color: #e3e4e6;
+                                        box-shadow: inset 0px 0px 3px 0px
+                                        rgba(205, 214, 219, 0.2);
+                                        border-radius: 20px;">
+                        <input type="text" style=" background-color: #e3e4e6; border: 0;height:20px;margin:10px 0 10px 20px;width: 170px;" placeholder="输入关键字搜索">
+                        <button style="border: 0; color: #2869df"><span class="glyphicon glyphicon-search"></span></button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
     <div style="background:#f2f4f5;padding-bottom: 100px">
         <div id="content" class="content row" style="padding-top:38px">
-            <div class="col-md-8" style="background: #ffffff;">
+            <div class="col-md-8" style="background: #ffffff;padding-top: 10px">
                 <div>
                     <p class="h4 col-md-6 col-md-offset-3 text-center">{{$content->title}}</p>
                     <div class="col-md-12" style="margin: 2% 0 5% 0">
@@ -177,18 +179,18 @@
                     @endif
                 </div>
                 <div class="panel panel-default col-md-12 " id="word">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
-                            评论留言区:
-                        </h3>
-                    </div>
-                    <div id="comment-2491" class="row b-user b-parent" v-for="(vo,key) in message" :key="key">
+                    {{--<div class="panel-heading">--}}
+                        {{--<h3 class="panel-title">--}}
+                            {{--评论留言区:--}}
+                        {{--</h3>--}}
+                    {{--</div>--}}
+                    <div id="comment-2491" class="row b-user b-parent" style="padding-top: 20px" v-for="(vo,key) in message" :key="key">
                         <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1 b-pic-col">
                             <img class="b-user-pic js-head-img" :src="vo.avatar" :alt="vo.nickname"
                                  :title="vo.nickname">
                         </div>
-                        <div class="col-xs-10 col-sm-11 col-md-11 col-lg-11 b-content-col b-cc-first">
-                            <div>
+                        <div style="margin-bottom: 10px" class="col-xs-10 col-sm-11 col-md-11 col-lg-11 b-content-col b-cc-first">
+                            <div style="margin-bottom: 10px">
                                 <span class="b-user-name">@{{vo.nickname}}</span>：@{{vo.content}}
                                 <p class="b-date">
                                     @{{vo.time}} <a href="javascript:;" :username="vo.nickname"  v-on:click="reply(vo.id,vo.nickname,key)">回复</a>
@@ -196,7 +198,7 @@
                             </div>
                             <div v-for="level in vo.level">
                                 <hr class="layui-bg-gray">
-                                <div id="comment-2532" class="row b-user b-child">
+                                <div style="margin-top: 10px" id="comment-2532" class="row b-user b-child">
                                     <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1 b-pic-col">
                                         <img class="b-user-pic js-head-img" :src="level.avatar" :alt="level.nickname" :title="level.nickname">
                                     </div>
@@ -215,11 +217,11 @@
                                 <div class="b-clear-float"></div>
                             </div>
                         </div>
-                        <hr class="layui-bg-gray">
+                        <hr  class="layui-bg-gray">
+                        {{--<div style=" margin-bottom:1px;width: 90%;height: 1px;background-color: #e3e5e6;"></div>--}}
                     </div>
                     <hr class="layui-bg-gray">
                     {{--{{pd(session('user_id'))}}--}}
-                    @if(session()->has('user_id'))
                         {{--{{pd(session('user_id'))}}--}}
                         <div>
                             <form id="form">
@@ -235,12 +237,12 @@
                                     {{ csrf_field() }}
                                 </div>
                             </form>
-                            <button class="layui-btn" v-on:click="butn()" id="btn">评论</button>
-
+                            @if(session()->has('user_id'))
+                                <button class="layui-btn" v-on:click="butn()" id="btn">评论</button>
+                            @else
+                                 <div  class="layui-btn">请<a href="javascript:;" onclick="login()">登陆</a>后评论 </div>
+                            @endif
                         </div>
-                    @else
-                        <div>请<a href="javascript:;" onclick="login()">登陆</a>后评论</div>
-                    @endif
                 </div>
             </div>
             <div class="col-md-4" style="background: #f2f4f5;padding-bottom: 30px;">
@@ -425,5 +427,37 @@
 
         }
     })
+</script>
+<script>
+    function login(){
+        layui.use(['layer'], function(){
+            var layer = layui.layer;
+            data = "正在申请，请用github登录";
+            layer.open({
+                type: 1,
+                title:'<div class="text-center" >无需注册，直接登录</div>',
+                // skin: 'layui-layer-rim', //加上边框
+                // offset: 't',
+                area:['414px','380px'],
+                offset:'233px',//距离顶部高度
+                content: `<div style="border-radius:50px">
+                                <div>
+                                    <div style="margin-top:43px">
+                                    <a href="{{url('/login/loginGithub/qq')}}"><img class="center-block" src="https://baijunyao.com/images/home/qq-login.png" alt="QQ登录" title="QQ登录"></a>
+                                    </div>
+                                    <div style="margin-top:36px">
+                                    <a href="{{url('/login/loginGithub/weibo')}}"><img class="center-block"  src="https://baijunyao.com/images/home/sina-login.png" alt="微博登录" title="微博登录"></a>
+                                    </div>
+                                    <div style="margin-top:36px">
+                                    <a href="{{url('/login/loginGithub/github')}}"><img class="center-block" src="https://baijunyao.com/images/home/github-login.jpg" alt="github登录" title="github登录"></a>
+                                    </div>
+                                </div>
+                                 <div class="text-center" style="margin-top:56px">
+                                 <span style="color:#e6e6e6">---------------</span> &nbsp;第三方账户登录&nbsp; <span style="color:#e6e6e6" >---------------</span>
+                                </div>
+                         </div>`,
+            });
+        });
+    }
 </script>
 </html>
