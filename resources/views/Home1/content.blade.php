@@ -256,7 +256,8 @@
                         <div class="col-md-4">
                             <div class="text-center"
                                  style="margin-top:10px;color:#2869df;width: 110px;height: 28px;line-height:28px;background-color: #e2e9f7;border-radius: 14px;">
-                                {{$tag->name}}</div>
+                                <a href="{{url('label/'.$tag->id)}}" style="color:#2869df;">{{$tag->name}}</a>
+                               </div>
                         </div>
                     @endforeach
                 </div>
