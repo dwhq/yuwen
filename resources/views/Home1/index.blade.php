@@ -13,7 +13,7 @@
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <title>Document</title>
+    <title>指尖余温</title>
     <style>
         {{--初始化css样式--}}
         body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td {
@@ -23,7 +23,7 @@
 
         body {
             margin: 0;
-            padding: 29 px00;
+            padding: 0px;
             font: 14px "\5B8B\4F53", sans-serif;
             background: #ffffff;
         }
@@ -129,8 +129,8 @@
 
 <div>
     @if($blog)
-        @include('Home1.loading')
-        <div id="blog" style="width: 100%;background:url('{{asset('/image/blog_03.jpg')}}');">
+        {{--@include('Home1.loading')--}}
+        <div id="blog" style="width: 100%;background:url('http://yuwenb.oss-cn-beijing.aliyuncs.com/yuwen/images/blog_03.jpg?Expires=1546406211&OSSAccessKeyId=TMP.AQHbg803o5e1WnCSlnP7AcfI_pOAkKg7U7H4blcL0Q3oa2UyySZYRtpWmjB9ADAtAhUA7SNLjlCD3slEeJjgBjVnQXzOqoMCFEP_LMWGiL9k_LWvzbE1BMbo1MNT&Signature=VVfdTeevLLPtyWMhVPJ5xskkWTY%3D');">
             <div class="content">
                 <div style="height: 14px;padding-top: 14px;">
                     <div style="float:left;font-family: PingFangSC-Medium;font-weight: normal;font-stretch: normal;letter-spacing: 4px; color: #37424d;">
@@ -169,7 +169,7 @@
                 document.getElementById("blog").style.height = $(window).height() + 'px';
                 if (window.screen.availWidth > 2200) {
                     {{--document.querySelector('#blog').style.backgroundImage="{{asset('image/blog_02.jpg')}}"--}}
-                    document.getElementById("blog").style.backgroundImage = "url({{asset('image/blog_02.jpg')}})";
+                    document.getElementById("blog").style.backgroundImage = "url('http://yuwenb.oss-cn-beijing.aliyuncs.com/yuwen/images/blog_02.jpg?Expires=1546406163&OSSAccessKeyId=TMP.AQHbg803o5e1WnCSlnP7AcfI_pOAkKg7U7H4blcL0Q3oa2UyySZYRtpWmjB9ADAtAhUA7SNLjlCD3slEeJjgBjVnQXzOqoMCFEP_LMWGiL9k_LWvzbE1BMbo1MNT&Signature=C%2BIa2GcJbVMXQPGjioplnc0cOK0%3D')";
                 }
             }
 
