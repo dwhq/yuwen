@@ -8,7 +8,7 @@
     <div class="row" style="padding: 10px;background-color: #393D49;">
         <div class="col-md-2 col-md-offset-2">
             <a href="{{url('/')}}">
-                <img src="{{$info[0]->back==1?config('app.img').$info[0]->image:asset($info[0]->image)}}" alt="{{$info[0]->name}}">
+                <img src="{{$info->back==1?config('app.img').$info->image:asset($info->image)}}" alt="{{$info->name}}">
             </a>
         </div>
         <div class="col-md-3 col-md-offset-2">
