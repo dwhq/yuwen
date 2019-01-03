@@ -14,11 +14,16 @@ class qrCodeController extends Controller
 //        $qrcode = new QrReader('/timg.jpg');
 //        echo '<img src="/timg.jpg" alt="">';
 //        QrCode::generate('Make me into a QrCode!');
-        return QrCode::format('png')->size(200)->encoding('UTF-8')->generate('识别二维码',public_path('phpqrcode.png'));
-//       echo '<img src="'.$a.'">';
+        return QrCode::format('svg')->size(200)->encoding('UTF-8')->wiFi([
+            'ssid' => 'tnts',
+            'encryption' => 'WPA/WEP',
+            'password' => 'qq123456789.'
+        ]);
+//        pd($a);
+//        echo '<img src="'.$a.'">';
         //识别二维码
-        $qrcode = new QrReader(public_path('phpqrcode.png'));
-        return$qrcode->text();
+//        $qrcode = new QrReader(public_path('phpqrcode.png'));
+//        return$qrcode->text();
 //        $text = $qrcode->text(); //return decoded text from QR Code
 //        var_dump($text);
 //        return 111;

@@ -130,7 +130,7 @@
 <div>
     @if($blog)
         {{--@include('Home1.loading')--}}
-        <div id="blog" style="width: 100%;background:url('http://yuwenb.oss-cn-beijing.aliyuncs.com/yuwen/images/blog_03.jpg?Expires=1546406211&OSSAccessKeyId=TMP.AQHbg803o5e1WnCSlnP7AcfI_pOAkKg7U7H4blcL0Q3oa2UyySZYRtpWmjB9ADAtAhUA7SNLjlCD3slEeJjgBjVnQXzOqoMCFEP_LMWGiL9k_LWvzbE1BMbo1MNT&Signature=VVfdTeevLLPtyWMhVPJ5xskkWTY%3D');">
+        <div id="blog" style="width: 100%;background:url('https://yuwenb.oss-cn-beijing.aliyuncs.com/yuwen/images/blog_03.jpg');">
             <div class="content">
                 <div style="height: 14px;padding-top: 14px;">
                     <div style="float:left;font-family: PingFangSC-Medium;font-weight: normal;font-stretch: normal;letter-spacing: 4px; color: #37424d;">
@@ -169,7 +169,7 @@
                 document.getElementById("blog").style.height = $(window).height() + 'px';
                 if (window.screen.availWidth > 2200) {
                     {{--document.querySelector('#blog').style.backgroundImage="{{asset('image/blog_02.jpg')}}"--}}
-                    document.getElementById("blog").style.backgroundImage = "url('http://yuwenb.oss-cn-beijing.aliyuncs.com/yuwen/images/blog_02.jpg?Expires=1546406163&OSSAccessKeyId=TMP.AQHbg803o5e1WnCSlnP7AcfI_pOAkKg7U7H4blcL0Q3oa2UyySZYRtpWmjB9ADAtAhUA7SNLjlCD3slEeJjgBjVnQXzOqoMCFEP_LMWGiL9k_LWvzbE1BMbo1MNT&Signature=C%2BIa2GcJbVMXQPGjioplnc0cOK0%3D')";
+                    document.getElementById("blog").style.backgroundImage = "url('https://yuwenb.oss-cn-beijing.aliyuncs.com/yuwen/images/blog_02.jpg')";
                 }
             }
 
