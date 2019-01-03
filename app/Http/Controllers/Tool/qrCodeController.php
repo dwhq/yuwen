@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Tool;
 
+use App\services\OSS;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -27,5 +28,8 @@ class qrCodeController extends Controller
 //        $text = $qrcode->text(); //return decoded text from QR Code
 //        var_dump($text);
 //        return 111;
+    }
+    public function oss(OSS $OSS){
+        $OSS::publicUpload('yuwen1','yuwen/images','/home/wwwroot/default/yuwen/public/uploads/2018-11-24-11-33-27-5bf8c68718da8.jpg');
     }
 }

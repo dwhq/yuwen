@@ -215,5 +215,5 @@ Route::group(['namespace' => 'Smartmd', 'prefix' => 'editor'], function () {
     });
 });
 Route::prefix('tool')->namespace('Tool')->group(function (){
-    Route::get('/qrCode','qrCodeController@show');
+    Route::get('/qrCode','qrCodeController@oss');
 });
