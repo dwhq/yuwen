@@ -30,7 +30,7 @@ class ArticleController extends Controller
         $list = DB::table('article')->where([['state',1]])->orderBy('id','sort')->paginate(6);
         $page = $list->links();
         $type='';
-        $blog = true;
+        $blog = false;
         if ($request->input('page') > 0){
             $blog = false;
         }
