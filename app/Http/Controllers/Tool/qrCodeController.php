@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Zxing\QrReader;
+use DateTime;
 
 class qrCodeController extends Controller
 {
@@ -30,6 +31,7 @@ class qrCodeController extends Controller
 //        return 111;
     }
     public function oss(OSS $OSS){
-        $OSS::publicUpload('yuwen1','yuwen/images','/home/wwwroot/default/yuwen/public/uploads/2018-11-24-11-33-27-5bf8c68718da8.jpg');
+//        $a = $OSS::publicUpload('yuwenb','yuwen/yuwen1.png','/home/wwwroot/default/yuwen/public/uploads/2018-11-24-11-33-27-5bf8c68718da8.jpg');
+//        pd($OSS::getPrivateObjectURLWithExpireTime('yuwen/yuwen1.png','yuwenb',\Faker\Provider\DateTime::dateTime()));
     }
 }

@@ -8,9 +8,9 @@
 {{--    <link rel="stylesheet" href="{{asset("css/app.css")}}">--}}
     @include('Smartmd::php-parse')
     <style>
-        body{
-            background: white;
-        }
+        /*body{*/
+            /*background: white;*/
+        /*}*/
     </style>
 </head>
 <body>

@@ -16,7 +16,6 @@ class UploadController extends Controller
             $file = $request->file('file');
             // 文件是否上传成功
             if ($file->isValid()) {
-
                 // 获取文件相关信息
                 $originalName = $file->getClientOriginalName(); // 文件原名
                 $ext = $file->getClientOriginalExtension();     // 扩展名

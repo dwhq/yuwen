@@ -13,38 +13,39 @@
     <link rel="stylesheet" href="{{asset('css/style.css') }}"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    @include('Smartmd::php-parse')
     <title>Document</title>
     <style>
         {{--初始化css样式--}}
-        body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td {
+        .cont body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td {
             margin: 0;
             padding: 0;
         }
 
-        body {
+        .cont body {
             margin: 0;
-            padding: 29 px00;
+            padding: 29px 0 0;
             font: 14px "\5B8B\4F53", sans-serif;
             background: #ffffff;
         }
 
-        h1, h2, h3, h4, h5, h6 {
+        .cont h1, h2, h3, h4, h5, h6 {
             font-size: 100%;
         }
 
-        address, cite, dfn, em, var {
+        .cont address, cite, dfn, em, var {
             font-style: normal;
         }
 
-        code, kbd, pre, samp {
+        .cont code, kbd, pre, samp {
             font-family: couriernew, courier, monospace;
         }
 
-        small {
+        cont small {
             font-size: 12px;
         }
 
-        ul, ol {
+        .cont ul, ol {
             list-style: none;
         }
 
@@ -151,9 +152,11 @@
                             &nbsp;{{$content->cateid}}</div>
                     </div>
                 </div>
-                <div class="col-md-12">
-                    {{--{!! $content->account !!}--}}
-                    {!! $content->back==1?str_replace('<img src="','<img src="'.config('app.img'),$content->accounts):$content->accounts !!}
+                <div class="cont col-md-12">
+                    <div id="content" class="markdown-body">
+                    {{--{!! $html !!}--}}
+                    {!! $content->back==1?str_replace('<img src="','<img src="'.config('app.img'),$content->account):$content->account !!}
+                    </div>
                 </div>
                 {{--@if(!$article_tag->isEmpty())--}}
                     {{--<div class="col-md-12">--}}

@@ -8,6 +8,7 @@ use App\Model\word;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use NoisyWinds\Smartmd\Markdown;
 
 class ArticleController extends Controller
 {
@@ -114,6 +115,7 @@ class ArticleController extends Controller
         if (!$content){
             return view('404');
         }
+
         $user_info = user::user_info(session('user_id'),'id',['id','account','avatar','nickname']);
         $colum = $this->column();
         $info = $this->info();
@@ -124,6 +126,11 @@ class ArticleController extends Controller
         $up_article=$this->up_article($id);
         $next_article=$this->next_article($id);
         $type = $content->cateid;
+        if ($content->id > 100)
+        {
+            $parse = new Markdown();
+            $content->account = $parse->text($content->account);
+        }
         return view('Home1/content')
             ->with('info',$info)
             ->with('colum',$colum)
