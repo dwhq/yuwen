@@ -9,8 +9,10 @@ use Intervention\Image\Facades\Image;
 
 class UploadController extends Controller
 {
+
     public function imSave(Request $request)
     {
+//        dd($request->all());
         $validator = Validator::make($request->all(), [
             'image' => 'required|max:4096|image'
         ]);
@@ -29,7 +31,7 @@ class UploadController extends Controller
             $im->save(config('smartmd.image.root') . '/' . $name, 80);
             return response()->json(
                 [
-                    'path' => config('smartmd.image.url') . '/' . $name,
+                    'path' => asset('storage/uploads/'.$name),
                     'size' => [
                         'width' => $width,
                         'height' => $height

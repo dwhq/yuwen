@@ -10,12 +10,14 @@ class UploadController extends Controller
 {
     //
     public function upload(Request $request){
+        echo 111;exit();
         $file = $request->file('picture');
-  //return(upload('file', $path = 'upload', $childPath = true));
+        //return(upload('file', $path = 'upload', $childPath = true));
         if ($request->isMethod('post')) {
             $file = $request->file('file');
             // 文件是否上传成功
             if ($file->isValid()) {
+
                 // 获取文件相关信息
                 $originalName = $file->getClientOriginalName(); // 文件原名
                 $ext = $file->getClientOriginalExtension();     // 扩展名
@@ -25,7 +27,7 @@ class UploadController extends Controller
                 $filename = date('Y-m-d-H-i-s') . '-' . uniqid() . '.' . $ext;
                 // 使用我们新建的uploads本地存储空间（目录）
                 //这里的uploads是配置文件的名称
-                $bool = Storage::disk('local')->put($filename, file_get_contents($realPath));
+                $bool = Storage::disk('uploads')->put($filename, file_get_contents($realPath));
                 return $filename;
             }
         }
