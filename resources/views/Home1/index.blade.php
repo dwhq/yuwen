@@ -125,8 +125,6 @@
     </style>
 </head>
 <body>
-
-
 <div>
     @if($blog)
         {{--@include('Home1.loading')--}}
@@ -203,7 +201,7 @@
                     box-shadow: inset 0px 0px 3px 0px
                     rgba(205, 214, 219, 0.2);
                     border-radius: 20px;">
-                        <input type="text" name="seek" style=" background-color: #e3e4e6; border: 0;height:20px;margin:10px 0 10px 20px;width: 170px;" placeholder="输入关键字搜索">
+                        <input type="text" name="seek" value="@if(isset($seek)){{$seek}}@endif" style=" background-color: #e3e4e6; border: 0;height:20px;margin:10px 0 10px 20px;width: 170px;" placeholder="输入关键字搜索">
                         <button style="border: 0; color: #2869df"><span class="glyphicon glyphicon-search"></span></button>
                     </div>
                 </form>
