@@ -27,10 +27,10 @@ class Kernel extends ConsoleKernel
     {
          $schedule->command('inspire')
                   ->hourly();
-         $schedule->call(function (){
-             $home = new HomeController();
-             $home->dine_email();
-         })->dailyAt('11:28');
+//         $schedule->call(function (){
+//             $home = new HomeController();
+//             $home->dine_email();
+//         })->dailyAt('11:28');
     }
 
     /**

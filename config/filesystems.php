@@ -45,7 +45,7 @@ return [
         // 本地端的local空间
         'local' => [
             'driver' => 'local',
-            'root' => public_path('uploads'),
+            'root' => storage_path('app/public/uploads'),
             //'root' => storage_path('app'),
         ],
         // 本地端的public空间
