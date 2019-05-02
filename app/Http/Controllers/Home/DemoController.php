@@ -17,6 +17,7 @@ use GuzzleHttp\Client;
 class DemoController extends Controller{
 
     public function demo(Request $request,Client $client){
+        pd(1);
         $jar = new \GuzzleHttp\Cookie\CookieJar;
         $jar = 'sessionid=ec8wseci4a2vwoswsd9ceui3iel7a2yb; csrftoken=8oKhnlWEgkE6RR6NM3yfnLLB3ciJsFWYTYEEGYm3Jwxt8h0CFPQpJQEwa00RjshE';
         $r = $client->request('GET', 'http://httpbin.org/cookies', [
@@ -38,10 +39,7 @@ class DemoController extends Controller{
     }
     public function demo23()
     {
-        Redis::set('name', 'Taylor');
-        $user = Redis::get('name');
-        pd($user);
-        $values = Redis::lrange('names', 5, 10);
+
     }
     public static function getClientIp(){
         if (isset($_SERVER))
