@@ -28,7 +28,7 @@ class ArticleController extends Controller
         $url = $this->url();
         $title='';
         $new_article = $this->new_article();
-        $list = DB::table('article')->where([['state',1]])->orderBy('id','sort')->paginate(6);
+        $list = DB::table('article')->where([['state',1]])->orderBy('id','desc')->paginate(6);
         $page = $list->links();
         $type='';
         $blog = false;
@@ -184,7 +184,8 @@ class ArticleController extends Controller
         $url = $this->url();
         $user_info = user::user_info(session('user_id'),'id',['id','account','avatar','nickname']);
         $new_article = $this->new_article();
-        $list = DB::table('tags')->select('tag.name','article.back','article.title','article.pic','article.id','article.desc','article.cateid','article.time')->where([['article.state',1],['tag.id',$tag_id]])->leftjoin('tag','tag.id','=','tags.tag_id')->leftjoin('article','article.id','=','tags.u_id')->orderBy('article.id','sort')->paginate(10);
+        $list = DB::table('tags')->select('tag.name','article.back','article.ali_oss_pic','article.title','article.pic','article.id','article.desc','article.cateid','article.time')->where([['article.state',1],['tag.id',$tag_id]])
+            ->leftjoin('tag','tag.id','=','tags.tag_id')->leftjoin('article','article.id','=','tags.u_id')->paginate(10);
         if ($list->isEmpty()){
             return back();
         }
@@ -225,7 +226,7 @@ class ArticleController extends Controller
         $seek = $request->input('seek');
         $title='<div class="h4">关于'.$seek.'的搜索结果</div>';//显示的文字
         $new_article = $this->new_article();
-        $list = DB::table('article')->where([['state',1],['account','like','%'.$seek.'%']])->orwhere([['title','like','%'.$seek.'%']])->orderBy('id','sort')->paginate(10);
+        $list = DB::table('article')->where([['state',1],['account','like','%'.$seek.'%']])->orwhere([['title','like','%'.$seek.'%']])->orderBy('id')->paginate(10);
 //        dd(Article::search($seek)->orderBy('id','sort')->paginate(10));exit();
 //        $list = Article::search($seek)->orderBy('id','sort')->paginate(10);
         $page = $list->links();
