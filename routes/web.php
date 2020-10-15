@@ -205,7 +205,7 @@ Route::prefix('upload')->namespace('Upload')->middleware('token')->group(functio
 //});
 
 Route::group(['namespace' => 'Smartmd', 'prefix' => 'editor'], function () {
-    Route::post('/upload', 'UploadController@imSave');
+    Route::post('/upload', 'UploadController@upload');
     Route::get('/write', function () {
         return view('vendor/smartmd/write');
     });
