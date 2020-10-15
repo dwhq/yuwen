@@ -43,7 +43,6 @@ class UploadController extends Controller
         $bucket = 'yuwenb';
         try {
             $ossClient = new OssClient($config['access_id'], $config['access_key'], $config['endpoint']);
-            var_dump(OssClient::getFilename());exit();
             $filePath = basename($name);
             $info = $ossClient->uploadFile($bucket, 'yuwen/images/' . $filePath, $pic);
             return $info['info']['url'];
